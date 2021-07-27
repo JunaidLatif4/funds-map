@@ -15,13 +15,13 @@ const EmailSignin = ({ setWithEmail }) => {
         </small>
       </div>
       <div className="esignin__form">
-        <label className="signin__label">Signin with email account</label>
+        {/* <label className="signin__label">Signin with email account</label> */}
         <TextField
-          className="esignin__field"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+                style={{ width: "100%" }}
+                id="outlined-basic"
+                label="Signin with email account"
+                variant="standard"
+              />
         <strong className="alternate__text">
           Alternatively, Sign in with{" "}
           <Link onClick={() => setWithEmail(false)}>Phone</Link>
