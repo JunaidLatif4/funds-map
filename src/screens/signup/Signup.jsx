@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 
 import "./Signup.css";
 import Backarrow from "../../components/backarrow/Backarrow";
+import { signup } from "../../api/auth";
 
 const Signup = () => {
   // const classes = useStyles();
@@ -44,7 +45,7 @@ const Signup = () => {
             </div>
           </div>
         </div>
-        <Button text="DONE" />
+        <Button text="DONE" click={signup} />
       </div>
     </>
   );
