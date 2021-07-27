@@ -1,17 +1,20 @@
-import './App.css';
-import EVar from './screens/EmailVar/EVar';
-import Notify from './screens/notify/Notify';
-import Signin from './screens/signin/Signin';
-import Signup from './screens/signup/Signup';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "./App.css";
+import Otp from "./screens/otp/Otp";
+import Signin from "./screens/signin/Signin";
+import Signup from "./screens/signup/Signup";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Signin /> */}
-      {/* <Signup/> */}
-      {/* <EVar/> */}
-      <Notify/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/otp" component={Otp} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

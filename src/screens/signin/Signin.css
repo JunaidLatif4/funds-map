@@ -1,31 +1,15 @@
-.signin__container{
-    width: 480px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: burlywood;
-}
-.signin__heading{
-    width: 100%;
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: brown;
-
-}
-.signin__form{
-    width: 100%;
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: cyan;
-}
-@media(max-width:480px){
-    .signin__container{
-        width: 100%;
-    }
+.signin__container {
+  width: 480px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
 }
 
+@media (max-width: 480px) {
+  .signin__container {
+    width: 100%;
+  }
+}

@@ -1,0 +1,35 @@
+.email__signin {
+  width: 90%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.esignin__heading {
+  width: 100%;
+  margin-top: 20px;
+  flex: 1;
+}
+.signin__text {
+  font-size: 25px;
+  display: block;
+  margin-bottom: 3px;
+  margin-top: 5px;
+}
+.esignin__form {
+  width: 100%;
+  margin-top: 50px;
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.esignin__field {
+  width: 100%;
+}
+.signin__label {
+  margin-bottom: 20px;
+  color: gray;
+}
+.alternate__text {
+  margin-top: 30px;
+}

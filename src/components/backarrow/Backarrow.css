@@ -1,4 +1,9 @@
-.Backarrow__container{
-    margin-bottom: 52px;
-    margin-top: 20px;
+.backarrow {
+  width: 90%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+.backarrow__icon {
+  cursor: pointer;
 }
