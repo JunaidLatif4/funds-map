@@ -1,18 +1,17 @@
-import React from 'react'
-import "./Backarrow.css"
+import React from "react";
+import "./Backarrow.css";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const Backarrow = () => {
-    return (
-        <>
+  return (
+    <>
+      <div className="backarrow">
+        <ArrowBackIcon className="backarrow__icon" />
+      </div>
+    </>
+  );
+};
 
-        <div className="Backarrow__container">
-        <KeyboardBackspaceIcon/>
-        </div>
-            
-        </>
-    )
-}
-
-export default Backarrow
+export default Backarrow;
