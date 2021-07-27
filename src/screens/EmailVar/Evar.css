@@ -16,11 +16,11 @@
 }
 
 .Evar__para1 {
-  font-size: 13px;
+  font-size: 12px;
     margin-bottom: 100px;
 }
 .Evar__para2 {
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -28,6 +28,7 @@
 
 .ptwo1{
     margin: 0;
+    margin-bottom: 5px;
 }
 .ptwo2{
     margin: 0;

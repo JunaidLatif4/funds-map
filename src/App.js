@@ -1,5 +1,6 @@
 import './App.css';
 import EVar from './screens/EmailVar/EVar';
+import Notify from './screens/notify/Notify';
 import Signin from './screens/signin/Signin';
 import Signup from './screens/signup/Signup';
 
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       {/* <Signin /> */}
       {/* <Signup/> */}
-      <EVar/>
+      {/* <EVar/> */}
+      <Notify/>
     </div>
   );
 }

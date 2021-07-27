@@ -20,15 +20,14 @@ const Evar = () => {
 
           <div className="body">
             <div className="Evar__para1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-              facilis commodi suscipit mollitia
+              Check your email inbox. We've mailed you an e-mail verification link on your id email@domain.com
             </div>
 
             <div className="Evar__para2">
-              <p className="ptwo1">Lorem ipsum dolor sit.</p>
+              <p className="ptwo1">Didn't receive an email?</p>
               <p className="ptwo2">
-                Lorem ipsum dolor sit amet |
-                <span className="para2span"> Change Email</span>
+                Re-send Email (After 10s) |
+                <span className="para2span">{" "}Change Email ID</span>
               </p>
             </div>
           </div>
