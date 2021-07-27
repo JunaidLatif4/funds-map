@@ -3,7 +3,8 @@ import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
 import LockOpenSharpIcon from "@material-ui/icons/LockOpenSharp";
 
-import img1 from "./google.png";
+import img1 from "../../Assets/imgs/google.png";
+import img2 from "../../Assets/imgs/lock.svg"
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -18,8 +19,8 @@ const Signup = () => {
       <div className="signup__container">
         <div className="signup__header">
           <Backarrow />
-          <div className="esignin__heading">
-            <LockOpenSharpIcon fontSize="large" />
+          <div className="signin__heading">
+            <img src={img2} alt="Error" className="signin__img" />
             <span className="signin__text">Sign Up</span>
             <small>
               Not Yet Registered? <Link to="signin">Click here to Sign In</Link>

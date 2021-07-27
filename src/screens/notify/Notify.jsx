@@ -1,15 +1,10 @@
 import React from "react";
 import Button from "../../components/button/Button";
-import { Link } from "react-router-dom";
-import LockOpenSharpIcon from "@material-ui/icons/LockOpenSharp";
 
-import watsapp from "./watsapp.png";
+
+import watsapp from "../../Assets/imgs/whatsapp.svg";
 import Phone from "material-ui-phone-number";
 import Checkbox from '@material-ui/core/Checkbox';
-
-
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 
 import "./Notify.css";
 import Backarrow from "../../components/backarrow/Backarrow";
@@ -49,7 +44,7 @@ const Notify = () => {
               variant="standard"
               defaultCountry={"in"}
               regions={"asia"}
-              //   onlyCountries={['pk']}
+           
               style={{ width: "100%" }}
             />
             <div className="Notify__confirm">

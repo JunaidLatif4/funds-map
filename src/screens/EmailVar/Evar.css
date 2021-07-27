@@ -14,6 +14,10 @@
   font-size: 20px;
   font-weight: 600;
 }
+.signin__img {
+  width: 40px;
+  height: 50px;
+}
 
 .Evar__para1 {
   font-size: 12px;

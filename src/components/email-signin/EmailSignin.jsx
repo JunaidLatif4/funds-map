@@ -1,13 +1,14 @@
 import React from "react";
 import "./EmailSignin.css";
 import TextField from "@material-ui/core/TextField";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { Link } from "react-router-dom";
+
+import email from "../../Assets/imgs/email.svg"
 const EmailSignin = ({ setWithEmail }) => {
   return (
     <div className="email__signin">
       <div className="esignin__heading">
-        <MailOutlineIcon fontSize="large" />
+      <img src={email} alt="Error" className="signin__img" />
         <span className="signin__text">Sign In</span>
         <small>
           Not Yet Registered? <Link to="/signup">Click here to Sign Up</Link>
