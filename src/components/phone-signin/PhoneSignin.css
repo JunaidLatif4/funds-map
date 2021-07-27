@@ -9,6 +9,10 @@
   margin-top: 20px;
   flex: 1;
 }
+.signin__img {
+  width: 40px;
+  height: 50px;
+}
 .signin__text {
   font-size: 25px;
   display: block;

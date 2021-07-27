@@ -7,15 +7,16 @@ import TextField from "@material-ui/core/TextField";
 
 import "./Evar.css";
 import Backarrow from "../../components/backarrow/Backarrow";
+
+import evar from "../../Assets/imgs/evar.svg"
 const Evar = () => {
   return (
     <>
       <div className="Evar__container">
         <div className="Evar__header">
           <Backarrow />
-          <div className="icon">
-            <EmailIcon />
-          </div>
+          <img src={evar} alt="Error" className="signin__img" />
+
           <div className="Evar__heading">Email Verification</div>
 
           <div className="body">
