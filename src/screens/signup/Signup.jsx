@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 
 import './Signup.css'
 import Backarrow from '../../components/backarrow/Backarrow';
-const Signin = () => {
+const Signup = () => {
     // const classes = useStyles();
     return (
     <>
@@ -58,4 +58,4 @@ const Signin = () => {
     )
 }
 
-export default Signin
+export default Signup
