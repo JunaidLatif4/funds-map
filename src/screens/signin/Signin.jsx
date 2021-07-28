@@ -6,7 +6,7 @@ import EmailSignin from "../../components/email-signin/EmailSignin";
 import PhoneSignin from "../../components/phone-signin/PhoneSignin";
 import Backarrow from "../../components/backarrow/Backarrow";
 const Signin = () => {
-  const [withEmail, setWithEmail] = useState(true);
+  const [withEmail, setWithEmail] = useState(false);
   return (
     <div className="signin__container">
       <Backarrow />

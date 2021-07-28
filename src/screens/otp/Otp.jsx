@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import OtpInput from "react-otp-input";
 const Otp = () => {
   const [otp, setOtp] = useState("");
-  const [viaEmail, setViaEmail] = useState(false);
+  const [viaEmail, setViaEmail] = useState(true);
   return (
     <div className="otp__screen">
       <Backarrow />
@@ -26,7 +26,7 @@ const Otp = () => {
         <OtpInput
           value={otp}
           onChange={(otp) => setOtp(otp)}
-          numInputs={5}
+          numInputs={4}
           separator={""}
           inputStyle="opt__box"
           containerStyle="otp__wrapper"

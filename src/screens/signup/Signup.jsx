@@ -13,7 +13,6 @@ import "./Signup.css";
 import Backarrow from "../../components/backarrow/Backarrow";
 
 const Signup = () => {
-  // const classes = useStyles();
   return (
     <>
       <div className="signup__container">
@@ -52,3 +51,4 @@ const Signup = () => {
 };
 
 export default Signup;
+

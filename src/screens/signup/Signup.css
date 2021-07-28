@@ -5,6 +5,8 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  align-items: center;
   /* padding-top: 20px; */
 }
 .signup__header {
@@ -23,6 +25,9 @@
   font-size: 11px;
   margin-top: -10px;
   margin-bottom: 45px;
+}
+.signin__heading{
+  margin-top: 20px;
 }
 .para1 {
   margin-right: 10px;
