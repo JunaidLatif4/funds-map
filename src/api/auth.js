@@ -1,24 +1,88 @@
 import axios, { BASE_URL } from "../axiosInstance";
-import { assertExpressionStatement } from "@babel/types";
-export const signup = async () => {
+export const signup = async (data) => {
   console.log("signup......");
+  const resolved = {
+    data: null,
+    error: null,
+  };
   try {
-    const data = await axios({
+    resolved.data = await axios({
       url: `api/v1/users/signup`,
       method: "post",
-      data: {
-        email: "hassnaatfarooq@gmail.com",
-        countryCode: "+92",
-        mobileNumber: "03497430201",
-        password: "1122asdf",
-        userType: "ORGANISATIONAL_PARTNER",
-        firstName: "Hasnat",
-        lastName: "Farooq",
-      },
+      data,
     });
-    console.log(data);
-    return data;
   } catch (error) {
-    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "something went wrong";
+    }
   }
+  return resolved;
+};
+
+export const e_verify = async (token) => {
+  console.log("signup......");
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: `api/v1/users/email-verification`,
+      method: "post",
+      headers: { authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "something went wrong";
+    }
+  }
+  return resolved;
+};
+
+export const otp_mail = async (email) => {
+  console.log("signup......");
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: `api/v1/users/login/otp`,
+      method: "post",
+      params: { type: "EMAIL", email },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "something went wrong";
+    }
+  }
+  return resolved;
+};
+
+export const otp_sms = async (mobile) => {
+  console.log("signup......");
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: `api/v1/users/login/otp`,
+      method: "post",
+      params: { type: "MOBILE", mobile },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "something went wrong";
+    }
+  }
+  return resolved;
 };
