@@ -1,21 +1,18 @@
 import React from "react";
 import Button from "../../components/button/Button";
 
-
 import watsapp from "../../Assets/imgs/whatsapp.svg";
 import Phone from "material-ui-phone-number";
-import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from "@material-ui/core/Checkbox";
 
 import "./Notify.css";
 import Backarrow from "../../components/backarrow/Backarrow";
 const Notify = () => {
+  const [checked, setChecked] = React.useState(true);
 
-    const [checked, setChecked] = React.useState(true);
-
-    const handleChange = (event) => {
-      setChecked(event.target.checked);
-    };
-
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   // const classes = useStyles();
   return (
@@ -44,7 +41,6 @@ const Notify = () => {
               variant="standard"
               defaultCountry={"in"}
               regions={"asia"}
-           
               style={{ width: "100%" }}
             />
             <div className="Notify__confirm">
@@ -56,7 +52,7 @@ const Notify = () => {
                 />
               </div>
               <div className="confirm_line">
-                  I wish to recive WhatsApp updates
+                I wish to recive WhatsApp updates
               </div>
             </div>
 
