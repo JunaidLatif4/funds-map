@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 
 import Phone from "material-ui-phone-number";
 
-
-import phone from "../../Assets/imgs/phone.svg"
-const PhoneSignin = ({ setWithEmail }) => {
+import phone from "../../Assets/imgs/phone.svg";
+const PhoneSignin = ({ setWithEmail, mobile, setMobile }) => {
+  const handleChange = (value) => {
+    setMobile(value);
+  };
   return (
     <div className="phone__signin">
       <div className="psignin__heading">
@@ -21,12 +23,13 @@ const PhoneSignin = ({ setWithEmail }) => {
       <div className="psignin__form">
         <label className="signin__label">Signin with phone number</label>
         <Phone
-              variant="standard"
-              defaultCountry={"in"}
-              regions={"asia"}
-              
-              style={{ width: "100%" }}
-            />
+          variant="standard"
+          defaultCountry={"in"}
+          regions={"asia"}
+          style={{ width: "100%" }}
+          value={mobile}
+          onChange={handleChange}
+        />
         <strong className="alternate__text">
           Alternatively, Sign in with{" "}
           <Link onClick={() => setWithEmail(true)}>Email</Link>
