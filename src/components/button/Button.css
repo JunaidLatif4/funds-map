@@ -8,4 +8,11 @@
   background-color: #007aff;
   border: none;
   border-radius: 5px;
+  padding: 5px;
+  position: relative;
+}
+.loading {
+  width: 25px !important;
+  height: 25px !important;
+  color: white !important;
 }
