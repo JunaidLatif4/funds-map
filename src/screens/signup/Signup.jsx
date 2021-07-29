@@ -103,6 +103,10 @@ const Signup = () => {
               <img className="google__img" src={img1} alt="" />
               <div className="google__text">Continue With Google</div>
             </div>
+            {/* <div className="signup__google">
+              <img className="google__img" src={img1} alt="" />
+              <div className="google__text">Continue With Google</div>
+            </div> */}
           </div>
         </div>
         <Button text="DONE" click={handleSignup} loading={loading} />
