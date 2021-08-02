@@ -10,6 +10,9 @@ import dotenv from "dotenv";
 import Dashboard from "./screens/dashboard/Dashboard";
 import Details from "./screens/dashboard/Details";
 
+import PSignup from "./screens/PartnerSignup/Psignup/PSignup";
+import Gstart from "./screens/PartnerSignup/Getstarted/Gstart";
+import Customweb from "./screens/PartnerSignup/CustomWeb/Customweb";
 function App() {
   dotenv.config();
   return (
@@ -23,6 +26,9 @@ function App() {
           <Route exact path="/notify" component={Notify} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/details" component={Details} />
+          <Route exact path="/psignup" component={PSignup} />
+          <Route exact path="/getstarted" component={Gstart} />
+          <Route exact path="/customweb" component={Customweb} />
         </Switch>
       </div>
     </BrowserRouter>

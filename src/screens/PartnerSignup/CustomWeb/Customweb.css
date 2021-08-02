@@ -1,0 +1,17 @@
+.Customweb__container{
+    margin: 0 15px;
+}
+.Customweb__heading{
+    font-size: 20px;
+    display: flex;
+}
+.Customweb__body{
+    height: 35px;
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 45px;
+}
+.Custom__lists{
+    font-size: 12px;
+    margin: 13px 0;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Details.css";
 import Appbar from "./components/appbar/Appbar";
 import video from "../../Assets/videos/droneview.mp4";
 import DbCard from "./components/dbcard/DbCard";

@@ -1,0 +1,13 @@
+.details {
+  width: 480px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .details {
+    width: 100%;
+  }
+}

@@ -4,22 +4,22 @@ import "./Table.css";
 const Table = ({ headings, data }) => {
   const keys = Object.keys(data[0]);
   return (
-    <table className="table__wrapper">
-      <thead className="table__header">
+    <div className="table__wrapper">
+      <div className="table__header">
         {headings.map((heading) => (
-          <th className="table__heading">{heading}</th>
+          <span className="table__heading">{heading}</span>
         ))}
-      </thead>
-      <tbody className="table__body">
+      </div>
+      <div className="table__body">
         {data.map((item) => (
-          <tr className="table__row">
+          <div className="table__row">
             {keys.map((key) => {
-              return <td className="table__data">{item[key]}</td>;
+              return <span className="table__data">{item[key]}</span>;
             })}
-          </tr>
+          </div>
         ))}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 };
 
