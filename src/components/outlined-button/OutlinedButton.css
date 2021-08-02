@@ -1,0 +1,19 @@
+.obtn__container {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #007aff;
+  border: 1px solid #007aff;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  position: relative;
+  box-sizing: border-box;
+}
+.loading {
+  width: 25px !important;
+  height: 25px !important;
+  color: white !important;
+}

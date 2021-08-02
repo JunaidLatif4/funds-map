@@ -1,0 +1,46 @@
+.btn__bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+  box-sizing: border-box;
+  padding: 10px 0px;
+}
+.ul__btn {
+  display: flex;
+  color: lightgray;
+  font-weight: bold;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 2px solid lightgray;
+  margin: 0px 15px;
+  border-radius: 10px;
+  height: 100%;
+}
+#upload_logo {
+  display: none;
+}
+.bb__left {
+  flex: 1.5;
+  height: 100%;
+}
+.bb__right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+.bbr__invite {
+  width: 95%;
+  height: 100%;
+  line-height: 100%;
+  background: linear-gradient(0deg, rgb(8, 29, 124), rgb(49, 125, 195));
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  padding: 0px 5px;
+  box-sizing: border-box;
+  align-items: center;
+}

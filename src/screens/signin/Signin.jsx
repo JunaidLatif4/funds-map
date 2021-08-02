@@ -14,27 +14,45 @@ const Signin = () => {
   const [withEmail, setWithEmail] = useState(true);
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    setLoading(false);
+    toast.error("Invalid Email", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    return false;
+  }
   const signin = async () => {
     setLoading(true);
 
     if (withEmail) {
+      const isValid = await ValidateEmail(email);
       //send otp via email
-      const sent = await otp_mail(email);
-      if (sent.error) {
-        setLoading(false);
-        toast.error(sent.error, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        history.push({ pathname: "/otp", state: { type: "email", email } });
-        setLoading(false);
+      if (isValid) {
+        const sent = await otp_mail(email);
+        if (sent.error) {
+          setLoading(false);
+          toast.error(sent.error, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          history.push({ pathname: "/otp", state: { type: "email", email } });
+          setLoading(false);
+        }
       }
     } else {
       //send otp via sms
@@ -86,7 +104,7 @@ const Signin = () => {
           setMobile={setMobile}
         />
       )}
-      <Button text="Sign In" click={signin} loading={loading} />
+      <Button text="DONE" click={signin} loading={loading} />
     </div>
   );
 };

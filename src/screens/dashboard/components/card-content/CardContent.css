@@ -1,0 +1,117 @@
+.card__content {
+  padding: 6px 8px 15px 8px;
+}
+.card__header {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  padding: 8px 0px;
+}
+.ch__image {
+  width: 80px;
+  height: 100%;
+  border-radius: 15px;
+}
+.header__info {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  text-align: flex-start;
+  padding: 4px 0px;
+  box-sizing: border-box;
+}
+.header__info > .info__left {
+  display: flex;
+  flex: 1.5;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-left: 5px;
+}
+.header__info > .info__right {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  padding-left: 2px;
+}
+.hi__title {
+  font-weight: bold;
+}
+.hi__desc {
+  color: rgb(167, 161, 161);
+}
+.hi__badge1 {
+  font-size: 11px;
+  height: 22px;
+  color: rgb(165, 131, 67);
+  background: rgba(228, 177, 100, 0.288);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.hi__badge2 {
+  font-size: 11px;
+  height: 22px;
+  color: rgb(126, 123, 123);
+  background: rgba(211, 211, 211, 0.541);
+  border-radius: 10px;
+  display: flex;
+  padding: 0px 5px;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+.hi__badge2 > * {
+  transform: scaleY(45deg);
+}
+.dbc__body {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  color: rgb(167, 161, 161);
+}
+.dbc__body > .body__left {
+  flex: 2;
+  text-align: justify;
+}
+.dbc__body > .body__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+}
+.closing__soon {
+  color: red;
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 5px;
+  width: 100%;
+}
+.br__icons {
+  width: 100%;
+  display: flex;
+}
+.dbc__body > .body__right > .br__icons > span {
+  width: 45px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(126, 123, 123);
+  background: rgba(211, 211, 211, 0.541);
+  margin-left: 10px;
+}
+.dbc__body .learn__more {
+  margin-left: 8px;
+}

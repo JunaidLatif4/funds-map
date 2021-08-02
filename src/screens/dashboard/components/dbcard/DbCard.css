@@ -1,0 +1,13 @@
+.db__card {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 15px;
+  box-sizing: border-box;
+  height: fit-content;
+  padding-bottom: 15px;
+  margin: 10px 0px;
+  position: relative;
+}
