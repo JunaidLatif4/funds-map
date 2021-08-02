@@ -40,7 +40,7 @@ const Notify = () => {
             <Phone
               variant="standard"
               defaultCountry={"in"}
-              regions={"asia"}
+              // regions={"asia"}
               style={{ width: "100%" }}
             />
             <div className="Notify__confirm">

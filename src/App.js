@@ -6,6 +6,7 @@ import EVar from "./screens/EmailVar/EVar";
 import Otp from "./screens/otp/Otp";
 import Signin from "./screens/signin/Signin";
 import Signup from "./screens/signup/Signup";
+import PSignup from "./screens/PSignup/PSignup";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/otp" component={Otp} />
           <Route exact path="/evar" component={EVar} />
           <Route exact path="/notify" component={Notify} />
+          <Route exact path="/psignup" component={PSignup} />
         </Switch>
       </div>
     </BrowserRouter>
