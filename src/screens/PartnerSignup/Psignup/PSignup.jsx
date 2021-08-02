@@ -3,7 +3,7 @@ import { Link} from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Phone from "material-ui-phone-number";
 import Checkbox from "@material-ui/core/Checkbox";
-import Button from "../../components/button/Button";
+import Button from "../../../components/button/Button";
 import "./PSignup.css";
 import PhoneInput from "react-phone-number-input";
 import Switch from "@material-ui/core/Switch";
