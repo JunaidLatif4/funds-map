@@ -31,7 +31,7 @@ export const e_verify = async (token) => {
     resolved.data = await axios({
       url: `api/v1/users/email-verification`,
       method: "post",
-      headers: { authorization: `Bearer ${token}` },
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     });
   } catch (error) {
     if (error.response) {
@@ -125,6 +125,53 @@ export const otp_mobile_login = async (info) => {
       },
     });
   } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "something went wrong";
+    }
+  }
+  return resolved;
+};
+
+export const whoami = async () => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/me",
+      method: "get",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "something went wrong";
+    }
+  }
+  return resolved;
+};
+
+export const add_mobile = async (data) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/mobile",
+      method: "patch",
+      headers: `Bearer ${localStorage.getItem("token")}`,
+      data,
+    });
+  } catch (error) {
+    console.log(error);
     if (error.response) {
       resolved.error = error.response.data.message;
     } else {

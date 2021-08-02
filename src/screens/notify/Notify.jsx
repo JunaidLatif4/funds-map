@@ -1,17 +1,80 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/button/Button";
 
 import watsapp from "../../Assets/imgs/whatsapp.svg";
 import Phone from "material-ui-phone-number";
 import Checkbox from "@material-ui/core/Checkbox";
+import { ToastContainer, toast } from "react-toastify";
 
 import "./Notify.css";
 import Backarrow from "../../components/backarrow/Backarrow";
+import { add_mobile, whoami } from "../../api/auth";
+import { useHistory } from "react-router-dom";
 const Notify = () => {
-  const [checked, setChecked] = React.useState(true);
+  const history = useHistory();
+  const [checked, setChecked] = useState(true);
+  const [mobile, setMobile] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
+  };
+  const handleNum = (value) => {
+    console.log(value);
+    setMobile(value);
+  };
+  const getNum = async () => {
+    console.log("running..");
+    console.log(token);
+
+    setLoading(true);
+    const myData = await whoami();
+    if (myData.error) {
+      setLoading(false);
+      toast.error(myData.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      const code = mobile.slice(0, 3);
+      const num = mobile.slice(3).replace("-", "");
+      const username = myData.data.data.username;
+      const data = { countryCode: code, mobileNo: num, username, checked };
+      console.log(data);
+      const added = await add_mobile(data);
+      if (added.error) {
+        setLoading(false);
+        toast.error(added.error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        setLoading(false);
+        toast.success("Success!!!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
   };
 
   // const classes = useStyles();
@@ -21,6 +84,17 @@ const Notify = () => {
         <div className="signup__header">
           <Backarrow />
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
 
         <div className="notify__section1">
           <div className="sec1__head">
@@ -40,8 +114,10 @@ const Notify = () => {
             <Phone
               variant="standard"
               defaultCountry={"in"}
-              // regions={"asia"}
+              regions={"asia"}
               style={{ width: "100%" }}
+              value={mobile}
+              onChange={handleNum}
             />
             <div className="Notify__confirm">
               <div className="notify__checkbox">
@@ -49,10 +125,12 @@ const Notify = () => {
                   defaultChecked
                   color="primary"
                   inputProps={{ "aria-label": "secondary checkbox" }}
+                  checked={checked}
+                  onChange={handleChange}
                 />
               </div>
               <div className="confirm_line">
-                I wish to recive WhatsApp updates
+                I wish to recieve WhatsApp updates
               </div>
             </div>
 
@@ -62,11 +140,16 @@ const Notify = () => {
               consent.
             </div>
 
-            <div className="notify__skip">Skip</div>
+            <div
+              className="notify__skip"
+              onClick={() => history.push("/signin")}
+            >
+              Skip
+            </div>
           </div>
         </div>
 
-        <Button text="DONE" />
+        <Button text="DONE" loading={loading} click={getNum} />
       </div>
     </>
   );

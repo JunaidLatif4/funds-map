@@ -1,6 +1,6 @@
 .signup__container {
   width: 480px;
-  height: 100vh;
+  height: 87vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,9 +26,9 @@
   margin-top: -10px;
   margin-bottom: 45px;
 }
-.signin__heading {
+/* .signin__heading {
   margin-top: 20px;
-}
+} */
 .para1 {
   margin-right: 10px;
 }

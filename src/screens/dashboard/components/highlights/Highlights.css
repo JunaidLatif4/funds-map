@@ -1,0 +1,29 @@
+.highlights {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hl__heading {
+  font-weight: bold;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 26px;
+}
+.hl__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.hl__item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+.hl__icon {
+  padding: 2px 5px;
+}
+.hl__text {
+  color: grey;
+}

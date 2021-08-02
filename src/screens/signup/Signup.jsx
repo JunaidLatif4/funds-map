@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
-import LockOpenSharpIcon from "@material-ui/icons/LockOpenSharp";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -20,31 +19,34 @@ const Signup = () => {
   // const classes = useStyles();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const dummyData = {
+  const signupData = {
     email,
-    userType: "ORGANISATIONAL_PARTNER",
+    userType: "INDIVIDUAL_CLIENT",
   };
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    setLoading(false);
+    toast.error("Invalid Email", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    return false;
+  }
   const handleSignup = async () => {
-    setLoading(true);
-    const res = await signup(dummyData);
-    if (res.error) {
-      setLoading(false);
-      toast.error(res.error, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } else {
-      console.log(res.data.data);
-      localStorage.setItem("token", res.data.data);
-      const verified = await e_verify(res.data.data);
-      if (verified.error) {
+    const isValid = await ValidateEmail(email);
+    if (isValid) {
+      setLoading(true);
+      const res = await signup(signupData);
+      if (res.error) {
         setLoading(false);
-        toast.error(verified.error, {
+        toast.error(res.error, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -54,8 +56,24 @@ const Signup = () => {
           progress: undefined,
         });
       } else {
-        history.push("/evar");
-        setLoading(false);
+        console.log(res.data.data);
+        localStorage.setItem("token", res.data.data);
+        const verified = await e_verify(res.data.data);
+        if (verified.error) {
+          setLoading(false);
+          toast.error(verified.error, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          history.push({ pathname: "/evar", state: { email } });
+          setLoading(false);
+        }
       }
     }
   };
@@ -81,7 +99,7 @@ const Signup = () => {
             <img src={img2} alt="Error" className="signin__img" />
             <span className="signin__text">Sign Up</span>
             <small>
-              Not Yet Registered? <Link to="signin">Click here to Sign In</Link>
+              Already Registered? <Link to="signin">Click here to Sign In</Link>
             </small>
           </div>
 
@@ -90,9 +108,10 @@ const Signup = () => {
               <TextField
                 style={{ width: "100%" }}
                 id="outlined-basic"
-                label="Entre your Email ID"
+                label="Enter your Email ID"
                 variant="standard"
                 value={email}
+                type="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -103,10 +122,6 @@ const Signup = () => {
               <img className="google__img" src={img1} alt="" />
               <div className="google__text">Continue With Google</div>
             </div>
-            {/* <div className="signup__google">
-              <img className="google__img" src={img1} alt="" />
-              <div className="google__text">Continue With Google</div>
-            </div> */}
           </div>
         </div>
         <Button text="DONE" click={handleSignup} loading={loading} />

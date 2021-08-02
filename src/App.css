@@ -1,12 +1,43 @@
+@font-face {
+  font-family: "Avenir";
+  src: local("Avenir"), url(./Fonts/Avenir-Medium.ttf) format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
 .App {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
+  position: relative;
+  font-family: Avenir, sans-serif;
 }
 a {
   text-decoration: none;
   color: #00abff;
 }
+/* .Toastify__toast--error {
+  border: 1px solid #0000001a;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  color: black !important;
+}
+.Toastify__toast--error::after {
+  content: <img src= "./Assets/imgs/close.svg" / >;
+  position: absolute;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 700;
+  left: 265px;
+  padding-top: 14px !important;
+}
+.Toastify__toast--error::before {
+  content: url("https://iconpacks.net/?utm_source=link-attribution&utm_content=5782");
+  position: relative;
+  z-index: 100000;
+  left: 12px;
+  top: 6px;
+} */

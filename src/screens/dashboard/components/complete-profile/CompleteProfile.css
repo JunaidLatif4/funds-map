@@ -1,0 +1,41 @@
+.complete__profile {
+  max-width: 484px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border: 2px solid blue;
+  position: fixed;
+  bottom: 13vh;
+  z-index: 100;
+  background-color: white;
+  box-sizing: border-box;
+}
+.cf__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: 1px 0px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.cf__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: blue;
+  color: white;
+  border-radius: 5px;
+  height: 45px;
+  width: 100%;
+}
+@media (max-width: 480px) {
+  .complete__profile {
+    width: 100%;
+  }
+}
