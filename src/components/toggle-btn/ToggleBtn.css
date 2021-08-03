@@ -1,8 +1,8 @@
 .toggle_switch{
     position: relative;
     display: flex;
-    height: 18px;
-    width: 36px;
+    height: 16px;
+    width: 28px;
     background: #0a07c4;
     border-radius: 99px;
     border: 1 px solid #0d62e2;
@@ -10,8 +10,8 @@
   
 }
 .toggle_circle{
-    height: 13px;
-    width: 13px;
+    height: 11px;
+    width: 10px;
     border-radius: 50%;
     position: absolute;
     left: 2px;
