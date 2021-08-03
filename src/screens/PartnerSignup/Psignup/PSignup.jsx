@@ -118,12 +118,12 @@ const PSignup = () => {
               <div className="confirm_line">I agree to the T&C</div>
             </div>
             <small className="psignup__footer">
-              Already registered? <Link to="signin"> Click here to Sign In</Link>
+              Already registered?&nbsp;<Link to="signin"> Click here to Sign In</Link>
             </small>
           </div>
         </div>
       </div>
-      {/* <Button text="DONE" /> */}
+      <Button text="DONE" />
     </>
   );
 };

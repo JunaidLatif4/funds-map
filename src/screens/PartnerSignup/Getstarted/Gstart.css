@@ -1,7 +1,29 @@
 .gstart__container{
-    margin: 0 15px;
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    align-items: center;
+}
+.gstart__header{
+    width: 90%;
+    align-self: center;
+    margin-top: 90px;
 }
 .gstart__heading{
-    font-size: 20px;
+    font-size: 25px;
     display: flex;
+}
+.getstart__media{
+    margin: 55px 0;
+    margin-bottom: 100px;
+}
+.getstart__next{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.548);
+    font-size: 12px;
 }
