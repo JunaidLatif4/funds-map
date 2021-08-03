@@ -1,5 +1,10 @@
 .Customweb__container{
     margin: 0 15px;
+    margin-top: 29px;
+}
+.Customweb__header{
+    margin-bottom: 35px;
+
 }
 .Customweb__heading{
     font-size: 20px;
@@ -11,7 +16,33 @@
     border: 1px solid black;
     margin-top: 45px;
 }
+.body{
+    /* margin-top: 20px; */
+}
 .Custom__lists{
-    font-size: 12px;
+    font-size: 11px;
     margin: 13px 0;
+}
+.component{
+    border: 1px solid black;
+    display: flex;
+    height: 35px;
+    border-radius: 8px;
+}
+.left{
+    width: 4%;
+    background-color: blue;
+    border-radius: 8px;
+}
+.right{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blue; */
+}
+.component__link{
+    color: blue;
+    text-decoration: underline;
+
 }

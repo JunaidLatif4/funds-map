@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Customweb.css";
+import Button from "../../../components/button/Button";
+
 
 const Customweb = () => {
   return (
@@ -16,18 +18,36 @@ const Customweb = () => {
             revenues.
           </p>
         </div>
+        <div className="component">
+            <div className="left"></div>
+            <div className="right"><Link className="component__link">www.fundsmap.com/000010</Link></div>
+        </div>
 
         <div className="body">
           <div className="body__heading">Features</div>
           <div className="body__lists">
-            <li className="Custom__lists">Invite your clients to view 100's of private equity deals on your website</li>
-            <li className="Custom__lists">You decide the % fee that you earn on all transactions done on your websites.</li>
-            <li className="Custom__lists">Your branding on website and in all client communication.</li>
-            <li className="Custom__lists">You do the business, we take care of all the backend work like KYC, deal flow management, paperwork etc.</li>
-            <li className="Custom__lists">Zero trust framework, with completely secure digital deal flows.</li>
+            <li className="Custom__lists">
+              Invite your clients to view 100's of private equity deals on your
+              website
+            </li>
+            <li className="Custom__lists">
+              You decide the % fee that you earn on all transactions done on
+              your websites.
+            </li>
+            <li className="Custom__lists">
+              Your branding on website and in all client communication.
+            </li>
+            <li className="Custom__lists">
+              You do the business, we take care of all the backend work like
+              KYC, deal flow management, paperwork etc.
+            </li>
+            <li className="Custom__lists">
+              Zero trust framework, with completely secure digital deal flows.
+            </li>
           </div>
         </div>
       </div>
+      <Button text="NEXT" />
     </>
   );
 };
