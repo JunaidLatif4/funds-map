@@ -13,6 +13,7 @@ import Details from "./screens/dashboard/Details";
 import PSignup from "./screens/PartnerSignup/Psignup/PSignup";
 import Gstart from "./screens/PartnerSignup/Getstarted/Gstart";
 import Customweb from "./screens/PartnerSignup/CustomWeb/Customweb";
+import SearchPage from "./screens/dashboard/SearchPage";
 function App() {
   dotenv.config();
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/psignup" component={PSignup} />
           <Route exact path="/getstarted" component={Gstart} />
           <Route exact path="/customweb" component={Customweb} />
+          <Route exact path="/search" component={SearchPage} />
         </Switch>
       </div>
     </BrowserRouter>

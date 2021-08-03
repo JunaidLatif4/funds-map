@@ -5,6 +5,10 @@ import "./Slide.css";
 
 const Slide = ({ items, setCurrentBox }) => {
   const [active, setActive] = useState(0);
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   var settings = {
     dots: true,
     infinite: true,
@@ -33,7 +37,7 @@ const Slide = ({ items, setCurrentBox }) => {
               id={index}
               onClick={handleActive}
             >
-              {item}
+              {capitalize(item)}
             </SwiperSlide>
           );
         })}

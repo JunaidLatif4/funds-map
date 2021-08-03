@@ -1,0 +1,21 @@
+.search__bar1 {
+  margin: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search__box1 {
+  flex: 1;
+  border-bottom: 2px solid rgba(105, 100, 100, 0.6);
+  display: flex;
+}
+.search__input1 {
+  width: 100%;
+  border: none;
+  font-size: 22px;
+  outline: none;
+  padding-bottom: 5px;
+}
+.bars__icon1 {
+  margin-top: 5px;
+}

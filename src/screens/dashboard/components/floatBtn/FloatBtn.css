@@ -1,0 +1,20 @@
+.fbtn__container {
+  width: 95%;
+  min-height: 45px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #007aff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  position: fixed;
+  bottom: 13vh;
+  z-index: 200;
+}
+.loading {
+  width: 25px !important;
+  height: 25px !important;
+  color: white !important;
+}

@@ -50,6 +50,32 @@ const InvestorsData = [
     leadInvestor: "yes",
   },
 ];
+const fundingRounds = [
+  {
+    Date: "Apr 6, 2020",
+    Transaction: "Series 1 Kalaxton Garments",
+    investors: "13",
+    moneyraised: "$15.2Mn",
+  },
+  {
+    Date: "Apr 6, 2020",
+    Transaction: "Series 1 Kalaxton Garments",
+    investors: "13",
+    moneyraised: "$15.2Mn",
+  },
+  {
+    Date: "Apr 6, 2020",
+    Transaction: "Series 1 Kalaxton Garments",
+    investors: "13",
+    moneyraised: "$15.2Mn",
+  },
+  {
+    Date: "Apr 6, 2020",
+    Transaction: "Series 1 Kalaxton Garments",
+    investors: "13",
+    moneyraised: "$15.2Mn",
+  },
+];
 
 const Funding = () => {
   return (
@@ -82,9 +108,19 @@ const Funding = () => {
           Swiggy has recieved a total of 1.5B in funding over 12 rounds
         </div>
       </div>
+      <p className="funding__theading">Investors</p>
       <Table
-        headings={["Name", "Round", "Lead Investor"]}
+        headings={["Name", "Round", "Lead Investor?"]}
         data={InvestorsData}
+        colWidth={{ gridTemplateColumns: "2fr 1.2fr 1.2fr" }}
+      />
+      <p className="funding__theading">Funding Rounds</p>
+      <Table
+        headings={["Date", "Transaction", "No. of Investors", "Money raised"]}
+        data={fundingRounds}
+        colWidth={{
+          gridTemplateColumns: "7fr 15fr 2fr 2fr",
+        }}
       />
     </div>
   );

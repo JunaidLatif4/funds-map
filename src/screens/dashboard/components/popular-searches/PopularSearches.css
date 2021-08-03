@@ -1,0 +1,30 @@
+.popular__searches {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.ps__icon {
+  font-size: 120px;
+  color: lightgray;
+}
+.ps__title {
+  font-size: 23px;
+  color: rgba(128, 128, 128, 0.842);
+}
+.ps__box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  flex-wrap: wrap;
+}
+.ps__box > span {
+  padding: 7px 14px;
+  background-color: rgba(211, 211, 211, 0.575);
+  color: rgba(146, 142, 142, 0.822);
+  border-radius: 5px;
+  margin: 5px 8px;
+}

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Avenir";
-  src: local("Avenir"), url(./Fonts/Avenir-Medium.ttf) format("truetype");
+  src: local("Fonts"), url(./Fonts/Avenir-Medium.ttf) format("truetype");
 }
 * {
   margin: 0;
@@ -13,7 +13,7 @@
   justify-content: center;
   box-sizing: border-box;
   position: relative;
-  font-family: Avenir, sans-serif;
+  font-family: "Avenir";
 }
 a {
   text-decoration: none;
