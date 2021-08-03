@@ -22,14 +22,9 @@
 }
 .psignup__confirm {
   margin-top: 9px;
-}
-.psignup__confirm {
   display: flex;
 }
-.psignup__checkbox {
-  margin: -14px;
-}
-.confirm_line {
+.Psignup__confirmline {
   font-size: 9px;
   margin-left: 8px;
   margin-top: 1px;
@@ -55,4 +50,24 @@
   border-bottom: 1px solid #00000069;
   padding: 5px;
   outline: none;
+}
+.psignup__toggle{
+  display: flex;
+  margin: 10px 0;
+}
+.psignup__checkbox{
+  margin: -14px;
+
+}
+.psignup__p1{
+  margin-left: 8px;
+  font-size: 14px;
+}
+.psignup__slash{
+  margin: 0 4px;
+  font-size: 14px;
+}
+.psignup__p2{
+  font-size: 14px;
+
 }

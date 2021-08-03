@@ -9,10 +9,13 @@ import PhoneInput from "react-phone-number-input";
 import Switch from "@material-ui/core/Switch";
 import 'react-phone-number-input/style.css'
 import { useState } from "react";
+import ToggleBtn from "../../../components/toggle-btn/ToggleBtn";
+import { blue, grey, red } from "@material-ui/core/colors";
 
 
 const PSignup = () => {
     const [value, setValue] = useState()
+    const [checked,setChecked] = useState(false);
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -35,21 +38,13 @@ const PSignup = () => {
           <div className="header__heading">
             Sign up as a<Link>Partner</Link>
           </div>
-          {/* <div className="psignup__switch">
-            <div className="switch__icon">
-              <Switch
-                checked={state.checkedB}
-                onChange={handleChange}
-                color="primary"
-                name="checkedB"
-                inputProps={{ "aria-label": "primary checkbox" }}
-              />
-            </div>
-            <div className="switch__link">
-                <Link>Individual</Link>{"/"}
-                <Link>Organization</Link>
-            </div>
-          </div> */}
+          <div className="psignup__toggle">
+          <ToggleBtn  checked={checked} setChecked={setChecked} />
+          <div style={checked?{color:"grey"}:{color:"blue"}} className="psignup__p1">Individual</div>
+          <div className="psignup__slash">/</div>
+          <div style={checked?{color:"blue"}:{color:"grey"}} className="psignup__p2">Organization</div>
+
+          </div>
 
           <div className="psignup__inputs">
             <TextField
@@ -76,12 +71,6 @@ const PSignup = () => {
             <p className="inputs__heading">
               Enter contact persons's mobile number
             </p>
-            {/* <Phone
-              variant="standard"
-              defaultCountry={"in"}
-              regions={"asia"}
-              style={{ width: "100%" }}
-            /> */}
             <PhoneInput
               international
               defaultCountry="IN"
@@ -96,7 +85,7 @@ const PSignup = () => {
                   inputProps={{ "aria-label": "secondary checkbox" }}
                 />
               </div>
-              <div className="confirm_line">
+              <div className="Psignup__confirmline">
                 Send me WhatsApp messages for important communication
               </div>
             </div>
@@ -115,7 +104,7 @@ const PSignup = () => {
                   inputProps={{ "aria-label": "secondary checkbox" }}
                 />
               </div>
-              <div className="confirm_line">I agree to the T&C</div>
+              <div className="Psignup__confirmline">I agree to the T&C</div>
             </div>
             <small className="psignup__footer">
               Already registered?&nbsp;<Link to="signin"> Click here to Sign In</Link>
