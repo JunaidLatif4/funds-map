@@ -1,0 +1,58 @@
+.Addlogo__container {
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  align-items: center;
+}
+.Addlogo__header {
+  width: 90%;
+  align-self: center;
+}
+.header__heading {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+}
+.Addlogo__footer {
+  width: 99.7%;
+  display: flex;
+  justify-content: center;
+}
+.Addlogo__btnns {
+  width: 100%;
+  border: 3px solid blue;
+  border-radius: 7px;
+}
+.addlogo__btn1 {
+  background-color: blue;
+  color: white;
+  /* border-radius: 5px; */
+  height: 35px;
+  border: none;
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.footer__logo {
+  margin-left: 15px;
+}
+.footer__text {
+  margin-left: 60px;
+}
+.btn2__or{
+    margin-right: 15px;
+    color: rgba(0, 0, 0, 0.527);
+}
+.addlogo__btn2 {
+  height: 35px;
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
