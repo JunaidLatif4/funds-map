@@ -9,6 +9,7 @@ import Highlights from "../highlights/Highlights";
 import Slide from "../slide/Slide";
 import Resources from "../resources/Resources";
 import Funding from "../funding/Funding";
+import About from "../about/About";
 const DbCard = ({
   image,
   logo,
@@ -46,7 +47,8 @@ const DbCard = ({
         iconsBoxStyle={iconsBoxStyle}
       />
       {slide && <Slide items={slide} setCurrentBox={setCurrentBox} />}
-      {highlights && detailsBox === "about" && <Highlights />}
+      {!highlights || detailsBox !== "about" ? null : <Highlights />}
+      {detailsBox === "about" && <About />}
       {detailsBox === "funding" && <Funding />}
       {detailsBox === "resources" && <Resources />}
     </div>

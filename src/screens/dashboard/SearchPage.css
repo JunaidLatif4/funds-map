@@ -1,15 +1,14 @@
-.details {
+.search__page {
   width: 480px;
-  height: 100%;
+  height: 87vh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  padding: 0px 10px;
   box-sizing: border-box;
-  padding: 20px 10px;
-  padding-bottom: 100px;
 }
-
 @media (max-width: 480px) {
-  .details {
+  .search__page {
     width: 100%;
   }
 }

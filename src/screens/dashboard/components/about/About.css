@@ -1,0 +1,90 @@
+.about__box {
+  display: flex;
+  flex-direction: column;
+}
+.business__heading {
+  font-size: 22px;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 0px;
+}
+.business__desc {
+  font-size: 14px;
+  padding: 12px 0px;
+}
+.about__table_d {
+  font-size: 14px;
+  padding: 10px 0px;
+}
+.about__industries_heading {
+  font-size: 22px;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 0px;
+}
+.about__industries {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  flex-wrap: wrap;
+}
+.about__industries > span {
+  padding: 7px 14px;
+  background-color: rgba(211, 211, 211, 0.575);
+  color: rgba(146, 142, 142, 0.822);
+  border-radius: 5px;
+  margin: 5px 8px;
+}
+.founders__box {
+  display: flex;
+  justify-content: space-between;
+}
+.fb__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.fbl__name {
+  padding: 5px 0px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.fbl__about {
+  color: grey;
+  font-size: 15px;
+  padding: 5px 0px;
+}
+.fbr__linkedin {
+  width: 25px;
+  height: 25px;
+}
+.fb__right {
+  padding-top: 10px;
+}
+.est__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.est__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50px;
+  margin: 10px 0px;
+  box-sizing: border-box;
+  padding-left: 4px;
+}
+
+.ei__heading {
+  font-weight: bold;
+  font-size: 14px;
+}
+.ei__desc {
+  font-size: 16px;
+  color: grey;
+}
+.ab__bottom_links {
+  font-size: 15px;
+}

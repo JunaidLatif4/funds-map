@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0px 10px;
   box-sizing: border-box;
 }
 .funding__header {
@@ -13,6 +12,17 @@
 }
 .fh__text {
   font-size: 20px;
+}
+
+.fh__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(126, 123, 123);
+  background: rgba(211, 211, 211, 0.37);
 }
 .funding__body {
   display: grid;
@@ -26,7 +36,9 @@
   height: 50px;
   margin: 10px 0px;
   box-sizing: border-box;
+  padding-left: 5px;
 }
+
 .fi__heading {
   font-weight: bold;
   font-size: 16px;
@@ -35,16 +47,7 @@
   font-size: 15px;
   color: grey;
 }
-.fh__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(126, 123, 123);
-  background: rgba(211, 211, 211, 0.37);
-}
+
 .bordered {
   border-left: 2px solid rgba(211, 211, 211, 0.616);
 }
@@ -62,6 +65,9 @@
 .fl__item {
   margin: 5px 0px;
 }
-.table__heading {
-  background: lightgray;
+.funding__theading {
+  width: 100%;
+  padding: 10px 0px;
+  font-weight: bold;
+  font-size: 20px;
 }
