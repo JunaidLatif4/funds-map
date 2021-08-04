@@ -13,8 +13,11 @@ import Details from "./screens/dashboard/Details";
 import PSignup from "./screens/PartnerSignup/Psignup/PSignup";
 import Gstart from "./screens/PartnerSignup/Getstarted/Gstart";
 import Customweb from "./screens/PartnerSignup/CustomWeb/Customweb";
+import Dfee from "./screens/PartnerSignup/DefaultFee/Dfee";
+import Addlogo from "./screens/PartnerSignup/AddLogo/Addlogo";
 import SearchPage from "./screens/dashboard/SearchPage";
 import Profile from "./screens/profile/Profile";
+import Motp from "./screens/PartnerSignup/MobileOtp/Motp";
 function App() {
   dotenv.config();
   return (
@@ -31,6 +34,9 @@ function App() {
           <Route exact path="/psignup" component={PSignup} />
           <Route exact path="/getstarted" component={Gstart} />
           <Route exact path="/customweb" component={Customweb} />
+          <Route exact path="/dfee" component={Dfee} />
+          <Route exact path="/addlogo" component={Addlogo} />
+          <Route exact path="/motp" component={Motp} />
           <Route exact path="/search" component={SearchPage} />
           <Route exact path="/profile" component={Profile} />
         </Switch>

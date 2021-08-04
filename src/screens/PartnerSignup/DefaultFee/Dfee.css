@@ -1,0 +1,48 @@
+.Dfee__container{
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    align-items: center;
+}
+.Dfee__header{
+    width: 80%;
+    align-self: center;
+}
+
+.Dfee__heading{
+    font-size: 25px;
+    display: flex;
+    margin: 60px 0;
+}
+.Dfee__percent{
+    font-size: 25px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.percent__link{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.377);
+}
+.percent__line{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.445);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Dfee__body{
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.555);
+    margin: 45px 0;
+
+}
+.Dfee__para2{
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.719);
+    margin: 15px 0;
+}
