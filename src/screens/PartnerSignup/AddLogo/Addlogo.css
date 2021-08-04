@@ -1,11 +1,10 @@
 .Addlogo__container {
-  height: 87vh;
+  width: 480px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: rgb(255, 255, 255);
   box-sizing: border-box;
-  align-items: center;
+  padding-bottom: 100px;
 }
 .Addlogo__header {
   width: 90%;
@@ -22,14 +21,18 @@
   justify-content: center;
 }
 .Addlogo__btnns {
-  width: 100%;
-  border: 3px solid blue;
-  border-radius: 7px;
+  width: 97%;
+  border: 3px solid #007aff;
+  border-radius: 15px;
+  position: fixed;
+  overflow: hidden;
+  z-index: 200;
+  bottom: 1vh;
 }
 .addlogo__btn1 {
-  background-color: blue;
+  background-color:#007aff;
   color: white;
-  /* border-radius: 5px; */
+  border-radius: 8px;
   height: 35px;
   border: none;
   width: 100%;
@@ -48,6 +51,14 @@
     margin-right: 15px;
     color: rgba(0, 0, 0, 0.527);
 }
+
+
+.Addlogo__body{
+  /* width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
 .addlogo__btn2 {
   height: 35px;
   border: none;
@@ -55,4 +66,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media(max-width:480px){
+  .Addlogo__container {
+    width: 100%;
+  }
 }

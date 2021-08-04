@@ -16,6 +16,7 @@ import Customweb from "./screens/PartnerSignup/CustomWeb/Customweb";
 import Dfee from "./screens/PartnerSignup/DefaultFee/Dfee";
 import Addlogo from "./screens/PartnerSignup/AddLogo/Addlogo";
 import SearchPage from "./screens/dashboard/SearchPage";
+import Motp from "./screens/PartnerSignup/MobileOtp/Motp";
 function App() {
   dotenv.config();
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route exact path="/customweb" component={Customweb} />
           <Route exact path="/dfee" component={Dfee} />
           <Route exact path="/addlogo" component={Addlogo} />
+          <Route exact path="/motp" component={Motp} />
           <Route exact path="/search" component={SearchPage} />
         </Switch>
       </div>

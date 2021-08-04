@@ -40,9 +40,9 @@ const PSignup = () => {
           </div>
           <div className="psignup__toggle">
           <ToggleBtn  checked={checked} setChecked={setChecked} />
-          <div style={checked?{color:"grey"}:{color:"blue"}} className="psignup__p1">Individual</div>
+          <div style={checked?{color:"grey"}:{color:"#00abff"}} className="psignup__p1">Individual</div>
           <div className="psignup__slash">/</div>
-          <div style={checked?{color:"blue"}:{color:"grey"}} className="psignup__p2">Organization</div>
+          <div style={checked?{color:"#00abff"}:{color:"grey"}} className="psignup__p2">Organization</div>
 
           </div>
 
