@@ -1,0 +1,7 @@
+.identity__info {
+  display: flex;
+  flex-direction: column;
+}
+.ii__title {
+  color: gray;
+}

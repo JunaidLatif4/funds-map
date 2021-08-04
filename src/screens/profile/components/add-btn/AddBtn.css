@@ -1,0 +1,12 @@
+.add__btn {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+}
+.add__btn_icon {
+}
+.add__btn_text {
+  font-size: 18px;
+  padding-left: 5px;
+}

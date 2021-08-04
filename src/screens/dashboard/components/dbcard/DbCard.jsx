@@ -47,7 +47,10 @@ const DbCard = ({
         iconsBoxStyle={iconsBoxStyle}
       />
       {slide && <Slide items={slide} setCurrentBox={setCurrentBox} />}
-      {!highlights || detailsBox !== "about" ? null : <Highlights />}
+      {(!highlights && detailsBox !== "about") ||
+      (highlights && detailsBox && detailsBox !== "about") ? null : (
+        <Highlights />
+      )}
       {detailsBox === "about" && <About />}
       {detailsBox === "funding" && <Funding />}
       {detailsBox === "resources" && <Resources />}

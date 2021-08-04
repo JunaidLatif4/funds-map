@@ -27,3 +27,30 @@
   font-size: 20px;
   outline: none;
 }
+.barf__icon {
+  position: relative;
+  box-sizing: border-box;
+  /* padding-right: 5px; */
+}
+.barf__icon > img {
+  width: 30px;
+  height: 30px;
+}
+.notif__count {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  font-size: 9px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -1px;
+  right: -1px;
+  background-color: #44a3ff;
+  border-radius: 50%;
+}
+.ab__toggle_icon {
+  width: 30px;
+  height: 30px;
+}

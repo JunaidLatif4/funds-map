@@ -1,0 +1,45 @@
+.profile__screen {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile__header {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.pf__header_left {
+  font-size: 33px;
+  color: #111111;
+  font-weight: 300;
+}
+.pf__header_right {
+  display: flex;
+  flex-direction: column;
+}
+.pf__acc_status {
+  font-size: 14px;
+  color: rgba(109, 103, 103, 0.6);
+  font-weight: 500;
+}
+.pf__acc_info {
+  font-size: 14px;
+}
+.profile__body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  min-height: 300px;
+  justify-content: space-between;
+}
+@media (max-width: 480px) {
+  .profile__screen {
+    width: 100%;
+  }
+}

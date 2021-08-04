@@ -1,0 +1,12 @@
+.pr__error_box {
+  background-color: #ffdfdf;
+  border: 1px solid #ff0000;
+  width: 90%;
+  border-radius: 15px;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff0000;
+  margin-top: 30px;
+}

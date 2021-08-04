@@ -115,3 +115,12 @@
 .dbc__body .learn__more {
   margin-left: 8px;
 }
+@media (max-width: 340px) {
+  .hi__badge1,
+  .hi__badge2 {
+    font-size: 9px;
+  }
+  .header__info > .info__left {
+    font-size: 12px;
+  }
+}

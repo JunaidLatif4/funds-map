@@ -10,7 +10,7 @@
   border-radius: 5px;
   padding: 5px;
   position: fixed;
-  bottom: 13vh;
+  bottom: 1vh;
   z-index: 200;
 }
 .loading {
