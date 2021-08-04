@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import Backarrow from "../../components/backarrow/Backarrow";
 // import Button from "../../components/button/Button";
+import Button from "../../../components/button/Button";
+
 import "./Motp.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import OtpInput from "react-otp-input";
@@ -195,7 +197,7 @@ const Motp = () => {
           <div className="resend__text">Re-send OTP (After {secs}s)</div>
         )}
       </div>
-      {/* <Button text="Sign In" click={otp_login} loading={loading} /> */}
+      <Button text="DONE" loading={loading} />
     </div>
   );
 };

@@ -37,7 +37,7 @@ const Addlogo = () => {
       </div>
       <div className="Addlogo__body">
         <div className="Addlogo__title">
-          <h3>Your logo goes here</h3>
+          <h5>Your logo goes here</h5>
         </div>
         <Appbar />
         <Slide items={["About", "About", "About", "About", "About", "About"]} />
