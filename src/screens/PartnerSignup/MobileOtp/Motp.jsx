@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import Backarrow from "../../components/backarrow/Backarrow";
-// import Button from "../../components/button/Button";
+import Backarrow from "../../../components/backarrow/Backarrow";
+import Button from "../../../components/button/Button";
+
 import "./Motp.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import OtpInput from "react-otp-input";
@@ -153,7 +154,6 @@ const Motp = () => {
 //   }, [resend]);
   return (
     <div className="otp__screen">
-      {/* <Backarrow /> */}
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -195,7 +195,7 @@ const Motp = () => {
           <div className="resend__text">Re-send OTP (After {secs}s)</div>
         )}
       </div>
-      {/* <Button text="Sign In" click={otp_login} loading={loading} /> */}
+      <Button text="DONE" loading={loading} />
     </div>
   );
 };

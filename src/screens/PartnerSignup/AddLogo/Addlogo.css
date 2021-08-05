@@ -27,7 +27,7 @@
   position: fixed;
   overflow: hidden;
   z-index: 200;
-  bottom: 1vh;
+  bottom: 0.5vh;
 }
 .addlogo__btn1 {
   background-color:#007aff;
@@ -51,13 +51,33 @@
     margin-right: 15px;
     color: rgba(0, 0, 0, 0.527);
 }
+.Addlogo__title{
+  border: 1px solid blue;
+  margin: 8px 0;
+  width: 43%;
+  padding: 8px;
+  border-radius: 5px;
+  margin-left: 18px;
+}
+
+.Adlogo__main{
+  border: 10px;
+  width: 100%;
+  background: rgba(211, 211, 211, 0.301);
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 10px;
+}
 
 
 .Addlogo__body{
-  /* width: 90%;
+  margin: 0 17px;
+  box-shadow :0px 0px 7px 1px #00000040;
+  border-radius: 6px;
   display: flex;
-  justify-content: center;
-  align-items: center; */
+  margin-top: 10px;
+  flex-direction: column;
+
 }
 .addlogo__btn2 {
   height: 35px;
