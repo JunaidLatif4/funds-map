@@ -9,7 +9,7 @@ import Check from "../../../../Assets/imgs/check.svg";
 import OtpInput from "react-otp-input";
 
 const AddPhone = () => {
-  const [box, setBox] = useState("mobile");
+  const [box, setBox] = useState("success");
   const [otp, setOtp] = useState("");
   const [resend, setResend] = useState(false);
   const [secs, setSecs] = useState(15);

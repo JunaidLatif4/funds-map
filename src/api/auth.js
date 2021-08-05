@@ -191,10 +191,55 @@ export const partner_signup = async (data) => {
     resolved.data = await axios({
       url: "api/v1/users/signup",
       method: "post",
+      headers: { "Content-Type": "application/json" },
       data,
     });
   } catch (error) {
-    resolved.error = error.response.data.message;
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+export const email_verification = async () => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/email-verification",
+      method: "post",
+      headers: { authorization: "Bearer " + localStorage.getItem("token") },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const generate_motp = async (token) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/mobile-verification",
+      method: "post",
+      headers: { authorization: "Bearer " + token },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
   }
   return resolved;
 };

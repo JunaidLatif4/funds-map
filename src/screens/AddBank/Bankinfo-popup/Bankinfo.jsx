@@ -40,7 +40,6 @@ const Bankinfo = () => {
         <div className="input__info">
           <div className="info__title">
             <strong> Branch:</strong>
-            {/* Branch: */}
           </div>
           <p className="title__info">&nbsp;Fetched from IFSC API</p>
         </div>

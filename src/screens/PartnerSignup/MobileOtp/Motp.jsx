@@ -16,6 +16,7 @@ import phone from "../../../Assets/imgs/phone.svg";
 // } from "../../api/auth";
 import { ToastContainer, toast } from "react-toastify";
 import { Phone } from "@material-ui/icons";
+import { generate_motp } from "../../../api/auth";
 // import OutlinedButton from "../../components/outlined-button/OutlinedButton";
 
 const Motp = () => {
@@ -29,129 +30,148 @@ const Motp = () => {
   const state = location.state ? location.state : {};
   const email = state.email;
   const mobile = state.mobile;
+  // const location = useLocation();
+  const token = location.state.token;
 
-//   const resendOtp = async () => {
-//     if (viaEmail) {
-//       //send otp via email
-//       const sent = await otp_mail(email);
-//       if (sent.error) {
-//         toast.error(sent.error, {
-//           position: "top-center",
-//           autoClose: 5000,
-//           hideProgressBar: true,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//       } else {
-//         setResend(false);
-//         setSecs(15);
-//       }
-//     } else {
-//       console.log("sending otp via sms");
-//       // send otp via sms
-//       console.log(mobile);
-//       const num = mobile.slice(3);
-//       const sent = await otp_sms(num.replace("-", ""));
-//       if (sent.error) {
-//         toast.error(sent.error, {
-//           position: "top-center",
-//           autoClose: 5000,
-//           hideProgressBar: true,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//       } else {
-//         history.push({ pathname: "/otp", state: { type: "mobile", mobile } });
-//       }
-//     }
-//   };
+  console.log(token);
 
-//   const otp_login = async () => {
-//     setLoading(true);
-//     if (viaEmail) {
-//       const token = await otp_mail_login({ otp, email });
-//       if (token.error) {
-//         setLoading(false);
-//         toast.error(token.error, {
-//           position: "top-center",
-//           autoClose: 5000,
-//           hideProgressBar: true,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//       } else {
-//         toast.success("Success!!!", {
-//           position: "top-center",
-//           autoClose: 5000,
-//           hideProgressBar: true,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//         localStorage.setItem("token", token.data.data);
-//         setLoading(false);
-//       }
-//     } else {
-//       const num = mobile.slice(3).replace("-", "");
-//       const token = await otp_mobile_login({ otp, mobile });
-//       if (token.error) {
-//         setLoading(false);
-//         toast.error(token.error, {
-//           position: "top-center",
-//           autoClose: 5000,
-//           hideProgressBar: true,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//       } else {
-//         toast.success("Success!!!", {
-//           position: "top-center",
-//           autoClose: 5000,
-//           hideProgressBar: true,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//         localStorage.setItem("token", token.data.data);
-//         setLoading(false);
-//       }
-//     }
-//   };
-//   // const timer = () => {
-//   //  ;
-//   // };
+  //   const resendOtp = async () => {
+  //     if (viaEmail) {
+  //       //send otp via email
+  //       const sent = await otp_mail(email);
+  //       if (sent.error) {
+  //         toast.error(sent.error, {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: true,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         setResend(false);
+  //         setSecs(15);
+  //       }
+  //     } else {
+  //       console.log("sending otp via sms");
+  //       // send otp via sms
+  //       console.log(mobile);
+  //       const num = mobile.slice(3);
+  //       const sent = await otp_sms(num.replace("-", ""));
+  //       if (sent.error) {
+  //         toast.error(sent.error, {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: true,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         history.push({ pathname: "/otp", state: { type: "mobile", mobile } });
+  //       }
+  //     }
+  //   };
 
-//   useEffect(() => {
-//     if (state.type === "email") {
-//       setViaEmail(true);
-//     } else {
-//       setViaEmail(false);
-//     }
-//     if (!resend) {
-//       setInterval(
-//         () =>
-//           setSecs((secs) => {
-//             if (secs > 0) {
-//               return secs - 1;
-//             } else {
-//               setResend(true);
-//               return 0;
-//             }
-//           }),
-//         1000
-//       );
-//     }
-//   }, [resend]);
+  //   const otp_login = async () => {
+  //     setLoading(true);
+  //     if (viaEmail) {
+  //       const token = await otp_mail_login({ otp, email });
+  //       if (token.error) {
+  //         setLoading(false);
+  //         toast.error(token.error, {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: true,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         toast.success("Success!!!", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: true,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //         localStorage.setItem("token", token.data.data);
+  //         setLoading(false);
+  //       }
+  //     } else {
+  //       const num = mobile.slice(3).replace("-", "");
+  //       const token = await otp_mobile_login({ otp, mobile });
+  //       if (token.error) {
+  //         setLoading(false);
+  //         toast.error(token.error, {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: true,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         toast.success("Success!!!", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: true,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //         localStorage.setItem("token", token.data.data);
+  //         setLoading(false);
+  //       }
+  //     }
+  //   };
+  //   // const timer = () => {
+  //   //  ;
+  //   // };
+
+  //   useEffect(() => {
+  //     if (state.type === "email") {
+  //       setViaEmail(true);
+  //     } else {
+  //       setViaEmail(false);
+  //     }
+  //     if (!resend) {
+  //       setInterval(
+  //         () =>
+  //           setSecs((secs) => {
+  //             if (secs > 0) {
+  //               return secs - 1;
+  //             } else {
+  //               setResend(true);
+  //               return 0;
+  //             }
+  //           }),
+  //         1000
+  //       );
+  //     }
+  //   }, [resend]);
+
+  const handlesignup = async () => {
+    const response = await generate_motp(token);
+    if (response.error) {
+      alert(response.error);
+    } else {
+      console.log(response.data);
+      console.log("success");
+    }
+  };
+
+  useEffect(() => {
+    handlesignup();
+  }, [token]);
+
   return (
     <div className="otp__screen">
       <ToastContainer
@@ -166,17 +186,20 @@ const Motp = () => {
         pauseOnHover
       />
       <div className="opt__body">
-          <div className="Motp__headerimg">
+        <div className="Motp__headerimg">
           <img src={phone} alt="Error" className="Motp__img" />
-              <div className="Motp__text">Just One Last Step</div>
-          </div>
+          <div className="Motp__text">Just One Last Step</div>
+        </div>
         <h1 className="Motp__heading">
-        Mobile Verification <div className="Motp__link"><Link>OTP</Link> </div>
+          Mobile Verification{" "}
+          <div className="Motp__link">
+            <Link>OTP</Link>{" "}
+          </div>
         </h1>
-          <p className="otp__msg">Enter OTP sent to you via SMS on 99878 76564{mobile}</p>
+        <p className="otp__msg">
+          Enter OTP sent to you via SMS on 99878 76564{mobile}
+        </p>
 
-         
-      
         <OtpInput
           value={otp}
           onChange={(otp) => setOtp(otp)}
@@ -188,9 +211,7 @@ const Motp = () => {
           isInputNum="true"
         />
         {resend ? (
-          <div className="resend__btn">
-            Re-send OTP
-          </div>
+          <div className="resend__btn">Re-send OTP</div>
         ) : (
           <div className="resend__text">Re-send OTP (After {secs}s)</div>
         )}

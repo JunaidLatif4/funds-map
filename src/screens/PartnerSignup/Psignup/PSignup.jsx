@@ -12,7 +12,7 @@ import { useState } from "react";
 import ToggleBtn from "../../../components/toggle-btn/ToggleBtn";
 import { blue, grey, red } from "@material-ui/core/colors";
 import Mnumber from "../../../components/Mob-num input/Mnumber";
-import { partner_signup } from "../../../api/auth";
+import { email_verification, partner_signup } from "../../../api/auth";
 import { useEffect } from "react";
 
 const PSignup = () => {
@@ -76,10 +76,15 @@ const PSignup = () => {
       } else {
         localStorage.setItem("token", response.data.data);
         console.log(localStorage.getItem("token"));
-        history.push({
-          pathname: "/evar",
-          state: { email: data.email },
-        });
+        const verification = await email_verification();
+        if (verification.error) {
+          alert(verification.error);
+        } else {
+          history.push({
+            pathname: "/evar",
+            state: { email: data.email },
+          });
+        }
       }
     }
   };

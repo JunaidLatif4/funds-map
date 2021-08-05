@@ -18,7 +18,10 @@ import Addlogo from "./screens/PartnerSignup/AddLogo/Addlogo";
 import SearchPage from "./screens/dashboard/SearchPage";
 import Profile from "./screens/profile/Profile";
 import Motp from "./screens/PartnerSignup/MobileOtp/Motp";
-import Bankinfo from "./screens/AddBank/Bankinfo-popup/Bankinfo"
+import Bankinfo from "./screens/AddBank/Bankinfo-popup/Bankinfo";
+import Bankdata from "./screens/AddBank/Bankinfo-data/Bankdata";
+import bsuccess from "./screens/AddBank/Banksuccess/bsuccess";
+import EvarRedirect from "./screens/PartnerSignup/Components/evar-redirect/EvarRedirect";
 function App() {
   dotenv.config();
   return (
@@ -41,6 +44,9 @@ function App() {
           <Route exact path="/search" component={SearchPage} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/bankinfo" component={Bankinfo} />
+          <Route exact path="/bankdata" component={Bankdata} />
+          <Route exact path="/bsuccess" component={bsuccess} />
+          <Route exact path="/evar-redirect" component={EvarRedirect} />
         </Switch>
       </div>
     </BrowserRouter>
