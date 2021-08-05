@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import Backarrow from "../../components/backarrow/Backarrow";
-// import Button from "../../components/button/Button";
+import Backarrow from "../../../components/backarrow/Backarrow";
 import Button from "../../../components/button/Button";
 
 import "./Motp.css";
@@ -155,7 +154,6 @@ const Motp = () => {
 //   }, [resend]);
   return (
     <div className="otp__screen">
-      {/* <Backarrow /> */}
       <ToastContainer
         position="top-center"
         autoClose={5000}

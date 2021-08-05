@@ -11,10 +11,10 @@ import 'react-phone-number-input/style.css'
 import { useState } from "react";
 import ToggleBtn from "../../../components/toggle-btn/ToggleBtn";
 import { blue, grey, red } from "@material-ui/core/colors";
+import Mnumber from "../../../components/Mob-num input/Mnumber";
 
 
 const PSignup = () => {
-    const [value, setValue] = useState()
     const [checked,setChecked] = useState(false);
   const [state, setState] = React.useState({
     checkedA: true,
@@ -25,9 +25,6 @@ const PSignup = () => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const onChange = (event) =>{
-      setValue(event.target.value)
-  }
   return (
     <>
       <div className="psignup__container">
@@ -71,12 +68,7 @@ const PSignup = () => {
             <p className="inputs__heading">
               Enter contact persons's mobile number
             </p>
-            <PhoneInput
-              international
-              defaultCountry="IN"
-              value={value}
-              onChange={setValue}
-            />
+            <Mnumber/>
             <div className="psignup__confirm">
               <div className="psignup__checkbox">
                 <Checkbox
