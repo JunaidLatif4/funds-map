@@ -18,6 +18,7 @@ import Addlogo from "./screens/PartnerSignup/AddLogo/Addlogo";
 import SearchPage from "./screens/dashboard/SearchPage";
 import Profile from "./screens/profile/Profile";
 import Motp from "./screens/PartnerSignup/MobileOtp/Motp";
+import Bankinfo from "./screens/AddBank/Bankinfo-popup/Bankinfo"
 function App() {
   dotenv.config();
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/motp" component={Motp} />
           <Route exact path="/search" component={SearchPage} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/bankinfo" component={Bankinfo} />
         </Switch>
       </div>
     </BrowserRouter>

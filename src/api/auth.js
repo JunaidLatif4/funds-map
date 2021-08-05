@@ -180,3 +180,21 @@ export const add_mobile = async (data) => {
   }
   return resolved;
 };
+
+export const partner_signup = async (data) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/signup",
+      method: "post",
+      data,
+    });
+  } catch (error) {
+    resolved.error = error.response.data.message;
+  }
+  return resolved;
+};
