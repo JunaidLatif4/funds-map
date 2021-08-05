@@ -6,7 +6,7 @@ import profile from "../../Assets/imgs/profile.svg";
 import TopBar from "./components/top-bar/TopBar";
 import "./Profile.css";
 import ErrorBox from "./components/error-box/ErrorBox";
-import BottomSlide from "../../components/bottom-slide/BottomSlide";
+import AddPhone from "./components/add-phone/AddPhone";
 
 const Profile = () => {
   return (
@@ -28,7 +28,7 @@ const Profile = () => {
         <DropCard icon={profile} text="Demat Details" body="demat" />
       </div>
       <ErrorBox />
-      <BottomSlide />
+      <AddPhone />
     </div>
   );
 };

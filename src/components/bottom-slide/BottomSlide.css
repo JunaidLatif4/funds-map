@@ -4,14 +4,25 @@
   background-color: white;
   position: fixed;
   bottom: 0;
-  animation: bottomup 0.6s ease-out;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  width: 99%;
+  width: 100%;
   z-index: 300;
+  height: fit-content;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+.open__bslide {
+  animation: bottomup 0.6s ease-out;
+}
+.close__bslide {
+  animation: closebslide 0.6s ease-out farwards;
+}
+
 .backdrop {
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
   height: 100vh;
 }
 @keyframes bottomup {
@@ -20,5 +31,13 @@
   }
   to {
     transform: translateY(0vh);
+  }
+}
+@keyframes closebslide {
+  from {
+    transform: translateY(0vh);
+  }
+  to {
+    transform: translateY(80vh);
   }
 }

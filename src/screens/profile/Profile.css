@@ -43,3 +43,9 @@
     width: 100%;
   }
 }
+@media (max-width: 350px) {
+  .pf__acc_status,
+  .pf__acc_info {
+    font-size: 12px;
+  }
+}
