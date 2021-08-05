@@ -1,0 +1,93 @@
+.add__phone_body {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 250px;
+  justify-content: space-between;
+}
+.ap__inner_body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+.ap__otp_subtitle {
+  color: gray;
+  font-size: 14px;
+}
+.otp__wrapper_success {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+}
+.opt__box_success {
+  border: none;
+  border-bottom: 1px solid gray;
+  width: 40px !important;
+  font-size: 19px;
+}
+.otp__wrapper_error {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+  color: red;
+}
+.opt__box_error {
+  border: none;
+  border-bottom: 1px solid gray;
+  width: 40px !important;
+  font-size: 19px;
+  border-color: red;
+}
+.ap__otp_errtext {
+  color: red;
+  font-size: 13px;
+  width: 100%;
+  text-align: center;
+}
+.ap__resend_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.ap__resend_btn {
+  font-weight: bold;
+  color: grey;
+  padding-right: 3px;
+}
+.ap__resend_text {
+  padding-right: 3px;
+}
+.ap__change_num {
+  font-weight: bold;
+}
+.ap__whatsapp_logo {
+  width: 50px;
+  height: 50px;
+  align-self: center;
+}
+.ap__confirm_text {
+  font-size: 14px;
+  color: gray;
+}
+.ap__whatsapp_text {
+  font-size: 14px;
+  color: gray;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+.ap__confirm_text2 {
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
+  color: gray;
+}
