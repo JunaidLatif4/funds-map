@@ -6,18 +6,14 @@ import PhoneInput from "react-phone-number-input";
 
 const Mnumber = ({ setMobile }) => {
   const [value, setValue] = useState();
+
   useEffect(() => {
-    setMobile(value);
-    console.log(value);
+    setMobile && setMobile(value);
   }, [value]);
-
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-
-  // };
   return (
     <>
       <PhoneInput
+        style={{ padding: "20px 0px", color: "red" }}
         international
         defaultCountry="IN"
         value={value}
