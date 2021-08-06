@@ -24,6 +24,8 @@ import bsuccess from "./screens/AddBank/Banksuccess/bsuccess";
 import EvarRedirect from "./screens/PartnerSignup/Components/evar-redirect/EvarRedirect";
 import AddedBank from "./screens/AddBank/AddedBanks/AddedBank";
 import AddedDemet from "./screens/Demet/AddedDemet/AddedDemet";
+import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
+import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 function App() {
   dotenv.config();
   return (
@@ -51,6 +53,8 @@ function App() {
           <Route exact path="/evar-redirect" component={EvarRedirect} />
           <Route exact path="/addedbank" component={AddedBank} />
           <Route exact path="/addeddemet" component={AddedDemet} />
+          <Route exact path="/adddemet" component={AddDemet} />
+          <Route exact path="/uploaddemet" component={UploadDemet} />
         </Switch>
       </div>
     </BrowserRouter>

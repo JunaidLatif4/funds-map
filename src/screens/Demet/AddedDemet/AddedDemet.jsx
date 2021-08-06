@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AddedDemet.css";
+import InfoIcon from "@material-ui/icons/Info";
 
 const arr = [
   {
     user: "1",
     name: "Despository",
     ls: "NSDL",
-    status: "Active",
+    status: " Active",
     id: "DP ID / Client ID",
     number: "IN123456789112",
     btn: "Dlete",
@@ -17,7 +18,7 @@ const arr = [
     user: "2",
     name: "Despository",
     ls: "CSDL",
-    status: "Inactive",
+    status: "Active",
     id: "DP ID / Client ID",
     number: "12045234569112",
     btn: "Dlete",
@@ -27,7 +28,7 @@ const arr = [
     user: "3",
     name: "Despository",
     ls: "CSDL",
-    status: "Inactive",
+    status: "Active",
     id: "DP ID / Client ID",
     number: "12045234569112",
     btn: "Dlete",
@@ -48,7 +49,21 @@ const Map = (val) => {
             </div>
             <div className="ad__para2">
               <p className="ad__p2name">{val.ls}</p>
-              <p className="ad__active">{val.status}</p>
+              <div
+                className="active__class"
+                style={{ display: "flex", position: "relative" }}
+              >
+                <p className="ad__active">{val.status}</p>
+                <InfoIcon
+                  style={{
+                    color: " #524848f2",
+                    top: "4.2px",
+                    position: "absolute",
+                    left: " 38px",
+                    fontSize: "13px",
+                  }}
+                />
+              </div>
             </div>
             <div className="ad__para1">
               <p className="ad__p1name">{val.id}</p>
