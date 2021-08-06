@@ -1,0 +1,42 @@
+.addbank__container {
+  padding: 0 15px;
+}
+.addbank__header {
+  border: 1px solid black;
+  display: flex;
+  min-height: 40px;
+  border-radius: 8px;
+}
+.addbank__left {
+  width: 4%;
+  background-color: rgb(35, 106, 255);
+  border-radius: 8px;
+  margin-right: 5px;
+}
+.addbank__right {
+  width: 95%;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+}
+.addbank__boldpara {
+  font-size: 11px;
+  font-weight: bolder;
+}
+.addbank__para {
+  font-size: 12px;
+  color: #000000e3;
+}
+.addbank__bodypara {
+  margin-top: 25px;
+  font-size: 13px;
+}
+.input__info {
+  display: flex;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.76);
+}
+.abank__input {
+  margin-bottom: 10px;
+}

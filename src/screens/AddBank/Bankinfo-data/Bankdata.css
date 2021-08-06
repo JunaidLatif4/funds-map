@@ -1,0 +1,26 @@
+.bankinfo__container {
+  padding: 15px;
+}
+.first__info {
+  display: flex;
+  font-size: 11px;
+}
+.Psignup__confirmline {
+  font-size: 10px;
+  margin-left: 8px;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+.psignup__checkbox {
+  margin: -14px;
+}
+.psignup__confirm {
+  margin-top: 20px;
+  display: flex;
+}
+
+.bankdata__otpmsg {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.623);
+  margin-top: 15px;
+}

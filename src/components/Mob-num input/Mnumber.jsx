@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Mnumber.css";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { useEffect } from "react";
 
 const Mnumber = ({ setMobile }) => {
   const [value, setValue] = useState();
