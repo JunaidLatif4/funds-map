@@ -1,6 +1,8 @@
 import axios from "axios";
 
-axios.defaults.headers.authorization = localStorage.getItem("token");
+axios.defaults.headers.authorization = `Bearer ${localStorage.getItem(
+  "token"
+)}`;
 const instance = axios.create({
   baseURL: "https://funds-map.herokuapp.com/",
 });

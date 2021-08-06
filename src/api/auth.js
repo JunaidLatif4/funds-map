@@ -31,7 +31,7 @@ export const e_verify = async (token) => {
     resolved.data = await axios({
       url: `api/v1/users/email-verification`,
       method: "post",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      // headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     });
   } catch (error) {
     if (error.response) {
@@ -143,9 +143,9 @@ export const whoami = async () => {
     resolved.data = await axios({
       url: "api/v1/users/me",
       method: "get",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+      // headers: {
+      //   authorization: `Bearer ${localStorage.getItem("token")}`,
+      // },
     });
   } catch (error) {
     console.log(error);
@@ -159,6 +159,7 @@ export const whoami = async () => {
 };
 
 export const add_mobile = async (data) => {
+  console.log(data);
   const resolved = {
     data: null,
     error: null,
@@ -167,7 +168,10 @@ export const add_mobile = async (data) => {
     resolved.data = await axios({
       url: "api/v1/users/mobile",
       method: "patch",
-      headers: `Bearer ${localStorage.getItem("token")}`,
+      headers: {
+        // authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaXZhYmk0OTU2IiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4MjQ0OTA4LCJleHAiOjE2MjgyNDc5MDh9.L4GIRwrAV7QwGcFmuQjk_hCaec_Qtv2JJXZd__HykX4`,
+        "Content-Type": "application/json",
+      },
       data,
     });
   } catch (error) {

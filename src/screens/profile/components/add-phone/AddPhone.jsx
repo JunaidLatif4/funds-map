@@ -7,9 +7,10 @@ import Button from "../../../../components/button/Button";
 import whatsapp from "../../../../Assets/imgs/whatsapp.svg";
 import Check from "../../../../Assets/imgs/check.svg";
 import OtpInput from "react-otp-input";
+import Mnumber from "../../../../components/Mob-num input/Mnumber";
 
-const AddPhone = () => {
-  const [box, setBox] = useState("mobile");
+const AddPhone = ({ type, click, setMobile }) => {
+  const [box, setBox] = useState(type);
   const [otp, setOtp] = useState("");
   const [resend, setResend] = useState(false);
   const [secs, setSecs] = useState(15);
@@ -45,7 +46,7 @@ const AddPhone = () => {
               {box === "mobile" && (
                 <>
                   <span>Enter your cell phone number</span>
-                  <input type="text" />
+                  <Mnumber setMobile={setMobile} />
                 </>
               )}
               {box === "otp" && (
@@ -141,7 +142,7 @@ const AddPhone = () => {
                 </>
               )}
             </div>
-            <Button text="DONE" />
+            <Button text="DONE" click={click} />
           </div>
         </BottomSlide>
       )}

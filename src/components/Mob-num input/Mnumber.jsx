@@ -1,19 +1,20 @@
 import React from "react";
 import { useState } from "react";
-import './Mnumber.css'
-import 'react-phone-number-input/style.css'
+import "./Mnumber.css";
+import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { useEffect } from "react";
 
-const Mnumber = () => {
-    const [value, setValue] = useState()
+const Mnumber = ({ setMobile }) => {
+  const [value, setValue] = useState();
 
-    
-  const onChange = (event) =>{
-    setValue(event.target.value)
-}
+  useEffect(() => {
+    setMobile && setMobile(value);
+  }, [value]);
   return (
     <>
       <PhoneInput
+        style={{ padding: "20px 0px", color: "red" }}
         international
         defaultCountry="IN"
         value={value}
