@@ -22,6 +22,7 @@ import Bankinfo from "./screens/AddBank/Bankinfo-popup/Bankinfo";
 import Bankdata from "./screens/AddBank/Bankinfo-data/Bankdata";
 import bsuccess from "./screens/AddBank/Banksuccess/bsuccess";
 import EvarRedirect from "./screens/PartnerSignup/Components/evar-redirect/EvarRedirect";
+import AddedBank from "./screens/AddBank/AddedBanks/AddedBank";
 function App() {
   dotenv.config();
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route exact path="/bankdata" component={Bankdata} />
           <Route exact path="/bsuccess" component={bsuccess} />
           <Route exact path="/evar-redirect" component={EvarRedirect} />
+          <Route exact path="/addedbank" component={AddedBank} />
         </Switch>
       </div>
     </BrowserRouter>

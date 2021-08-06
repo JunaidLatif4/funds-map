@@ -1,0 +1,46 @@
+.addedbank__container {
+  margin: 15px;
+}
+.addedbank__header {
+  border: 1px solid #00000057;
+  display: flex;
+  min-height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.addedbank__left {
+  width: 4%;
+  background-color: rgb(35, 106, 255);
+  /* border-radius: 8px; */
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: white;
+  justify-content: center;
+}
+.addedbank__right {
+  width: 95%;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+  margin: 8px 8px;
+}
+.user__w-name {
+  display: flex;
+  justify-content: space-between;
+}
+.user__info {
+  font-size: 12px;
+}
+.ab__name {
+  color: rgba(0, 0, 0, 0.651);
+}
+.ab__w-name {
+  font-weight: bolder;
+}
+.ab__delbtn {
+  margin-right: 10px;
+  font-weight: 600;
+  color: #000000ab;
+}
