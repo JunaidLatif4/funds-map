@@ -26,6 +26,9 @@ import AddedBank from "./screens/AddBank/AddedBanks/AddedBank";
 import AddedDemet from "./screens/Demet/AddedDemet/AddedDemet";
 import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
+
+import Menu from './components/client-partner-menu/ClientPartnerMenu'
+
 function App() {
   dotenv.config();
   return (
@@ -55,6 +58,7 @@ function App() {
           <Route exact path="/addeddemet" component={AddedDemet} />
           <Route exact path="/adddemet" component={AddDemet} />
           <Route exact path="/uploaddemet" component={UploadDemet} />
+          <Route exact path="/menu" component={Menu} />
         </Switch>
       </div>
     </BrowserRouter>
