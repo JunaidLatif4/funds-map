@@ -1,0 +1,36 @@
+.menu_container{
+    background-color: red;
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.menu_box{
+    background-color: gray;
+    padding: 5rem;
+}
+.menu_close{
+    position: absolute !important ;
+    right: 3%;
+    top: 3%;
+    /* z-index: 5000; */
+}
+.avater_box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+.avater{
+    border-radius: 100%;
+    padding: 8% 8%;
+    background-color: #d2eaff;
+}
+.avater_title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
