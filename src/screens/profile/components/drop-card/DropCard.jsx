@@ -5,7 +5,7 @@ import downarrow from "../../../../Assets/imgs/downarrow.svg";
 import IndentityInfo from "../indentity-info/IndentityInfo";
 import AddBtn from "../add-btn/AddBtn";
 
-const DropCard = ({ icon, text, body }) => {
+const DropCard = ({ icon, text, body, setBank, set }) => {
   const [show, setShow] = useState(false);
   return (
     <div className="dropcard__wrapper">
@@ -28,8 +28,8 @@ const DropCard = ({ icon, text, body }) => {
         style={{ display: show ? "block" : "none" }}
       >
         {body === "identity" && <IndentityInfo />}
-        {body === "bank" && <AddBtn text="Add Bank" />}
-        {body === "demat" && <AddBtn text="Add Demat Account" />}
+        {body === "bank" && <AddBtn text="Add Bank" click={() => setBank(true)} />}
+        {body === "demat" && <AddBtn text="Add Demat Account" click={set} />}
       </div>
     </div>
   );

@@ -14,19 +14,31 @@ import {
 } from "../../api/profile";
 import { useHistory } from "react-router-dom";
 import { add_mobile } from "../../api/auth";
+import Bankinfo from "../AddBank/Bankinfo-popup/Bankinfo";
 
 const Profile = () => {
   const history = useHistory();
   const [addMobile, setAddMobile] = useState(false);
   const [verifyMobile, setVerifyMobile] = useState(false);
   const [mobile, setMobile] = useState(null);
+  const [bank, setBank] = useState(false);
+  const [demat, setDemat] = useState(false);
   const [username, setUsername] = useState("");
   const [otp, setOtp] = useState("");
   const [box, setBox] = useState({
-    open: true,
+    open: false,
     type: "mobile",
   });
 
+  // const setbank = (p) => {
+  //   console.log(bank)
+  //   setBank(p)
+  // }
+
+  // const setdemat = (p) => {
+  //   console.log("vvv", demat)
+  //   setDemat(p)
+  // }
   const get_details = async () => {
     const details = await profile_details();
     if (details.error) {
@@ -134,12 +146,18 @@ const Profile = () => {
 
       <div className="profile__body">
         <DropCard icon={idCard} text="identity" body="identity" />
-        <DropCard icon={bankLine} text="Bank" body="bank" />
-        <DropCard icon={profile} text="Demat Details" body="demat" />
+        <DropCard icon={bankLine} text="Bank" body="bank" setBank={setBank} />
+        <DropCard icon={profile} text="Demat Details" body="demat" set={setDemat} />
       </div>
       <ErrorBox />
       {box?.open && (
         <AddPhone type={box?.type} setMobile={setMobile} click={clickFunc} />
+      )}
+      {bank && (
+        <Bankinfo setBank={setBank} bank={bank} />
+      )}
+      {demat && (
+        console.log("sssdddd")
       )}
     </div>
   );

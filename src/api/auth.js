@@ -31,7 +31,7 @@ export const e_verify = async (token) => {
     resolved.data = await axios({
       url: `api/v1/users/email-verification`,
       method: "post",
-      // headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     });
   } catch (error) {
     if (error.response) {
@@ -143,9 +143,9 @@ export const whoami = async () => {
     resolved.data = await axios({
       url: "api/v1/users/me",
       method: "get",
-      // headers: {
-      //   authorization: `Bearer ${localStorage.getItem("token")}`,
-      // },
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
   } catch (error) {
     console.log(error);
@@ -202,7 +202,9 @@ export const partner_signup = async (data) => {
     if (error.response) {
       resolved.error = error.response.data.message;
     }
-    resolved.error = "Something went wrong";
+    else {
+      resolved.error = "something went wrong";
+    }
   }
   return resolved;
 };
