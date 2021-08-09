@@ -8,14 +8,52 @@ import whatsapp from "../../../../Assets/imgs/whatsapp.svg";
 import Check from "../../../../Assets/imgs/check.svg";
 import OtpInput from "react-otp-input";
 import Mnumber from "../../../../components/Mob-num input/Mnumber";
+import { mobile_verification, verify_otp } from "../../../../api/profile";
+import { add_mobile } from "../../../../api/auth";
 
-const AddPhone = ({ type, click, setMobile }) => {
+const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
   const [box, setBox] = useState(type);
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState();
+  const [mobile, setMobile] = useState(null);
   const [resend, setResend] = useState(false);
   const [secs, setSecs] = useState(15);
   const [checked, setChecked] = useState(true);
   const [closeBSlider, setCloseBSlider] = useState(false);
+  const add_phone = async () => {
+    const data = {
+      username: username,
+      countryCode: mobile?.slice(0, 3),
+      mobileNo: mobile?.slice(3),
+    };
+    const added = await add_mobile(data);
+    if (added.error) {
+      alert(added.error);
+    } else {
+      console.log("number added: " + added.data);
+      const generate_otp = await mobile_verification();
+      if (generate_otp.error) {
+        alert("otp can not be generated");
+      } else {
+        console.log("otp generated");
+        setBox({});
+        setSecs(15);
+        setBox("otp");
+      }
+    }
+  };
+
+  const otp_verification = async () => {
+    console.log("verifying otp");
+    const verified = await verify_otp(otp);
+    if (verified.error) {
+      setBox({});
+      console.log(verified.error);
+      setBox("wrongotp");
+    } else {
+      setBox({});
+      setBox("whatsapp");
+    }
+  };
 
   useEffect(() => {
     if (!resend) {
@@ -35,11 +73,13 @@ const AddPhone = ({ type, click, setMobile }) => {
   }, [resend]);
   return (
     <>
-      {!closeBSlider && (
+      {addPhone && (
         <BottomSlide closeBSlider={closeBSlider}>
           <BSHeader
             text={box == "whatsapp" && "Stay updated on WhatsApp"}
-            setCloseBSlider={setCloseBSlider}
+            setCloseBSlider={(open) =>
+              setAddPhone((preVal) => ({ ...preVal, open: !open }))
+            }
           />
           <div className="add__phone_body">
             <div className="ap__inner_body">
@@ -52,7 +92,7 @@ const AddPhone = ({ type, click, setMobile }) => {
               {box === "otp" && (
                 <>
                   <span className="ap__otp_subtitle">
-                    Enter OTP sent to you via SMS on 99325487958
+                    Enter OTP sent to you via SMS on {mobile}
                   </span>
                   <OtpInput
                     value={otp}
@@ -142,7 +182,27 @@ const AddPhone = ({ type, click, setMobile }) => {
                 </>
               )}
             </div>
-            <Button text="DONE" click={click} />
+            {box === "mobile" && <Button text="DONE" click={add_phone} />}
+            {box === "otp" && <Button text="DONE" click={otp_verification} />}
+            {box === "wrongotp" && (
+              <Button text="DONE" click={otp_verification} />
+            )}
+            {box === "whatsapp" && (
+              <Button
+                text="DONE"
+                click={() => {
+                  setBox("success");
+                }}
+              />
+            )}
+            {box === "success" && (
+              <Button
+                text="DONE"
+                click={() =>
+                  setAddPhone((preVal) => ({ ...preVal, open: false }))
+                }
+              />
+            )}
           </div>
         </BottomSlide>
       )}

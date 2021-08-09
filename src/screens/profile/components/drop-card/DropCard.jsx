@@ -4,8 +4,9 @@ import redDot from "../../../../Assets/imgs/red-dot.svg";
 import downarrow from "../../../../Assets/imgs/downarrow.svg";
 import IndentityInfo from "../indentity-info/IndentityInfo";
 import AddBtn from "../add-btn/AddBtn";
+import Completed from "../completed/Completed";
 
-const DropCard = ({ icon, text, body }) => {
+const DropCard = ({ icon, text, body, setIdty, data }) => {
   const [show, setShow] = useState(false);
   return (
     <div className="dropcard__wrapper">
@@ -27,7 +28,8 @@ const DropCard = ({ icon, text, body }) => {
         className="drop__card_body"
         style={{ display: show ? "block" : "none" }}
       >
-        {body === "identity" && <IndentityInfo />}
+        {body === "identity" && <IndentityInfo data={data} setIdty={setIdty} />}
+        {body === "completed" && <Completed />}
         {body === "bank" && <AddBtn text="Add Bank" />}
         {body === "demat" && <AddBtn text="Add Demat Account" />}
       </div>

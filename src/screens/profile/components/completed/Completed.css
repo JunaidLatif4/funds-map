@@ -1,0 +1,58 @@
+.profile__completed_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pcomp__item {
+  margin-bottom: 25px;
+  font-size: 11px;
+  width: 100%;
+  line-height: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.pcomp__subitem {
+  display: flex;
+  justify-content: flex-start;
+}
+.pcomp__item_label {
+  color: gray;
+  padding-right: 3px;
+}
+.pcomp__badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  border: 1px solid rgba(199, 194, 194, 0.26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  margin-top: 5px;
+  position: relative;
+  flex-direction: column;
+}
+.pcomp__badge_notVerified {
+  color: red;
+  font-size: 6px;
+  line-height: 7px;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+}
+.pcomp__badge_num {
+  width: 100%;
+  height: 40%;
+  background-color: rgba(211, 211, 211, 0.637);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.pcomp__badge_verified {
+  width: 12px !important;
+  height: 12px !important;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+}

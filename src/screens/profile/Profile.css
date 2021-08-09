@@ -13,22 +13,20 @@
   box-sizing: border-box;
 }
 .pf__header_left {
-  font-size: 33px;
+  font-size: 25px;
   color: #111111;
   font-weight: 300;
 }
 .pf__header_right {
   display: flex;
   flex-direction: column;
+  font-size: 12px !important;
 }
 .pf__acc_status {
-  font-size: 14px;
   color: rgba(109, 103, 103, 0.6);
   font-weight: 500;
 }
-.pf__acc_info {
-  font-size: 14px;
-}
+
 .profile__body {
   display: flex;
   flex-direction: column;

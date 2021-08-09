@@ -9,10 +9,9 @@ export const profile_details = async () => {
     resolved.data = await axios({
       url: "api/v1/users/profile",
       method: "get",
-      //   headers: {
-      //     authorization:
-      //       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaXZhYmk0OTU2IiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4MjQ0OTA4LCJleHAiOjE2MjgyNDc5MDh9.L4GIRwrAV7QwGcFmuQjk_hCaec_Qtv2JJXZd__HykX4",
-      //   },
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
   } catch (error) {
     if (error.response) {
@@ -32,9 +31,9 @@ export const mobile_verification = async () => {
     resolved.data = await axios({
       url: "api/v1/users/mobile-verification",
       method: "post",
-      //   headers: {
-      //     authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaXZhYmk0OTU2IiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4MjQ0OTA4LCJleHAiOjE2MjgyNDc5MDh9.L4GIRwrAV7QwGcFmuQjk_hCaec_Qtv2JJXZd__HykX4`,
-      //   },
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
   } catch (error) {
     if (error.response) {
@@ -55,10 +54,33 @@ export const verify_otp = async (otp) => {
       url: "api/v1/users/verify-mobile",
       method: "post",
       headers: {
-        // authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaXZhYmk0OTU2IiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4MjQ0OTA4LCJleHAiOjE2MjgyNDc5MDh9.L4GIRwrAV7QwGcFmuQjk_hCaec_Qtv2JJXZd__HykX4`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
-      data: otp,
+      data: { otp },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const kyc_request = async (otp) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/kyc/identity",
+      method: "post",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
     });
   } catch (error) {
     if (error.response) {

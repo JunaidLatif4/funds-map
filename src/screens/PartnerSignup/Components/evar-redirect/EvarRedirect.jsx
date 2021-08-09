@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 const EvarRedirect = () => {
+  const [msg, setMsg] = useState("");
   const location = useLocation();
   const history = useHistory();
   const status = new URLSearchParams(location.search).get("status");
@@ -10,16 +11,17 @@ const EvarRedirect = () => {
   useEffect(() => {
     console.log(status);
     if (status == "SUCCESS") {
+      localStorage.setItem("token", token);
       history.push({ pathname: "/motp", state: { userName, userType, token } });
     }
     if (status == "FAILURE") {
-      alert("verification failed......");
+      setMsg("verification failed......");
     }
     if (status == "EXPIRED") {
-      alert("verification email expired");
+      setMsg("verification email expired");
     }
   }, []);
-  return <div>helllloooooo buddy</div>;
+  return <div>{msg}</div>;
 };
 
 export default EvarRedirect;

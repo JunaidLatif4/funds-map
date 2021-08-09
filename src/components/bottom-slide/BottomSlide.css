@@ -1,12 +1,11 @@
 .bottom__slide {
-  width: 100%;
+  width: 480px;
   height: 400px;
   background-color: white;
   position: fixed;
   bottom: 0;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  width: 100%;
   z-index: 300;
   height: fit-content;
   box-sizing: border-box;
@@ -24,6 +23,8 @@
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 @keyframes bottomup {
   from {
@@ -39,5 +40,10 @@
   }
   to {
     transform: translateY(80vh);
+  }
+}
+@media (max-width: 480px) {
+  .bottom__slide {
+    width: 100%;
   }
 }

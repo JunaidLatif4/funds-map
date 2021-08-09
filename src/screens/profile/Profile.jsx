@@ -13,17 +13,18 @@ import {
   verify_otp,
 } from "../../api/profile";
 import { useHistory } from "react-router-dom";
-import { add_mobile } from "../../api/auth";
+import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
 
 const Profile = () => {
   const history = useHistory();
   const [addMobile, setAddMobile] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [verifyMobile, setVerifyMobile] = useState(false);
-  const [mobile, setMobile] = useState(null);
+  const [idty, setIdty] = useState(false);
+  const [profileData, setProfileData] = useState([]);
   const [username, setUsername] = useState("");
-  const [otp, setOtp] = useState("");
   const [box, setBox] = useState({
-    open: true,
+    open: false,
     type: "mobile",
   });
 
@@ -40,67 +41,20 @@ const Profile = () => {
         mobileAdded,
         mobileVerified,
       } = details.data.data;
+      setProfileData(details.data.data);
       setUsername(userName);
       if (!emailVerified) {
         history.push({
           pathname: "/evar",
           state: { email },
         });
-      }
-      if (!mobileAdded) {
+      } else if (!mobileAdded) {
         setAddMobile(true);
-      }
-      if (!mobileVerified) {
+      } else if (!mobileVerified) {
         setVerifyMobile(true);
       }
     }
   };
-
-  const add_phone = async () => {
-    const data = {
-      username: username,
-      countryCode: mobile?.slice(0, 3),
-      mobileNo: mobile?.slice(3),
-    };
-    const added = await add_mobile(data);
-    if (added.error) {
-      alert(added.error);
-    } else {
-      console.log("number added: " + added.data);
-      const generate_otp = await mobile_verification();
-      if (generate_otp.error) {
-        alert("otp can not be generated");
-      } else {
-        console.log("otp generated");
-        setBox({});
-        setBox({
-          open: true,
-          type: "otp",
-        });
-      }
-    }
-  };
-
-  const otp_verification = async () => {
-    const verified = await verify_otp(otp);
-    if (verified.error) {
-      setBox({});
-      setBox({
-        open: true,
-        type: "wrongotp",
-      });
-    } else {
-      setBox({});
-      setBox({
-        open: true,
-        type: "whatsapp",
-      });
-    }
-  };
-  let clickFunc = add_phone;
-  useEffect(() => {
-    clickFunc = box.type === "mobile" ? add_phone : null;
-  }, [box?.type]);
 
   useEffect(() => {
     addMobile &&
@@ -133,14 +87,26 @@ const Profile = () => {
       </div>
 
       <div className="profile__body">
-        <DropCard icon={idCard} text="identity" body="identity" />
+        <DropCard
+          icon={idCard}
+          text="identity"
+          body={completed ? "completed" : "identity"}
+          setIdty={setIdty}
+          data={profileData}
+        />
         <DropCard icon={bankLine} text="Bank" body="bank" />
         <DropCard icon={profile} text="Demat Details" body="demat" />
       </div>
       <ErrorBox />
       {box?.open && (
-        <AddPhone type={box?.type} setMobile={setMobile} click={clickFunc} />
+        <AddPhone
+          type={box?.type}
+          setAddPhone={setBox}
+          addPhone={box?.open}
+          username={username}
+        />
       )}
+      {idty && <VerifyIdentity setIdty={setIdty} idty={idty} />}
     </div>
   );
 };
