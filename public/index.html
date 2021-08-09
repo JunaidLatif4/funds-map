@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="avenir_ff/AvenirLTStd-Black.otf" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -29,6 +31,35 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <button id="rzp-button1" style="display: none">Pay</button>
+    <script src="https://app.digio.in/sdk/v9/digio.js"></script>
+    <script>
+      var options = {
+        environment: "sandbox",
+        logo: "https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_001.JPG",
+        callback: function (response) {
+          if (response.hasOwnProperty("error_code")) {
+            return console.log("error occurred in process");
+          }
+          console.log("Signing completed successfully");
+        },
+      };
+
+      document.getElementById("rzp-button1").onclick = function (e) {
+        let obj = JSON.parse(localStorage.getItem("digioObj"));
+        var digio = new Digio(options);
+        digio.init();
+        var requestId = obj.id;
+        var identifier = obj.customerIdentifier;
+        var token_id = obj.token;
+        digio.submit(requestId, identifier, token_id);
+        e.preventDefault();
+      };
+
+      // function abc(response){
+      //     console.log(“Signing completed successfully”);
+      // };
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.

@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../../../components/button/Button";
 import "./IdentityInfo.css";
 
-const IndentityInfo = () => {
+const IndentityInfo = ({ setIdty }) => {
   return (
     <div className="identity__info">
       <span className="ii__item">
@@ -17,7 +17,7 @@ const IndentityInfo = () => {
         <span className="ii__title">Cell: &nbsp;</span>
         <span className="ii__desc">+91 9985478569</span>
       </span>
-      <Button text="Verify Identity" />
+      <Button text="Verify Identity" click={() => setIdty(true)} />
     </div>
   );
 };

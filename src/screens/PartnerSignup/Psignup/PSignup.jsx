@@ -189,8 +189,8 @@ const PSignup = () => {
             </small>
           </div>
         </div>
+        <Button loading={loading} text="DONE" click={() => handlesignup()} />
       </div>
-      <Button loading={loading} text="DONE" click={() => handlesignup()} />
     </>
   );
 };

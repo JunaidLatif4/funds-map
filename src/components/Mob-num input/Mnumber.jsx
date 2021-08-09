@@ -13,7 +13,6 @@ const Mnumber = ({ setMobile }) => {
   return (
     <>
       <PhoneInput
-        style={{ padding: "20px 0px", color: "red" }}
         international
         defaultCountry="IN"
         value={value}

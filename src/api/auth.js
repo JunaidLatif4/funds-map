@@ -169,7 +169,7 @@ export const add_mobile = async (data) => {
       url: "api/v1/users/mobile",
       method: "patch",
       headers: {
-        // authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaXZhYmk0OTU2IiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4MjQ0OTA4LCJleHAiOjE2MjgyNDc5MDh9.L4GIRwrAV7QwGcFmuQjk_hCaec_Qtv2JJXZd__HykX4`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       data,
@@ -186,6 +186,7 @@ export const add_mobile = async (data) => {
 };
 
 export const partner_signup = async (data) => {
+  console.log(data);
   const resolved = {
     data: null,
     error: null,
@@ -195,11 +196,12 @@ export const partner_signup = async (data) => {
     resolved.data = await axios({
       url: "api/v1/users/signup",
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { contentType: "application/json" },
       data,
     });
   } catch (error) {
     if (error.response) {
+      console.log("partner signup error response");
       resolved.error = error.response.data.message;
     }
     else {
