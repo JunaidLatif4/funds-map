@@ -27,6 +27,9 @@ import AddedDemet from "./screens/Demet/AddedDemet/AddedDemet";
 import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 import MainDemet from "./screens/Demet/mainDemet";
+
+import Menu from './components/client-partner-menu/ClientPartnerMenu'
+
 function App() {
   dotenv.config();
   return (
@@ -58,6 +61,7 @@ function App() {
           <Route exact path="/uploaddemet" component={UploadDemet} />
           <Route exact path="/maindemet" component={MainDemet} />
           
+          <Route exact path="/menu" component={Menu} />
         </Switch>
       </div>
     </BrowserRouter>
