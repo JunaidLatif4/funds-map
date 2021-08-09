@@ -1,6 +1,6 @@
 import React from "react";
 
-const IdtyCIN = () => {
+const IdtyCIN = ({ idtyData, setIdtyData }) => {
   return (
     <div className="idtycin__wrapper">
       <span className="idtycin__form_item">
@@ -8,7 +8,18 @@ const IdtyCIN = () => {
           Enter CIN (Corporate Identity Number)
         </span>
         <span className="idtycin__input_wrapper">
-          <input className="idtycin__input" type="text" placeholder="CIN" />
+          <input
+            className="idtycin__input"
+            type="text"
+            placeholder="CIN"
+            value={idtyData.cin}
+            onChange={(e) =>
+              setIdtyData((preVal) => ({
+                ...preVal,
+                cin: e.target.value,
+              }))
+            }
+          />
         </span>
       </span>
       <div className="idtycin__info_box">

@@ -18,7 +18,7 @@ import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
 const Profile = () => {
   const history = useHistory();
   const [addMobile, setAddMobile] = useState(false);
-  const [completed, setCompleted] = useState(false);
+  const [completed, setCompleted] = useState(true);
   const [verifyMobile, setVerifyMobile] = useState(false);
   const [idty, setIdty] = useState(false);
   const [profileData, setProfileData] = useState([]);
@@ -43,16 +43,7 @@ const Profile = () => {
       } = details.data.data;
       setProfileData(details.data.data);
       setUsername(userName);
-      if (!emailVerified) {
-        history.push({
-          pathname: "/evar",
-          state: { email },
-        });
-      } else if (!mobileAdded) {
-        setAddMobile(true);
-      } else if (!mobileVerified) {
-        setVerifyMobile(true);
-      }
+      setCompleted(identityCheckDone);
     }
   };
 
@@ -93,6 +84,8 @@ const Profile = () => {
           body={completed ? "completed" : "identity"}
           setIdty={setIdty}
           data={profileData}
+          open={true}
+          basicInfo={profileData}
         />
         <DropCard icon={bankLine} text="Bank" body="bank" />
         <DropCard icon={profile} text="Demat Details" body="demat" />
@@ -106,7 +99,14 @@ const Profile = () => {
           username={username}
         />
       )}
-      {idty && <VerifyIdentity setIdty={setIdty} idty={idty} />}
+      {idty && (
+        <VerifyIdentity
+          setIdty={setIdty}
+          idty={idty}
+          data={profileData}
+          setMobileFlow={setBox}
+        />
+      )}
     </div>
   );
 };

@@ -1,7 +1,10 @@
+.psignup__wrap {
+  max-width: 480px;
+}
 .psignup__container {
-  margin: 40px 20px;
+  padding: 40px 0px;
+  box-sizing: border-box;
   margin-bottom: 0;
-  width: 480px;
 }
 .header__para {
   font-size: 12px;

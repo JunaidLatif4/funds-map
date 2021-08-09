@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Mnumber from "../../../../../components/Mob-num input/Mnumber";
 
-const IdtyInfo = () => {
+const IdtyInfo = ({ idtyData, setIdtyData }) => {
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    setIdtyData((preVal) => ({
+      ...preVal,
+      countryCode: phone?.slice(0, 3),
+      mobileNumber: phone?.slice(3),
+    }));
+  }, [phone]);
   return (
     <div className="idtyinfo__wrapper">
       <form>
@@ -14,6 +23,13 @@ const IdtyInfo = () => {
                 className="idtyinfo__input"
                 type="text"
                 placeholder="First Name"
+                value={idtyData.firstName}
+                onChange={(e) =>
+                  setIdtyData((preVal) => ({
+                    ...preVal,
+                    firstName: e.target.value,
+                  }))
+                }
               />
             </span>
             <span className="idtyinfo__input_wrapper">
@@ -21,6 +37,13 @@ const IdtyInfo = () => {
                 className="idtyinfo__input"
                 type="text"
                 placeholder="Last Name"
+                value={idtyData.lastName}
+                onChange={(e) =>
+                  setIdtyData((preVal) => ({
+                    ...preVal,
+                    lastName: e.target.value,
+                  }))
+                }
               />
             </span>
           </span>
@@ -35,6 +58,13 @@ const IdtyInfo = () => {
               className="idtyinfo__input"
               type="text"
               placeholder="Company's name"
+              value={idtyData.companyName}
+              onChange={(e) =>
+                setIdtyData((preVal) => ({
+                  ...preVal,
+                  companyName: e.target.value,
+                }))
+              }
             />
           </span>
         </span>
@@ -44,13 +74,20 @@ const IdtyInfo = () => {
           </span>
           <span className="idtyinfo__input_item">
             <span className="idtyinfo__input_wrapper">
-              <Mnumber />
+              <Mnumber setMobile={setPhone} />
             </span>
             <span className="idtyinfo__input_wrapper">
               <input
                 className="idtyinfo__input"
                 type="text"
                 placeholder="Ext. optional"
+                value={idtyData.ext}
+                onChange={(e) =>
+                  setIdtyData((preVal) => ({
+                    ...preVal,
+                    ext: e.target.value,
+                  }))
+                }
               />
             </span>
           </span>

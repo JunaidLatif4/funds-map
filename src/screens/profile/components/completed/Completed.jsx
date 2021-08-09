@@ -1,25 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Completed.css";
 import { Link } from "react-router-dom";
 import Check from "../../../../Assets/imgs/check.svg";
+import { adhar_details, pan_details } from "../../../../api/profile";
 
-const Completed = () => {
+const Completed = ({ basicInfo }) => {
+  const [adharDetails, setAdharDetails] = useState("");
+  const [panDetails, setPanDetails] = useState("");
+  const get_adhar = async () => {
+    let response = await adhar_details();
+    if (response.error) {
+      alert(response.error);
+    } else {
+      console.log(response.data);
+      setAdharDetails(response.data.data);
+    }
+  };
+  const get_pan = async () => {
+    let response = await pan_details();
+    if (response.error) {
+      alert(response.error);
+    } else {
+      console.log(response.data);
+      setPanDetails(response.data.data);
+    }
+  };
+
+  useEffect(() => {
+    get_adhar();
+    get_pan();
+  }, []);
+
   return (
     <div className="profile__completed_wrapper">
       <div className="pcomp__item">
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">ID:</span>
-          <span>123 456 7890 1234 5678</span>
+          <span>{basicInfo.id}</span>
         </span>
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">Email:</span>
-          <span>jonathanm@gmail.com</span>
+          <span>{basicInfo.email}</span>
         </span>
       </div>
       <div className="pcomp__item">
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">Name:</span>
-          <span>Name of individual / Company (As per PAN)</span>
+          <span>{panDetails.name}</span>
         </span>
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">Status:</span>
@@ -31,25 +58,27 @@ const Completed = () => {
         </span>
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">Phone:</span>
-          <span>Mobile for individuals /Mobile or landline for cos.</span>
+          <span>{basicInfo.mobileNumber}</span>
         </span>
       </div>
       <div className="pcomp__item">
         <span className="pcomp__item_label">Permanent Address:</span>
         <span>
-          145 B Orchid Enclave, Winston Meadows, Upper Green street, Whitewoods,
+          {/* 145 B Orchid Enclave, Winston Meadows, Upper Green street, Whitewoods,
           Mumbai - 400001.
           <br />
-          City: Mumbai |State: Maharashtra | PIN: 400001
+          City: Mumbai |State: Maharashtra | PIN: 400001 */}
+          {adharDetails && adharDetails.permanentAddress.address}
         </span>
       </div>
       <div className="pcomp__item">
         <span className="pcomp__item_label">Current Address:</span>
         <span>
-          145 B Orchid Enclave, Winston Meadows, Upper Green street, Whitewoods,
+          {/* 145 B Orchid Enclave, Winston Meadows, Upper Green street, Whitewoods,
           Mumbai - 400001.
           <br />
-          City: Mumbai |State: Maharashtra | PIN: 400001
+          City: Mumbai |State: Maharashtra | PIN: 400001 */}
+          {adharDetails && adharDetails.currentAddress.address}
         </span>
       </div>
       <div className="pcomp__item">
@@ -57,13 +86,15 @@ const Completed = () => {
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">PAN:</span>
           <span>
-            AAAAA1111B{" "}
-            <span className="pcomp__item_label">(DOB: 15/02/1987)</span>
+            {panDetails && panDetails.panId}
+            <span className="pcomp__item_label">
+              (DOB: {panDetails && panDetails.dob.replace("-", "/")})
+            </span>
           </span>
         </span>
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">AADHAR:</span>
-          <span>XXXXXXXX6991</span>
+          <span>{adharDetails && adharDetails.aadhaarId}</span>
         </span>
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">CIN:</span>
