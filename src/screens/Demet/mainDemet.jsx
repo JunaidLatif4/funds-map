@@ -20,8 +20,6 @@ function MainDemet({ demat, setDemat, stepD, setStepD }) {
                 />
                 {stepD == "step1" && <UploadDemet />}
                 {stepD == "step2" && <AddDemet />}
-
-
                 {stepD == "step2" && <Button click={() => handel2()} text="CONFIRM DEMAT ACCOUNT" />}
             </BottomSlide>
         </div>
