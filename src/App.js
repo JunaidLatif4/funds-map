@@ -27,7 +27,7 @@ import AddedDemet from "./screens/Demet/AddedDemet/AddedDemet";
 import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 
-import Menu from './components/client-partner-menu/ClientPartnerMenu'
+import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 
 function App() {
   dotenv.config();

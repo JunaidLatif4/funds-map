@@ -156,7 +156,13 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
             <Button text="DONE" click={() => cinSubmit()} loading={loading} />
           )}
           {box === "text" && (
-            <Button text="DONE" click={() => setIdty(false)} />
+            <Button
+              text="DONE"
+              click={() => {
+                setIdty(false);
+                document.getElementById("rzp-button1").click();
+              }}
+            />
           )}
         </BottomSlide>
       )}

@@ -18,7 +18,7 @@ import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
 const Profile = () => {
   const history = useHistory();
   const [addMobile, setAddMobile] = useState(false);
-  const [completed, setCompleted] = useState(true);
+  const [completed, setCompleted] = useState(false);
   const [verifyMobile, setVerifyMobile] = useState(false);
   const [idty, setIdty] = useState(false);
   const [profileData, setProfileData] = useState([]);
