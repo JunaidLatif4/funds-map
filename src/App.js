@@ -28,8 +28,13 @@ import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 import MainDemet from "./screens/Demet/mainDemet";
 
+<<<<<<< HEAD
+import Menu from "./components/client-partner-menu/ClientPartnerMenu";
+import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
+=======
 import Menu from './components/client-partner-menu/ClientPartnerMenu';
 import Funds from './components/funds/Funds';
+>>>>>>> eb151ddba1a1ca57d801c3be251f6f94901ada30
 
 function App() {
   dotenv.config();
@@ -63,7 +68,11 @@ function App() {
           <Route exact path="/maindemet" component={MainDemet} />
           
           <Route exact path="/menu" component={Menu} />
+<<<<<<< HEAD
+          <Route exact path="/ordermodi" component={OrderModi} />
+=======
           <Route exact path="/funds" component={Funds} />
+>>>>>>> eb151ddba1a1ca57d801c3be251f6f94901ada30
         </Switch>
       </div>
     </BrowserRouter>
