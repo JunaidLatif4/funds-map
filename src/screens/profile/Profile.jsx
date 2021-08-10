@@ -24,8 +24,8 @@ const Profile = () => {
   const [profileData, setProfileData] = useState([]);
   const [username, setUsername] = useState("");
   const [box, setBox] = useState({
-    open: false,
-    type: "mobile",
+    open: true,
+    type: "whatsapp",
   });
 
   const get_details = async () => {

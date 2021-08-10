@@ -152,7 +152,7 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
               )}
               {box === "whatsapp" && (
                 <>
-                  <img src={whatsapp} className="ap__whatsapp_logo" />
+                  <img src={whatsapp} className="ap__whatsapp_logoo" />
                   <span className="ap__whatsapp_text">
                     Filtered, quality feed on global Private Equity, Startups
                     and Exotic investments
