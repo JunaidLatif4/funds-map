@@ -7,12 +7,33 @@ import BSHeader from "../../profile/components/bs-header/BSHeader";
 import Bankinfo from "./BankInfo";
 import Bankdata from "../Bankinfo-data/Bankdata";
 import BankSuccess from "../Banksuccess/bsuccess"
+import { ifsc_validator, otp_generate, bank_validator } from "../../../api/profile"
 
 const BankMain = ({ bank, setBank, step, setStep }) => {
 
+  const [ifsc, setIfsc] = useState("")
+  const [accountnumber, setAccountnumber] = useState("")
+  const [otp, setOtp] = useState("")
 
-  const handleStep1 = () => {
-    setStep("step2")
+  const handleStep1 = async () => {
+    let validationkey;
+    let res = await ifsc_validator(ifsc)
+    if (res.error) {
+      alert("")
+    }
+    else {
+      let res = await bank_validator(ifsc, accountnumber)
+      if (res.error) {
+        alert("")
+      }
+      else {
+        let res = await otp_generate(validationkey, ifsc, accountnumber)
+        if (res.error) {
+          alert("")
+        }
+      }
+    }
+    console.log(res)
   }
 
   const handleStep2 = () => {
@@ -33,7 +54,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
           text="Add Bank"
           setCloseBSlider={() => setBank(false)}
         />
-        {step == "step1" && <Bankinfo />}
+        {step == "step1" && <Bankinfo setIfsc={setIfsc} setAccountnumber={setAccountnumber} />}
         {step == "step2" && <Bankdata />}
         {step == "step3" && <BankSuccess />}
 

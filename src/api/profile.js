@@ -161,3 +161,125 @@ export const pan_details = async () => {
   }
   return resolved;
 };
+
+
+export const ifsc_validator = async (ifsc) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/users/banks/ifsc/" + ifsc,
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYWtqaGJramJoc2duZ2hqaCIsImF1dGgiOlt7ImF1dGhvcml0eSI6IlJPTEVfQ0xJRU5UIn0seyJhdXRob3JpdHkiOiJST0xFX09SR0FOSVNBVElPTkFMX1BBUlRORVIifV0sImlhdCI6MTYyODYwMDM1NiwiZXhwIjoxNjI4NjAzMzU2fQ.2xR7Oaced-oV3OncMYLZ0WiyPkF6IGk2dve_EpePb7Y`,
+        "Content-Type": "application/json",
+      },
+    });
+    
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+
+
+
+export const bank_validator = async (ifsc , accountnumber) => {
+  
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/users/banks/validate",
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYXNnbmdoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1OTQ1NzIsImV4cCI6MTYyODU5NzU3Mn0.ptUd1CEfvMRNlTIMboARZzumXcaXlGNC9e2qJJjewN4`,
+        "Content-Type": "application/json",
+      },
+      data: {
+          ifsc:ifsc,
+          bankAccountNumber:accountnumber  
+      }
+    }); 
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+
+export const otp_generate = async (validationkey , ifsc , accountNumber) => {
+  
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/otp/generate?txnId=" + validationkey,
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYXNnbmdoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1OTQ1NzIsImV4cCI6MTYyODU5NzU3Mn0.ptUd1CEfvMRNlTIMboARZzumXcaXlGNC9e2qJJjewN4`,
+        "Content-Type": "application/json",
+      },
+      data: {
+          ifsc:ifsc,
+          bankAccountNumber:accountNumber  
+      }
+    }); 
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+
+export const bank_save = async (otp , validationkey , accountHolderName , bankName , accountNumber , ifsc) => {
+  
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/otp/generate?txnId=" + validationkey,
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYXNnbmdoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1OTQ1NzIsImV4cCI6MTYyODU5NzU3Mn0.ptUd1CEfvMRNlTIMboARZzumXcaXlGNC9e2qJJjewN4`,
+        "Content-Type": "application/json",
+      },
+      data: {
+        bankAccountId:{ifsc:ifsc},
+        bankAccountNumber:accountNumber,
+        bankName:bankName,
+        accountHolderName:accountHolderName,
+        validationKey:validationkey,
+        otp:otp
+      }
+    }); 
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
