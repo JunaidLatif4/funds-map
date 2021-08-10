@@ -173,7 +173,7 @@ export const ifsc_validator = async (ifsc) => {
       url: "/api/v1/users/banks/ifsc/" + ifsc,
       method: "get",
       headers: {
-        authorization: ` `,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
         "Content-Type": "application/json",
       },
     });
@@ -200,9 +200,9 @@ export const bank_validator = async (ifsc , accountnumber) => {
   try {
     resolved.data = await axios({
       url: "/api/v1/users/banks/validate",
-      method: "get",
+      method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYXNnbmdoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1OTQ1NzIsImV4cCI6MTYyODU5NzU3Mn0.ptUd1CEfvMRNlTIMboARZzumXcaXlGNC9e2qJJjewN4`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
         "Content-Type": "application/json",
       },
       data: {
@@ -222,7 +222,7 @@ export const bank_validator = async (ifsc , accountnumber) => {
 
 
 export const otp_generate = async (validationkey , ifsc , accountNumber) => {
-  
+  console.log(validationkey)
   const resolved = {
     data: null,
     error: null,
@@ -230,9 +230,9 @@ export const otp_generate = async (validationkey , ifsc , accountNumber) => {
   try {
     resolved.data = await axios({
       url: "/api/v1/otp/generate?txnId=" + validationkey,
-      method: "get",
+      method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYXNnbmdoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1OTQ1NzIsImV4cCI6MTYyODU5NzU3Mn0.ptUd1CEfvMRNlTIMboARZzumXcaXlGNC9e2qJJjewN4`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
         "Content-Type": "application/json",
       },
       data: {
@@ -262,7 +262,7 @@ export const bank_save = async (otp , validationkey , accountHolderName , bankNa
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYXNnbmdoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1OTQ1NzIsImV4cCI6MTYyODU5NzU3Mn0.ptUd1CEfvMRNlTIMboARZzumXcaXlGNC9e2qJJjewN4`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
         "Content-Type": "application/json",
       },
       data: {

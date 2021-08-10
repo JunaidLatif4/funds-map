@@ -4,26 +4,27 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Button from "../../../components/button/Button";
 
-const Bankdata = () => {
+const Bankdata = ({ data_for_step2 }) => {
   return (
     <>
       <div className="bankinfo__container">
+        {console.log(data_for_step2)}
         <div className="userInfo__container">
           <div className="first__info">
             <div className="info__key">Name :</div>
-            <p className="info__value">&nbsp;HELLO WORLD</p>
+            <p className="info__value">&nbsp;{data_for_step2?.accountHolderName}</p>
           </div>
           <div className="first__info">
             <div className="info__key">Bank :</div>
-            <p className="info__value">&nbsp;Bank of India</p>
+            <p className="info__value">&nbsp;{data_for_step2?.bankName}</p>
           </div>
           <div className="first__info">
             <div className="info__key">A/c :</div>
-            <p className="info__value">&nbsp;************1563</p>
+            <p className="info__value">&nbsp;************{data_for_step2?.ac?.substr(10, 4)}</p>
           </div>
           <div className="first__info">
             <div className="info__key">Branch :</div>
-            <p className="info__value">&nbsp;Front Hoeniman Circle</p>
+            <p className="info__value">&nbsp;{data_for_step2?.bankBranch}</p>
           </div>
           <div className="psignup__confirm">
             <div className="psignup__checkbox">
