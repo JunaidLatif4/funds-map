@@ -19,17 +19,17 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     let validationkey;
     let res = await ifsc_validator(ifsc)
     if (res.error) {
-      alert("")
+      alert("error in ifsc validation")
     }
     else {
       let res = await bank_validator(ifsc, accountnumber)
       if (res.error) {
-        alert("")
+        alert("error in bank validation")
       }
       else {
         let res = await otp_generate(validationkey, ifsc, accountnumber)
         if (res.error) {
-          alert("")
+          alert("error in otp generate")
         }
       }
     }

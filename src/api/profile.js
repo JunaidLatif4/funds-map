@@ -173,7 +173,7 @@ export const ifsc_validator = async (ifsc) => {
       url: "/api/v1/users/banks/ifsc/" + ifsc,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hzYWtqaGJramJoc2duZ2hqaCIsImF1dGgiOlt7ImF1dGhvcml0eSI6IlJPTEVfQ0xJRU5UIn0seyJhdXRob3JpdHkiOiJST0xFX09SR0FOSVNBVElPTkFMX1BBUlRORVIifV0sImlhdCI6MTYyODYwMDM1NiwiZXhwIjoxNjI4NjAzMzU2fQ.2xR7Oaced-oV3OncMYLZ0WiyPkF6IGk2dve_EpePb7Y`,
+        authorization: ` `,
         "Content-Type": "application/json",
       },
     });
