@@ -12,3 +12,10 @@
   color: gray;
   margin-bottom: 55px;
 }
+
+.success_main_align{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

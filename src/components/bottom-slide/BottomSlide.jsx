@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import "./BottomSlide.css";
 
-const BottomSlide = ({ children, closeBSlider }) => {
-  console.log(closeBSlider);
+const BottomSlide = ({ children }) => {
   return (
     <div className="backdrop">
       <div
-        className={`bottom__slide ${
-          closeBSlider ? "close__bslide" : "open__bslide"
-        }`}
+        className={`bottom__slide open__bslide `}
       >
         {children}
       </div>

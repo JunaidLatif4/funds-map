@@ -1,15 +1,19 @@
-import React from "react";
-import clsx from "clsx";
-import { Button, makeStyles, Divider } from "@material-ui/core";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import CloseIcon from "@material-ui/icons/Close";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import SpeedIcon from "@material-ui/icons/Speed";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import SettingsIcon from "@material-ui/icons/Settings";
-import LocalAtmIcon from "@material-ui/icons/LocalAtm";
+import React from 'react'
+
+import clsx from 'clsx';
+import { Button, makeStyles, Divider } from "@material-ui/core"
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import MenuIcon from '@material-ui/icons/Menu';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import CloseIcon from '@material-ui/icons/Close';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import SpeedIcon from '@material-ui/icons/Speed';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import SettingsIcon from '@material-ui/icons/Settings';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import Button1 from "../../components/button/Button";
+
+import "./ClientPartnerMenu.css"
 
 import "./ClientPartnerMenu.css";
 
@@ -54,75 +58,53 @@ const ClientpartnerMenu = () => {
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
+        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div className="menu_box">
-        <Button onClick={handleClose} className="menu_close">
-          {" "}
-          <CloseIcon />{" "}
-        </Button>
+        <Button onClick={handleClose} className="menu_close"> <CloseIcon /> </Button>
 
         <div className="avater_box">
-          <div className="avater">
-            {" "}
-            <PersonOutlineIcon
-              style={{ fontSize: "2rem", color: "#54abff" }}
-            />{" "}
+          <div className="avater"> <PersonOutlineIcon className='signup_icon' /> </div>
+          <div className="avater_title">
+            Sign up / Sign in
           </div>
-          <div className="avater_title">Sign up / Sign in</div>
         </div>
         <div className="menu_data">
           <div className="inp">
-            <PersonOutlineIcon style={{ color: "#2b65ff" }} />{" "}
-            <div className="inp_title"> My Profile </div>
+            <PersonOutlineIcon className="icon_blue" /> <div className="inp_title fontweight_500"> My Profile </div>
           </div>
           <div className="inp">
-            <SpeedIcon style={{ color: "#2b65ff" }} />{" "}
-            <div className="inp_title"> Dashboard </div>
+            <SpeedIcon className="icon_blue" /> <div className="inp_title fontweight_500"> Dashboard </div>
           </div>
           <div className="inp">
-            <LocalAtmIcon style={{ color: "#2b65ff" }} />{" "}
-            <div className="inp_title"> Funds </div>
+            <LocalAtmIcon className="icon_blue" /> <div className="inp_title fontweight_500"> Funds </div>
           </div>
           <div className="inp">
-            <ListAltIcon style={{ color: "#2b65ff" }} />{" "}
-            <div className="inp_title"> Orders </div>
+            <ListAltIcon className="icon_blue" /> <div className="inp_title fontweight_500"> Orders </div>
           </div>
           <div className="inp">
-            <SettingsIcon style={{ color: "#2b65ff" }} />{" "}
-            <div className="inp_title"> Settings </div>
+            <SettingsIcon className="icon_blue" /> <div className="inp_title fontweight_500"> Settings </div>
           </div>
         </div>
         <div className="ref_box">
           <p className="ref_title">Refer & Earn BIG</p>
-          <p className="ref_detail">
-            Refer your friends and be entitled to receive x% of their x for life
-            time.
-          </p>
-          <Button
-            style={{
-              backgroundColor: "#2574ff",
-              padding: ".7rem 2rem",
-              margin: ".5rem 0",
-              color: "white",
-              fontSize: "1.2rem",
-            }}
-          >
-            {" "}
-            REFER A FRIEND{" "}
-          </Button>
+          <p className="ref_detail fontweight_500">Refer your friends and be entitled to receive x% of their x for life time.</p>
+          <Button1 wid="width" text="REFER A FRIEND" ></Button1 >
         </div>
         <div className="becomepartner_box">
-          <p className="feedback"> Feedback </p>
-          <p className="rateus"> Rate us </p>
-          <p className="partner"> Become a Partner </p>
+          <p className="feedback fontweight_500"> Feedback </p>
+          <p className="rateus fontweight_500"> Rate us </p>
+          <p className="partner fontweight_500"> Become a Partner </p>
         </div>
+
       </div>
+
     </div>
+
   );
   return (
     <>
@@ -145,9 +127,9 @@ const ClientpartnerMenu = () => {
           </Button>
         </div>
       </div>
-      <Divider style={{ width: "100%" }} />
     </>
   );
-};
+
+}
 
 export default ClientpartnerMenu;

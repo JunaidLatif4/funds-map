@@ -9,4 +9,9 @@
 .add__btn_text {
   font-size: 18px;
   padding-left: 5px;
+  color: #00abff;
+}
+
+.add__btn_iconbox{
+  color: #00abff;
 }
