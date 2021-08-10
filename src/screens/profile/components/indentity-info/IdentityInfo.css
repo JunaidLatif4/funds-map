@@ -5,3 +5,9 @@
 .ii__title {
   color: gray;
 }
+.ii__nothing_found {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0px;
+  color: lightgray;
+}

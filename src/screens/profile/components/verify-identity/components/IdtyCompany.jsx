@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import "../VerifyIdentity.css";
 
-const IdtyCompany = ({ self, setSelf, company, setCompany }) => {
+const IdtyCompany = ({ self, setSelf }) => {
   return (
     <div className="idtycomp__wrapper">
       <FormControl component="fieldset">
@@ -26,26 +26,18 @@ const IdtyCompany = ({ self, setSelf, company, setCompany }) => {
             label="Indvidual (Indian Resident)"
           />
           <FormControlLabel
-            value="nri"
+            value="INDIVIDUAL_NRI"
             control={<Radio />}
             label="Individual (NRI - Non-Resident Indian)"
           />
           <FormControlLabel
-            value="foreign"
+            value="INDIVIDUAL_FOREIGN"
             control={<Radio />}
             label="Individual (Foreign National)"
           />
-        </RadioGroup>
-        <FormLabel component="legend" className="idtycomp__heading">
-          I'm representing a/an:
-        </FormLabel>
-        <RadioGroup
-          aria-label="company"
-          name="company"
-          className="idtycomp__body"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-        >
+          <span component="legend" className="idtycomp__heading">
+            I'm representing a/an:
+          </span>
           <FormControlLabel
             value="indian-pvt-ltd"
             control={<Radio />}

@@ -60,16 +60,7 @@ const Profile = () => {
       } = details.data.data;
       setProfileData(details.data.data);
       setUsername(userName);
-      if (!emailVerified) {
-        history.push({
-          pathname: "/evar",
-          state: { email },
-        });
-      } else if (!mobileAdded) {
-        setAddMobile(true);
-      } else if (!mobileVerified) {
-        setVerifyMobile(true);
-      }
+      setCompleted(identityCheckDone);
     }
   };
 
@@ -110,6 +101,8 @@ const Profile = () => {
           body={completed ? "completed" : "identity"}
           setIdty={setIdty}
           data={profileData}
+          open={true}
+          basicInfo={profileData}
         />
         <DropCard icon={bankLine} text="Bank" body="bank" setBank={setBank} setDemat={setDemat} />
         <DropCard icon={profile} text="Demat Details" body="demat" setDemat={setDemat} setBank={setBank} />
@@ -129,7 +122,14 @@ const Profile = () => {
       {demat && (
         <MainDemet setDemat={setDemat} demat={demat} stepD={stepD} setStepD={setStepD} />
       )}
-      {idty && <VerifyIdentity setIdty={setIdty} idty={idty} />}
+      {idty && (
+        <VerifyIdentity
+          setIdty={setIdty}
+          idty={idty}
+          data={profileData}
+          setMobileFlow={setBox}
+        />
+      )}
     </div>
   );
 };

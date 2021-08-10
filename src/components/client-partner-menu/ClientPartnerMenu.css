@@ -16,8 +16,8 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    padding: 2rem 0.5rem;
-    width: 84%;
+    padding: 2rem 0.5rem 0rem 0.5rem;
+    width: 90%;
 }
 .menu_close{
     position: absolute !important;
