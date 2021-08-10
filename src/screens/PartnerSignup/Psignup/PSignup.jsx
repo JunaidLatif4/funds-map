@@ -67,19 +67,27 @@ const PSignup = () => {
   };
 
   const handlesignup = async () => {
+    setLoading(true);
     console.log(data);
     const validated = validate(data);
     if (validated) {
       const response = await partner_signup(data);
       if (response.error) {
         alert(response.error);
+        setLoading(false);
       } else {
         localStorage.setItem("token", response.data.data);
+        console.log();
+        localStorage.setItem("partner_data", JSON.stringify(data));
+        console.log(JSON.stringify(data));
+        console.log(data);
         console.log(localStorage.getItem("token"));
         const verification = await email_verification();
         if (verification.error) {
           alert(verification.error);
+          setLoading(false);
         } else {
+          setLoading(false);
           history.push({
             pathname: "/evar",
             state: { email: data.email },
