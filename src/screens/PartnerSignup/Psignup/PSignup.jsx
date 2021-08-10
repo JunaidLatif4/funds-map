@@ -90,7 +90,7 @@ const PSignup = () => {
   };
 
   return (
-    <>
+    <div className="psignup__wrap">
       <div className="psignup__container">
         <div className="psignup__header">
           <p className="header__para">
@@ -189,9 +189,9 @@ const PSignup = () => {
             </small>
           </div>
         </div>
-        <Button loading={loading} text="DONE" click={() => handlesignup()} />
       </div>
-    </>
+      <Button loading={loading} text="DONE" click={() => handlesignup()} />
+    </div>
   );
 };
 
