@@ -1,7 +1,7 @@
 .menu_container{
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     font-family: 'Roboto', sans-serif;
-    width: 480px;
+    width: 420px;
     overflow: hidden;
 }
 
@@ -15,8 +15,8 @@
 .menu_box{
     display: flex;
     flex-direction: column;
-    gap: 5rem;
-    padding: 2rem 0.5rem 0rem 0.5rem;
+    gap: 4rem;
+    padding: 2rem 0rem 0rem 0.5rem;
     width: 90%;
 }
 .menu_close{
