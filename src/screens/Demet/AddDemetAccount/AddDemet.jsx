@@ -51,7 +51,7 @@ const AddDemet = () => {
           </div>
         </div>
       </div>
-      <Button text="CONFIRM DEMAT ACCOUNT" />
+
     </>
   );
 };

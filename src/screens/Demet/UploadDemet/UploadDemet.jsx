@@ -17,14 +17,14 @@ const UploadDemet = () => {
           </div>
           <Link className="updemat__headerpara">Upload CMR / CML</Link>
         </div>
-
-        <div
-          className="updemet__para2"
-          style={{ fontSize: "11px", color: "#8a8a8a" }}
-        >
-          You can get your CMR / CML from your stock broker / depository
-          participant. <Link> Click here to know more</Link>
-        </div>
+        <div className="align_center">
+          <div
+            className="updemet__para2"
+            style={{ fontSize: "11px", color: "#8a8a8a" }}
+          >
+            You can get your CMR / CML from your stock broker / depository
+            participant. <Link> Click here to know more</Link>
+          </div></div>
       </div>
     </>
   );

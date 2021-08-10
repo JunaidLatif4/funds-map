@@ -55,7 +55,7 @@ const Bankdata = () => {
           </div>
         </div>
       </div>
-      <Button text="ADD BANK ACCOUNT" />
+      {/* <Button text="ADD BANK ACCOUNT" /> */}
     </>
   );
 };

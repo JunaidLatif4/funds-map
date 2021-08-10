@@ -18,7 +18,7 @@ import Addlogo from "./screens/PartnerSignup/AddLogo/Addlogo";
 import SearchPage from "./screens/dashboard/SearchPage";
 import Profile from "./screens/profile/Profile";
 import Motp from "./screens/PartnerSignup/MobileOtp/Motp";
-import Bankinfo from "./screens/AddBank/Bankinfo-popup/Bankinfo";
+import BankMain from "./screens/AddBank/Bankinfo-popup/BankMain";
 import Bankdata from "./screens/AddBank/Bankinfo-data/Bankdata";
 import bsuccess from "./screens/AddBank/Banksuccess/bsuccess";
 import EvarRedirect from "./screens/PartnerSignup/Components/evar-redirect/EvarRedirect";
@@ -26,9 +26,15 @@ import AddedBank from "./screens/AddBank/AddedBanks/AddedBank";
 import AddedDemet from "./screens/Demet/AddedDemet/AddedDemet";
 import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
+import MainDemet from "./screens/Demet/mainDemet";
 
+<<<<<<< HEAD
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
+=======
+import Menu from './components/client-partner-menu/ClientPartnerMenu';
+import Funds from './components/funds/Funds';
+>>>>>>> eb151ddba1a1ca57d801c3be251f6f94901ada30
 
 function App() {
   dotenv.config();
@@ -51,7 +57,7 @@ function App() {
           <Route exact path="/motp" component={Motp} />
           <Route exact path="/search" component={SearchPage} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/bankinfo" component={Bankinfo} />
+          <Route exact path="/bankinfo" component={BankMain} />
           <Route exact path="/bankdata" component={Bankdata} />
           <Route exact path="/bsuccess" component={bsuccess} />
           <Route exact path="/evar-redirect" component={EvarRedirect} />
@@ -59,12 +65,18 @@ function App() {
           <Route exact path="/addeddemet" component={AddedDemet} />
           <Route exact path="/adddemet" component={AddDemet} />
           <Route exact path="/uploaddemet" component={UploadDemet} />
+          <Route exact path="/maindemet" component={MainDemet} />
+          
           <Route exact path="/menu" component={Menu} />
+<<<<<<< HEAD
           <Route exact path="/ordermodi" component={OrderModi} />
+=======
+          <Route exact path="/funds" component={Funds} />
+>>>>>>> eb151ddba1a1ca57d801c3be251f6f94901ada30
         </Switch>
       </div>
     </BrowserRouter>
   );
-}
+} 
 
 export default App;

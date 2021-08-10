@@ -204,7 +204,9 @@ export const partner_signup = async (data) => {
       console.log("partner signup error response");
       resolved.error = error.response.data.message;
     }
-    resolved.error = "Something went wrong";
+    else {
+      resolved.error = "something went wrong";
+    }
   }
   return resolved;
 };

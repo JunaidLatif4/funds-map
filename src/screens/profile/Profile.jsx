@@ -13,6 +13,9 @@ import {
   verify_otp,
 } from "../../api/profile";
 import { useHistory } from "react-router-dom";
+import { add_mobile } from "../../api/auth";
+import BankMain from "../AddBank/Bankinfo-popup/BankMain.jsx";
+import MainDemet from "../Demet/mainDemet";
 import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
 
 const Profile = () => {
@@ -20,7 +23,12 @@ const Profile = () => {
   const [addMobile, setAddMobile] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [verifyMobile, setVerifyMobile] = useState(false);
+  const [mobile, setMobile] = useState(null);
+  const [bank, setBank] = useState(false);
+  const [demat, setDemat] = useState(false);
   const [idty, setIdty] = useState(false);
+  const [step, setStep] = useState("step1")
+  const [stepD, setStepD] = useState("step1")
   const [profileData, setProfileData] = useState([]);
   const [username, setUsername] = useState("");
   const [box, setBox] = useState({
@@ -28,6 +36,15 @@ const Profile = () => {
     type: "whatsapp",
   });
 
+  // const setbank = (p) => {
+  //   console.log(bank)
+  //   setBank(p)
+  // }
+
+  // const setdemat = (p) => {
+  //   console.log("vvv", demat)
+  //   setDemat(p)
+  // }
   const get_details = async () => {
     const details = await profile_details();
     if (details.error) {
@@ -87,8 +104,8 @@ const Profile = () => {
           open={true}
           basicInfo={profileData}
         />
-        <DropCard icon={bankLine} text="Bank" body="bank" />
-        <DropCard icon={profile} text="Demat Details" body="demat" />
+        <DropCard icon={bankLine} text="Bank" body="bank" setBank={setBank} setDemat={setDemat} />
+        <DropCard icon={profile} text="Demat Details" body="demat" setDemat={setDemat} setBank={setBank} />
       </div>
       <ErrorBox />
       {box?.open && (
@@ -98,6 +115,12 @@ const Profile = () => {
           addPhone={box?.open}
           username={username}
         />
+      )}
+      {bank && (
+        <BankMain setBank={setBank} bank={bank} step={step} setStep={setStep} />
+      )}
+      {demat && (
+        <MainDemet setDemat={setDemat} demat={demat} stepD={stepD} setStepD={setStepD} />
       )}
       {idty && (
         <VerifyIdentity
