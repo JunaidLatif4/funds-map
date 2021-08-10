@@ -28,7 +28,8 @@ import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 import MainDemet from "./screens/Demet/mainDemet";
 
-import Menu from "./components/client-partner-menu/ClientPartnerMenu";
+import Menu from './components/client-partner-menu/ClientPartnerMenu';
+import Funds from './components/funds/Funds';
 
 function App() {
   dotenv.config();
@@ -62,6 +63,7 @@ function App() {
           <Route exact path="/maindemet" component={MainDemet} />
           
           <Route exact path="/menu" component={Menu} />
+          <Route exact path="/funds" component={Funds} />
         </Switch>
       </div>
     </BrowserRouter>
