@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import "./Customweb.css";
 import Button from "../../../components/button/Button";
 import Weblink from "../Components/Psignup__weblink/Weblink";
-
+import { useHistory } from "react-router-dom";
 
 const Customweb = () => {
+  const history = useHistory();
+
+  const next_page = () => {
+    history.push("/dfee");
+  };
   return (
     <>
       <div className="Customweb__container">
@@ -19,10 +24,10 @@ const Customweb = () => {
             revenues.
           </p>
         </div>
-        <Weblink/>
+        <Weblink />
 
         <div className="Customweb__body">
-          <div className="body__heading">Features</div> 
+          <div className="body__heading">Features</div>
           <div className="body__lists">
             <li className="Custom__lists">
               Invite your clients to view 100's of private equity deals on your
@@ -45,7 +50,7 @@ const Customweb = () => {
           </div>
         </div>
       </div>
-      <Button text="NEXT" />
+      <Button text="NEXT" click={next_page} />
     </>
   );
 };

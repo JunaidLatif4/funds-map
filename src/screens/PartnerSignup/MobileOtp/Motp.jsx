@@ -31,8 +31,6 @@ const Motp = () => {
   const [partnerData, setPartnerData] = useState({});
   const history = useHistory();
   const state = location.state ? location.state : {};
-  const email = state.email;
-  const mobile = state.mobile;
 
   // const location = useLocation();
   // const token = location.state && location.state.token;
@@ -59,8 +57,8 @@ const Motp = () => {
 
   const otp_login = async () => {
     setLoading(true);
-
-    const responseToken = await verify_otp;
+    console.log(otp);
+    const responseToken = await verify_otp(otp);
     if (responseToken.error) {
       setLoading(false);
       toast.error(token.error, {
@@ -73,6 +71,7 @@ const Motp = () => {
         progress: undefined,
       });
     } else {
+      console.log(responseToken.data);
       localStorage.setItem("token", responseToken.data.data);
       history.push("/getstarted");
       setLoading(false);
