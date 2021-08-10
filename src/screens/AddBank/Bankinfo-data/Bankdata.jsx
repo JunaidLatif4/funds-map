@@ -4,7 +4,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Button from "../../../components/button/Button";
 
-const Bankdata = ({ data_for_step2 }) => {
+const Bankdata = ({ data_for_step2, setOtp }) => {
   return (
     <>
       <div className="bankinfo__container">
@@ -51,6 +51,7 @@ const Bankdata = ({ data_for_step2 }) => {
                 id="outlined-basic"
                 placeholder="Enter OTP"
                 variant="standard"
+                onChange={(e) => setOtp(e.target.value)}
               />
             </div>
           </div>

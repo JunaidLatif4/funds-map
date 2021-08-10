@@ -173,7 +173,7 @@ export const ifsc_validator = async (ifsc) => {
       url: "/api/v1/users/banks/ifsc/" + ifsc,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
         "Content-Type": "application/json",
       },
     });
@@ -202,7 +202,7 @@ export const bank_validator = async (ifsc , accountnumber) => {
       url: "/api/v1/users/banks/validate",
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
         "Content-Type": "application/json",
       },
       data: {
@@ -232,7 +232,7 @@ export const otp_generate = async (validationkey , ifsc , accountNumber) => {
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
         "Content-Type": "application/json",
       },
       data: {
@@ -252,6 +252,7 @@ export const otp_generate = async (validationkey , ifsc , accountNumber) => {
 
 
 export const bank_save = async (otp , validationkey , accountHolderName , bankName , accountNumber , ifsc) => {
+  console.log(otp , validationkey , accountHolderName , bankName , accountNumber , ifsc)
   
   const resolved = {
     data: null,
@@ -262,7 +263,7 @@ export const bank_save = async (otp , validationkey , accountHolderName , bankNa
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwc2hkZGRra2tjZ25naGpoIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfT1JHQU5JU0FUSU9OQUxfUEFSVE5FUiJ9XSwiaWF0IjoxNjI4NjE2NjE1LCJleHAiOjE2Mjg2MTk2MTV9.ukBQ9Pl6QSuzeIHY5q0F-C4QtHx-mPKuUat6r5vzjmg`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
         "Content-Type": "application/json",
       },
       data: {
