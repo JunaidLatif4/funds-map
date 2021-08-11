@@ -4,11 +4,11 @@ import { makeStyles, Button } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
+import BottomSlide from '../../components/bottom-slide/BottomSlide'
 import "./Funds.scss"
 
 
@@ -102,7 +102,7 @@ const Funds = () => {
                             FundsData.map((data, index) => {
                                 return (
                                     <>
-                                        <Accordion expanded={expanded === `panel${index}`}  onChange={ data.data ? handleChange(`panel${index}`) : null}>
+                                        <Accordion expanded={expanded === `panel${index}`} onChange={data.data ? handleChange(`panel${index}`) : null}>
                                             <AccordionSummary
                                                 expandIcon={data.data ? <ExpandMoreIcon /> : null}
                                                 aria-controls="panel1bh-content"
@@ -135,7 +135,7 @@ const Funds = () => {
                                                                 <>
                                                                     <div className="balance_data">
                                                                         <div className="balance">
-                                                                            <p> <MonetizationOnIcon style={{fontSize:"1.2rem"}} /> </p>
+                                                                            <p> <MonetizationOnIcon style={{ fontSize: "1.2rem" }} /> </p>
                                                                             <p>{subData.balance}</p>
                                                                         </div>
                                                                         <div className="detail">
@@ -167,6 +167,9 @@ const Funds = () => {
                         </div>
                     </div>
                 </div>
+
+                <BottomSlide> This is Data </BottomSlide>
+
             </div>
         </>
     )

@@ -30,8 +30,7 @@ import MainDemet from "./screens/Demet/mainDemet";
 
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
-// import Menu from "./components/client-partner-menu/ClientPartnerMenu";
-import Funds from "./components/funds/Funds";
+import Funds from "./screens/funds/Funds";
 
 function App() {
   dotenv.config();
