@@ -1,0 +1,154 @@
+.menu_container {
+  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+}
+
+.menu_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.toggle_icon {
+  height: 40px;
+
+  @media only screen and(max-width:430px){
+    height: 35px;
+  }
+}
+.menu_nav_search {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.search_icon {
+  height: 25px;
+
+  @media only screen and(max-width:430px){
+    height: 20px;
+  }
+}
+.search_bar {
+  border-bottom: 2px solid rgba(105, 100, 100, 0.6);
+  border-radius: 2px;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  padding: 0.3rem;
+}
+.search_input {
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+
+  @media only screen and(max-width:430px){
+    font-size: .8rem;
+  }
+}
+.filter_icon {
+  height: 30px;
+
+  @media only screen and(max-width:430px){
+    height: 25px;
+  }
+}
+.notification_icon {
+  height: 30px;
+
+  @media only screen and(max-width:430px){
+    height: 25px;
+  }
+}
+
+.menu_box {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 0rem 0rem 0.5rem;
+  width: 90%;
+}
+.menu_close {
+  position: absolute !important;
+  right: 3%;
+  top: 3%;
+}
+.avater_box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 1rem;
+  font-family: "Roboto", sans-serif;
+}
+.avater {
+  border-radius: 100%;
+  padding: 7% 7%;
+  background-color: #d2eaff;
+}
+.avater_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.menu_data {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 3rem;
+}
+.inp {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+.ref_box {
+  padding: 0 12px;
+}
+.ref_title {
+  color: #70b8ff;
+}
+
+.becomepartner_box {
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: larger;
+  padding-left: 15px;
+}
+.partner {
+  color: #2a6eff;
+  cursor: pointer;
+}
+.signup_icon {
+  font-size: 2rem;
+  color: #54abff;
+}
+.icon_blue {
+  color: #2b65ff;
+}
+.refer_style {
+  background-color: #2574ff !important;
+  padding: 0.7rem 2rem !important;
+  margin: ".5rem 0" !important;
+  color: white !important;
+  font-size: 1.2rem !important;
+  margin-top: 10px !important;
+}
+.margin_1rem {
+  margin-right: 1.2rem;
+}
+.fontweight_500 {
+  font-weight: 500;
+}
+.ref_detail {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ref_friend {
+  width: 46% !important;
+  border-radius: 11px !important;
+}
