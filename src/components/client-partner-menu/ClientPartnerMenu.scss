@@ -54,6 +54,29 @@
     height: 25px;
   }
 }
+.notification_btn{
+
+  .count{
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 8%;
+    right: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: .75rem;
+    background-color: #44a3ff;
+    border-radius: 50rem;
+
+    @media only screen and(max-width:430px){
+      height: 13px;
+      width: 13px;
+      font-size: .6rem;
+    }
+  }
+}
 .notification_icon {
   height: 30px;
 

@@ -127,8 +127,9 @@ const ClientpartnerMenu = (props) => {
               </> :
               null
           }
-          <Button>
+          <Button className="notification_btn">
             <img src={notifications} alt="ERROR" className="notification_icon" />
+            <span className="count"> 2 </span>
           </Button>
           <SwipeableDrawer
             className={classes.menuDrawer}
