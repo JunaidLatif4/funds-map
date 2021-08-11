@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { makeStyles, Button } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
+import BottomSlide from '../../components/bottom-slide/BottomSlide'
 import "./Funds.scss"
 
-
+import Menu from '../../components/client-partner-menu/ClientPartnerMenu'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -78,12 +82,28 @@ const FundsData = [
 const Funds = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [value, setValue] = React.useState('female');
+    const [openSlide, setOpenSlide] = useState({
+        open: false,
+        div: null
+    })
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+
+    const opentheSlide = () => {
+        setOpenSlide({
+            open: true
+        })
+    }
+
+    const Changeradio = (event) => {
+        setValue(event.target.value);
+    };
     return (
         <>
+            <Menu />
             <div className="funds_container">
                 <div className="funds_box">
                     <div className="funds_title">
@@ -102,7 +122,7 @@ const Funds = () => {
                             FundsData.map((data, index) => {
                                 return (
                                     <>
-                                        <Accordion expanded={expanded === `panel${index}`}  onChange={ data.data ? handleChange(`panel${index}`) : null}>
+                                        <Accordion expanded={expanded === `panel${index}`} onChange={data.data ? handleChange(`panel${index}`) : null}>
                                             <AccordionSummary
                                                 expandIcon={data.data ? <ExpandMoreIcon /> : null}
                                                 aria-controls="panel1bh-content"
@@ -135,7 +155,7 @@ const Funds = () => {
                                                                 <>
                                                                     <div className="balance_data">
                                                                         <div className="balance">
-                                                                            <p> <MonetizationOnIcon style={{fontSize:"1.2rem"}} /> </p>
+                                                                            <p> <MonetizationOnIcon style={{ fontSize: "1.2rem" }} /> </p>
                                                                             <p>{subData.balance}</p>
                                                                         </div>
                                                                         <div className="detail">
@@ -157,7 +177,7 @@ const Funds = () => {
                     </div>
                     <div className="funds_transfer">
                         <div className="add_funds">
-                            <Button className={classes.btn1}> ADD FUNDS </Button>
+                            <Button className={classes.btn1} onClick={opentheSlide}> ADD FUNDS </Button>
                         </div>
                         <div className="withdraw_funds">
                             <Button className={classes.btn2}> WITHDRAW FUNDS </Button>
@@ -167,6 +187,26 @@ const Funds = () => {
                         </div>
                     </div>
                 </div>
+                {openSlide.open &&
+                    <BottomSlide bottomSlide={() => setOpenSlide(false)}>
+                        <div className="add_funds_slider">
+                            <div className="heading">
+                                Add Funds
+                            </div>
+                            <div className="title"> Amount (Rs.) </div>
+                            <div className="amount">
+                                <input type="text" placeholder="Enter Amount" />
+                                <FormControl component="fieldset">
+                                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                        <FormControlLabel value="female" control={<Radio />} label="Net Banking  /  Debit Cards / UPI" />
+                                        <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
+                            <Button className={classes.btn1} > ADD FUNDS </Button>
+                        </div>
+                    </BottomSlide>
+                }
             </div>
         </>
     )

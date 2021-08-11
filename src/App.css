@@ -15,9 +15,20 @@
   position: relative;
   font-family: "Avenir";
 }
+.app__container {
+  width: 480px;
+  max-width: 480px;
+  position: relative;
+}
 a {
   text-decoration: none;
   color: #00abff;
+}
+
+@media (max-width: 480px) {
+  .app__container {
+    max-width: 100%;
+  }
 }
 /* .Toastify__toast--error {
   border: 1px solid #0000001a;

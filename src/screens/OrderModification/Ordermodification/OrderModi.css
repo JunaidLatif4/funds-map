@@ -24,6 +24,8 @@
 .ordermod__third {
   font-size: 10px;
   background: #b1e8ff;
+  display: flex;
+  margin-right: 3px;
 
   height: 18px;
   border-radius: 12px;
@@ -32,13 +34,24 @@
   padding: 2px 5px;
   box-sizing: border-box;
 }
+.om__thirdimg {
+  height: 15px;
+  width: 10px;
+  margin-left: 2px;
+}
+.om__validity__img {
+  height: 11px;
+  width: 10px;
+  margin-right: 2px;
+}
 .om_para {
   font-size: 11px;
   margin-top: 3px;
   color: #000000a6;
+  display: flex;
 }
 .validity__title {
-  margin-right: 75px;
+  margin-right: 65px;
   font-size: 15px;
 }
 .ordermod__valbody {
@@ -50,6 +63,7 @@
   border-radius: 12px;
   box-shadow: 0px 0px 5px 0px#0000004a;
   padding: 3px 11px;
+  margin-top: 32px;
 }
 
 .ordermod__footer {
@@ -60,4 +74,55 @@
   border: 1px solid red;
   padding: 5px;
   border-radius: 8px;
+}
+
+.validity__days {
+  padding: 0px 2px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px 0px#0000004a;
+  margin-right: 8px;
+}
+.validity__years {
+  padding: 0px 2px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px 0px#0000004a;
+}
+.ordermod__btns {
+  margin-top: 40px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ordermod__btn1 {
+  color: white;
+  background-image: linear-gradient(180deg, #44a3ff 0%, #002bff 100%);
+  border: none;
+  /* border-radius: 5px; */
+  padding: 5px;
+  width: 50%;
+  min-height: 45px !important;
+}
+.ordermod__btn2 {
+  color: white;
+  background-image: linear-gradient(180deg, #d99797 0%, #ff0000 100%);
+  border: none;
+  /* border-radius: 5px; */
+  padding: 5px;
+  width: 50%;
+  min-height: 45px !important;
+}
+
+.om__validity__para {
+  font-size: 11px;
+  margin-top: 3px;
+  color: #000000a6;
+  display: flex;
+  display: flex;
+  justify-content: flex-end;
+  color: blue;
+  font-size: 9px;
+  margin-right: 22px;
 }

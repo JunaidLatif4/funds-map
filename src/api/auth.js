@@ -203,8 +203,7 @@ export const partner_signup = async (data) => {
     if (error.response) {
       console.log("partner signup error response");
       resolved.error = error.response.data.message;
-    }
-    else {
+    } else {
       resolved.error = "something went wrong";
     }
   }
@@ -242,6 +241,27 @@ export const generate_motp = async (token) => {
       url: "api/v1/users/mobile-verification",
       method: "post",
       headers: { authorization: "Bearer " + token },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const upload_logo = async (file) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/logo?file=" + file,
+      method: "patch",
+      headers: { authorization: "Bearer " + localStorage.getItem("token") },
     });
   } catch (error) {
     if (error.response) {

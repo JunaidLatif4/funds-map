@@ -3,6 +3,7 @@ import "./OrderModi.css";
 import { Link } from "react-router-dom";
 import img1 from "../../../Assets/imgs/upload.svg";
 import TextField from "@material-ui/core/TextField";
+import info from "../../../Assets/imgs/info.svg";
 
 const OrderModi = () => {
   return (
@@ -27,7 +28,12 @@ const OrderModi = () => {
               <div className="body__one">Order ID: 87123988112398</div>
             </div>
           </div>
-          <div className="ordermod__third">2-way quotes</div>
+          <div className="ordermod__third">
+            2-way quotes
+            <div className="om__thirdimg">
+              <img className="om__thirdimg" src={info} alt="" />
+            </div>
+          </div>
         </div>
 
         <div className="ordermod__body">
@@ -48,7 +54,12 @@ const OrderModi = () => {
                 placeholder="254"
                 variant="standard"
               />
-              <p className="om_para">Limit Price/Share(Rs.)</p>
+              <p className="om_para">
+                Limit Price/Share(Rs.)
+                <div className="om__thirdimg">
+                  <img className="om__thirdimg" src={info} alt="" />
+                </div>
+              </p>
             </div>
           </div>
 
@@ -59,7 +70,7 @@ const OrderModi = () => {
             <div className="validity__title">Order Validity</div>
 
             <div className="validity__days">
-              <select name="" id="">
+              <select style={{ border: "none" }} name="" id="">
                 <option value="">25</option>
                 <option value="">25</option>
                 <option value="">25</option>
@@ -69,12 +80,19 @@ const OrderModi = () => {
               </select>
             </div>
             <div className="validity__years">
-              <select name="" id="">
+              <select style={{ border: "none" }} name="" id="">
                 <option value="">Days</option>
                 <option value="">Months</option>
                 <option value="">Years</option>
               </select>
             </div>
+          </div>
+
+          <div className="om__validity__para">
+            <div className="om__thirdimg">
+              <img className="om__validity__img" src={info} alt="" />
+            </div>
+            What is Order Validity?
           </div>
 
           <div className="ordermod__valbody">
@@ -87,6 +105,11 @@ const OrderModi = () => {
           Un-filled order qty is less than asked modification. please enter a
           quantity greater than 657.
         </div>
+      </div>
+
+      <div className="ordermod__btns">
+        <button className="ordermod__btn1">MODIFY ORDER</button>
+        <button className="ordermod__btn2">CANCEL ORDER</button>
       </div>
     </>
   );

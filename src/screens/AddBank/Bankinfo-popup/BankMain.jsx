@@ -6,8 +6,13 @@ import BottomSlide from "../../../components/bottom-slide/BottomSlide";
 import BSHeader from "../../profile/components/bs-header/BSHeader";
 import Bankinfo from "./BankInfo";
 import Bankdata from "../Bankinfo-data/Bankdata";
-import BankSuccess from "../Banksuccess/bsuccess"
-import { ifsc_validator, otp_generate, bank_validator, bank_save } from "../../../api/profile"
+import BankSuccess from "../Banksuccess/bsuccess";
+import {
+  ifsc_validator,
+  otp_generate,
+  bank_validator,
+  bank_save,
+} from "../../../api/profile";
 
 const BankMain = ({ bank, setBank, step, setStep }) => {
   const [ifsc, setIfsc] = useState("")
@@ -17,8 +22,8 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   const [bankres, setbankres] = useState(null)
   const [ifsc_res, setifsc_res] = useState(null)
 
-  const [otp, setOtp] = useState("")
-  let data_for_step3 = {}
+  const [otp, setOtp] = useState("");
+  let data_for_step3 = {};
 
   const handleStep1 = async () => {
 
@@ -58,24 +63,28 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
         console.log(ifsc_v)
       }
     }
-  }
+  };
 
   const handleStep2 = async () => {
-    let save_Account = await bank_save(otp, validationkey, bankres.data?.data?.accountHolderName, bankres.data?.data?.bankName, accountnumber, ifsc)
-    console.log(save_Account)
+    let save_Account = await bank_save(
+      otp,
+      validationkey,
+      bankres.data?.data?.accountHolderName,
+      bankres.data?.data?.bankName,
+      accountnumber,
+      ifsc
+    );
+    console.log(save_Account);
     if (save_Account.error) {
-      alert("error in save bank")
+      alert("error in save bank");
     } else {
-      setStep("step3")
+      setStep("step3");
     }
-
-  }
-
+  };
 
   const handleStep3 = () => {
-    setStep("step1")
-  }
-
+    setStep("step1");
+  };
 
   return (
     <>
@@ -89,8 +98,12 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
         {step == "step2" && <Bankdata data_for_step2={data_for_step2} setOtp={setOtp} />}
         {step == "step3" && <BankSuccess data_for_step3 />}
 
-        {step == "step1" && <Button click={() => handleStep1()} text="VERIFY BANK ACCOUNT" />}
-        {step == "step2" && <Button click={() => handleStep2()} text="ADD BANK ACCOUNT" />}
+        {step == "step1" && (
+          <Button click={() => handleStep1()} text="VERIFY BANK ACCOUNT" />
+        )}
+        {step == "step2" && (
+          <Button click={() => handleStep2()} text="ADD BANK ACCOUNT" />
+        )}
         {step == "step3" && <Button click={() => handleStep3()} text="DONE" />}
       </BottomSlide>
     </>

@@ -3,8 +3,6 @@ import React from 'react'
 import clsx from 'clsx';
 import { Button, makeStyles, Divider } from "@material-ui/core"
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import CloseIcon from '@material-ui/icons/Close';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import SpeedIcon from '@material-ui/icons/Speed';
@@ -13,9 +11,12 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import Button1 from "../../components/button/Button";
 
-import "./ClientPartnerMenu.css"
+import notifications from "../../Assets/imgs/notification.svg";
+import toggle from "../../Assets/imgs/toggle.svg";
+import search from "../../Assets/imgs/search.svg";
+import filter from "../../Assets/imgs/filter.svg";
 
-import "./ClientPartnerMenu.css";
+import "./ClientPartnerMenu.scss";
 
 const useStyles = makeStyles({
   list: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ClientpartnerMenu = () => {
+const ClientpartnerMenu = (props) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -111,7 +112,24 @@ const ClientpartnerMenu = () => {
       <div className="menu_container">
         <div className="menu_nav">
           <Button onClick={toggleDrawer("left", true)}>
-            <MenuIcon />
+            <img src={toggle} alt="ERROR" className="toggle_icon" />
+          </Button>
+          {
+            props.searchbar ?
+              <>
+                <div className="menu_nav_search">
+                  <img src={search} alt="ERROR" className="search_icon" />
+                  <div className="search_bar">
+                    <input type="text" className="search_input" placeholder="Search" />
+                    <img src={filter} alt="ERROR" className="filter_icon" />
+                  </div>
+                </div>
+              </> :
+              null
+          }
+          <Button className="notification_btn">
+            <img src={notifications} alt="ERROR" className="notification_icon" />
+            <span className="count"> 2 </span>
           </Button>
           <SwipeableDrawer
             className={classes.menuDrawer}
@@ -122,9 +140,6 @@ const ClientpartnerMenu = () => {
           >
             {list("left")}
           </SwipeableDrawer>
-          <Button>
-            <NotificationsIcon style={{ marginRight: "1.2rem" }} />
-          </Button>
         </div>
       </div>
     </>

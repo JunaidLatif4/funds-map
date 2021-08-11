@@ -1,0 +1,28 @@
+.chosebank__confirm {
+  font-size: 12px;
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+.chosebank__radio__confirm {
+  margin-top: 8px;
+  font-size: 10px;
+  color: grey;
+}
+.chosebank__addbank {
+  border: 1px solid grey;
+  border-radius: 4px;
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  color: blue;
+  margin-bottom: 50px;
+}
+.chosebank__img {
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+}

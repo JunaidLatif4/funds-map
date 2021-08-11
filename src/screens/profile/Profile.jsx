@@ -29,13 +29,13 @@ const Profile = () => {
   const [addedBanks, setAddedbanks] = useState([])
   const [demat, setDemat] = useState(false);
   const [idty, setIdty] = useState(false);
-  const [step, setStep] = useState("step1")
-  const [stepD, setStepD] = useState("step1")
+  const [step, setStep] = useState("step1");
+  const [stepD, setStepD] = useState("step1");
   const [profileData, setProfileData] = useState([]);
   const [username, setUsername] = useState("");
   const [box, setBox] = useState({
-    open: true,
-    type: "whatsapp",
+    open: false,
+    type: "mobile",
   });
 
   const get_banks1 = async () => {
@@ -58,18 +58,19 @@ const Profile = () => {
     if (details.error) {
       alert(details.error);
     } else {
-      const {
-        userName,
-        email,
-        emailVerified,
-        identityCheckDone,
-        mobileAdded,
-        mobileVerified,
-      } = details.data.data;
-      setProfileData(details.data.data);
-      setUsername(userName);
-      setCompleted(identityCheckDone);
-
+      if (details.data) {
+        const {
+          userName,
+          email,
+          emailVerified,
+          identityCheckDone,
+          mobileAdded,
+          mobileVerified,
+        } = details.data.data;
+        setProfileData(details.data.data);
+        setUsername(userName);
+        setCompleted(identityCheckDone);
+      }
     }
   };
 
@@ -133,7 +134,12 @@ const Profile = () => {
         <BankMain setBank={setBank} bank={bank} step={step} setStep={setStep} />
       )}
       {demat && (
-        <MainDemet setDemat={setDemat} demat={demat} stepD={stepD} setStepD={setStepD} />
+        <MainDemet
+          setDemat={setDemat}
+          demat={demat}
+          stepD={stepD}
+          setStepD={setStepD}
+        />
       )}
       {idty && (
         <VerifyIdentity

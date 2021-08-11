@@ -1,6 +1,6 @@
 import React from "react";
 import "./Button.css";
-import "../client-partner-menu/ClientPartnerMenu.css"
+import "../client-partner-menu/ClientPartnerMenu.scss"
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Button = ({ text, click, loading, wid }) => {
