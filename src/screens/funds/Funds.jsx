@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import BottomSlide from '../../components/bottom-slide/BottomSlide'
 import "./Funds.scss"
 
-
+import Menu from '../../components/client-partner-menu/ClientPartnerMenu'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -103,6 +103,7 @@ const Funds = () => {
     };
     return (
         <>
+            <Menu />
             <div className="funds_container">
                 <div className="funds_box">
                     <div className="funds_title">

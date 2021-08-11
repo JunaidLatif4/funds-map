@@ -16,6 +16,7 @@
   font-family: "Avenir";
 }
 .app__container {
+  width: 480px;
   max-width: 480px;
   position: relative;
 }
