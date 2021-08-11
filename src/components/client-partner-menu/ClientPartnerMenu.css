@@ -1,7 +1,7 @@
 .menu_container{
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     font-family: 'Roboto', sans-serif;
-    width: 420px;
+    width: 480px;
     overflow: hidden;
 }
 
@@ -23,7 +23,6 @@
     position: absolute !important;
     right: 3%;
     top: 3%;
-    /* z-index: 5000; */
 }
 .avater_box{
     position: relative;
