@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
-import BottomSlide from '../bottom-slide/BottomSlide'
+import BottomSlide from '../../components/bottom-slide/BottomSlide'
 import "./Funds.scss"
 
 
