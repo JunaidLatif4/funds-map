@@ -1,0 +1,22 @@
+.reqfund__component {
+  border: 1px solid black;
+  display: flex;
+  min-height: 35px;
+  border-radius: 8px;
+  overflow: hidden;
+  /* margin: 25px 11px; */
+  /* width: 90%; */
+}
+.reqfund__left {
+  width: 4%;
+  background-color: blue;
+  margin-right: 12px;
+}
+.reqfund__right {
+  /* font-size: 14px; */
+  width: 95%;
+  padding: 6px 0;
+
+  align-items: center;
+  justify-content: center;
+}

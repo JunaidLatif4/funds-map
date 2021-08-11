@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import Radio from "@material-ui/core/Radio";
 import Button from "../../../components/button/Button";
+import BtnCom from "../Components/BtnComponent/BtnCom";
 
 const GreenRadio = withStyles({
   root: {
@@ -42,17 +43,8 @@ const Reqfund = () => {
             </div>
           </div>
 
-          <div className="reqfund__component">
-            <div className="reqfund__left"></div>
-            <div className="reqfund__right">
-              <p style={{ fontWeight: "bolder" }} className="reqfund__first">
-                Add Rs. 40,235
-              </p>
-              <p className="reqfund__second">
-                to complete this order modification
-              </p>
-            </div>
-          </div>
+          <BtnCom />
+
           <div className="reqfund__confirm">
             <div className="reqfund__radio">
               <GreenRadio

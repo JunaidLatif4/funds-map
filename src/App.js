@@ -35,6 +35,7 @@ import Funds from "./components/funds/Funds";
 import Cordermodi from "./screens/OrderModification/CnfrmOrderModi/Cordermodi";
 import Mtradeqty from "./screens/OrderModification/MinimumTradeQuantity/Mtradeqty";
 import Reqfund from "./screens/OrderModification/RequireFunds/Reqfund";
+import ChoseBank from "./screens/OrderModification/ChoseBank/ChoseBank";
 
 function App() {
   dotenv.config();
@@ -72,6 +73,7 @@ function App() {
           <Route exact path="/cordermodi" component={Cordermodi} />
           <Route exact path="/mtradeqty" component={Mtradeqty} />
           <Route exact path="/reqfund" component={Reqfund} />
+          <Route exact path="/chosebank" component={ChoseBank} />
         </Switch>
       </div>
     </BrowserRouter>
