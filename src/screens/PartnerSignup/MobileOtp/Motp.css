@@ -1,71 +1,70 @@
 .otp__screen {
-    width: 480px;
-    height: 87vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    align-items: center;
-  }
- 
-  .opt__body {
-    width: 90%;
-    flex: 1;
-  }
-  .Motp__headerimg{
-    margin-top: 80px;
-  
-  }
-  .otp__msg {
-    margin-top: 80px;
-    color: gray;
-    font-size: 13px;
-    margin-bottom: 28px;
-    padding-left: 5px;
-  }
-  .Motp__img{
-    width: 40px;
-    height: 50px;
-  }
-  .Motp__text{
-      font-size: 14px;
-  }
-  
-  .resend__text {
-    margin-top: 80px;
-    margin-bottom: 10px;
-    color: gray;
+  width: 480px;
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.opt__body {
+  width: 90%;
+  flex: 1;
+}
+.Motp__headerimg {
+  margin-top: 80px;
+}
+.otp__msg {
+  margin-top: 80px;
+  color: gray;
+  font-size: 13px;
+  margin-bottom: 28px;
+  padding-left: 5px;
+}
+.Motp__img {
+  width: 40px;
+  height: 50px;
+}
+.Motp__text {
+  font-size: 14px;
+}
+
+.resend__text {
+  margin-top: 80px;
+  margin-bottom: 10px;
+  color: gray;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+.resend__btn {
+  margin-top: 80px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  color: grey;
+  cursor: pointer;
+  font-weight: bold;
+}
+.otp__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5px;
+}
+.opt__box {
+  border: none;
+  border-bottom: 1px solid gray;
+  width: 40px !important;
+  font-size: 19px;
+}
+.opt__box:focus {
+  color: green;
+  outline: none;
+}
+@media (max-width: 480px) {
+  .otp__screen {
     width: 100%;
-    text-align: center;
-    font-size: 12px;
   }
-  .resend__btn {
-    margin-top: 80px;
-    margin-bottom: 10px;
-    text-align: center;
-    width: 100%;
-    color: grey;
-    font-weight: bold;
-  }
-  .otp__wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 5px;
-  }
-  .opt__box {
-    border: none;
-    border-bottom: 1px solid gray;
-    width: 40px !important;
-    font-size: 19px;
-  }
-  .opt__box:focus {
-    color: green;
-    outline: none;
-  }
-  @media (max-width: 480px) {
-    .otp__screen {
-      width: 100%;
-    }
-  }
-  
+}

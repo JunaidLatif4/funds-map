@@ -16,8 +16,9 @@ export const profile_details = async () => {
   } catch (error) {
     if (error.response) {
       resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "Something went wrong";
     }
-    resolved.error = "Something went wrong";
   }
   return resolved;
 };
@@ -38,8 +39,9 @@ export const mobile_verification = async () => {
   } catch (error) {
     if (error.response) {
       resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "Something went wrong";
     }
-    resolved.error = "Something went wrong";
   }
   return resolved;
 };
@@ -62,8 +64,9 @@ export const verify_otp = async (otp) => {
   } catch (error) {
     if (error.response) {
       resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "Something went wrong";
     }
-    resolved.error = "Something went wrong";
   }
   return resolved;
 };

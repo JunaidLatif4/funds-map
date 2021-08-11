@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Addlogo.css";
 import BackupIcon from "@material-ui/icons/Backup";
@@ -9,22 +9,51 @@ import DbCard from "../../dashboard/components/dbcard/DbCard";
 import Slide from "../../dashboard/components/slide/Slide";
 import video from "../../../Assets/videos/droneview.mp4";
 import image from "../../../Assets/imgs/tech.jpg";
+import { upload_logo } from "../../../api/auth";
+
 // import LogoBar from "./components/logo-bar/LogoBar";
 // import BtnBar from "./components/btn-bar/BtnBar";
 // import CompleteProfile from "./components/complete-profile/CompleteProfile";
 
 const Addlogo = () => {
+  const [logo, setLogo] = useState("");
+  const [uploadBtn, setUploadBtn] = useState(true);
+  useEffect(() => {
+    console.log(logo);
+    if (logo !== "") {
+      add_logo();
+    }
+  }, [logo]);
+
+  const add_logo = async () => {
+    const uploaded = await upload_logo(logo);
+    if (uploaded.error) {
+      alert(uploaded.error);
+    } else {
+      console.log(uploaded.data);
+    }
+  };
   return (
     <div className="Addlogo__container">
       <div className="Addlogo__footer">
-        <div className="Addlogo__btnns">
-          <button className="addlogo__btn1">
+        <div
+          className="Addlogo__btnns"
+          style={!uploadBtn ? { display: "none" } : null}
+        >
+          <label className="addlogo__btn1" for="addlogoinput">
+            <input
+              type="file"
+              className="logo__input"
+              id="addlogoinput"
+              accept="image/png, image/gif, image/jpeg"
+              onChange={(e) => setLogo(e.target.files[0])}
+            />
             <div className="footer__logo">
               <BackupIcon />
             </div>
             <div className="footer__text">UPLOAD YOUR LOGO</div>
-          </button>
-          <button className="addlogo__btn2">
+          </label>
+          <button className="addlogo__btn2" onClick={() => setUploadBtn(false)}>
             <div className="btn2__or">or</div>
             <div className="btn2__text">Upload later</div>
           </button>

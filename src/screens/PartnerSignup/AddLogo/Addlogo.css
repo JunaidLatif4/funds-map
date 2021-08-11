@@ -28,6 +28,7 @@
   overflow: hidden;
   z-index: 200;
   bottom: 1vh;
+  max-width: 475px;
 }
 .addlogo__btn1 {
   background-color: #007aff;
@@ -83,6 +84,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.logo__input {
+  display: none;
 }
 @media (max-width: 480px) {
   .Addlogo__container {

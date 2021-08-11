@@ -19,6 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Phone } from "@material-ui/icons";
 import { generate_motp } from "../../../api/auth";
 import { mobile_verification, verify_otp } from "../../../api/profile";
+import Alert from "../../../components/Alert/Alert";
 // import OutlinedButton from "../../components/outlined-button/OutlinedButton";
 
 const Motp = () => {
@@ -78,6 +79,30 @@ const Motp = () => {
     }
   };
 
+  const handle_resend = () => {
+    setSecs(15);
+    gen_otp();
+    setResend(false);
+    resendTimer();
+  };
+
+  const resendTimer = () => {
+    if (!resend) {
+      setInterval(
+        () =>
+          setSecs((secs) => {
+            if (secs > 0) {
+              return secs - 1;
+            } else {
+              setResend(true);
+              return 0;
+            }
+          }),
+        1000
+      );
+    }
+  };
+
   useEffect(() => {
     if (!resend) {
       setInterval(
@@ -93,7 +118,7 @@ const Motp = () => {
         1000
       );
     }
-  }, [resend]);
+  }, []);
 
   useEffect(() => {
     setPartnerData(JSON.parse(localStorage.getItem("partner_data")));
@@ -102,6 +127,7 @@ const Motp = () => {
 
   return (
     <div className="otp__screen">
+      <Alert text="You emailID was verified successfully" />
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -140,7 +166,9 @@ const Motp = () => {
           isInputNum="true"
         />
         {resend ? (
-          <div className="resend__btn">Re-send OTP</div>
+          <div className="resend__btn" onClick={handle_resend}>
+            Re-send OTP
+          </div>
         ) : (
           <div className="resend__text">Re-send OTP (After {secs}s)</div>
         )}

@@ -6,6 +6,7 @@ import "./Gstart.css";
 import { useState } from "react";
 import Button from "../../../components/button/Button";
 import { useHistory } from "react-router-dom";
+import Alert from "../../../components/Alert/Alert";
 
 const Gstart = () => {
   const [time, settime] = useState(10);
@@ -30,6 +31,7 @@ const Gstart = () => {
 
   return (
     <>
+      <Alert text="Your mobile was verified successfully" />
       <div className="gstart__container">
         <div className="gstart__header">
           <div className="gstart__heading">
