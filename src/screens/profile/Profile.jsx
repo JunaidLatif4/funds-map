@@ -27,8 +27,8 @@ const Profile = () => {
   const [bank, setBank] = useState(false);
   const [demat, setDemat] = useState(false);
   const [idty, setIdty] = useState(false);
-  const [step, setStep] = useState("step1")
-  const [stepD, setStepD] = useState("step1")
+  const [step, setStep] = useState("step1");
+  const [stepD, setStepD] = useState("step1");
   const [profileData, setProfileData] = useState([]);
   const [username, setUsername] = useState("");
   const [box, setBox] = useState({
@@ -50,17 +50,19 @@ const Profile = () => {
     if (details.error) {
       alert(details.error);
     } else {
-      const {
-        userName,
-        email,
-        emailVerified,
-        identityCheckDone,
-        mobileAdded,
-        mobileVerified,
-      } = details.data.data;
-      setProfileData(details.data.data);
-      setUsername(userName);
-      setCompleted(identityCheckDone);
+      if (details.data) {
+        const {
+          userName,
+          email,
+          emailVerified,
+          identityCheckDone,
+          mobileAdded,
+          mobileVerified,
+        } = details.data.data;
+        setProfileData(details.data.data);
+        setUsername(userName);
+        setCompleted(identityCheckDone);
+      }
     }
   };
 
@@ -104,8 +106,20 @@ const Profile = () => {
           open={true}
           basicInfo={profileData}
         />
-        <DropCard icon={bankLine} text="Bank" body="bank" setBank={setBank} setDemat={setDemat} />
-        <DropCard icon={profile} text="Demat Details" body="demat" setDemat={setDemat} setBank={setBank} />
+        <DropCard
+          icon={bankLine}
+          text="Bank"
+          body="bank"
+          setBank={setBank}
+          setDemat={setDemat}
+        />
+        <DropCard
+          icon={profile}
+          text="Demat Details"
+          body="demat"
+          setDemat={setDemat}
+          setBank={setBank}
+        />
       </div>
       <ErrorBox />
       {box?.open && (
@@ -120,7 +134,12 @@ const Profile = () => {
         <BankMain setBank={setBank} bank={bank} step={step} setStep={setStep} />
       )}
       {demat && (
-        <MainDemet setDemat={setDemat} demat={demat} stepD={stepD} setStepD={setStepD} />
+        <MainDemet
+          setDemat={setDemat}
+          demat={demat}
+          stepD={stepD}
+          setStepD={setStepD}
+        />
       )}
       {idty && (
         <VerifyIdentity

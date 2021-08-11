@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Bankinfo.css";
 import TextField from "@material-ui/core/TextField";
 
-function Bankinfo() {
+function Bankinfo({ setIfsc, setAccountnumber }) {
     return (
 
         <div className="addbank__container">
@@ -28,6 +28,7 @@ function Bankinfo() {
                     id="outlined-basic"
                     placeholder="IFSC"
                     variant="standard"
+                    onChange={(e) => setIfsc(e.target.value)}
                 />
             </div>
             <div className="input__info">
@@ -56,6 +57,7 @@ function Bankinfo() {
                         id="outlined-basic"
                         placeholder="XXXX - XXXX - XXXX - 1234"
                         variant="standard"
+                        onChange={(e) => setAccountnumber(e.target.value)}
                     />
                 </div>
             </div>

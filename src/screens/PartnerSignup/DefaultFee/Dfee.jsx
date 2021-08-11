@@ -1,11 +1,15 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Dfee.css";
 import Button from "../../../components/button/Button";
-
+import { useHistory } from "react-router-dom";
 
 const Dfee = () => {
+  const history = useHistory();
+
+  const next_page = () => {
+    history.push("/addlogo");
+  };
   return (
     <>
       <div className="Dfee__container">
@@ -30,11 +34,11 @@ const Dfee = () => {
               transaction separately.
             </div>
             <div className="Dfee__link">
-                <Link>Learn more</Link>
+              <Link>Learn more</Link>
             </div>
           </div>
         </div>
-            <Button text ="DONE"/>
+        <Button text="DONE" click={next_page} />
       </div>
     </>
   );
