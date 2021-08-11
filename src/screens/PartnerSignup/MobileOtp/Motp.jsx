@@ -7,6 +7,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import OtpInput from "react-otp-input";
 // import phone from "../../Assets/imgs/phone.svg";
 import phone from "../../../Assets/imgs/phone.svg";
+import { otp_mobile_login, otp_sms, whoami } from "../../../api/auth";
 
 // import {
 //   otp_mail_login,
@@ -17,6 +18,8 @@ import phone from "../../../Assets/imgs/phone.svg";
 import { ToastContainer, toast } from "react-toastify";
 import { Phone } from "@material-ui/icons";
 import { generate_motp } from "../../../api/auth";
+import { mobile_verification, verify_otp } from "../../../api/profile";
+import Alert from "../../../components/Alert/Alert";
 // import OutlinedButton from "../../components/outlined-button/OutlinedButton";
 
 const Motp = () => {
@@ -26,154 +29,105 @@ const Motp = () => {
   const [loading, setLoading] = useState(false);
   const [resend, setResend] = useState(false);
   const [secs, setSecs] = useState(15);
+  const [partnerData, setPartnerData] = useState({});
   const history = useHistory();
   const state = location.state ? location.state : {};
-  const email = state.email;
-  const mobile = state.mobile;
+
   // const location = useLocation();
-  const token = location.state.token;
+  // const token = location.state && location.state.token;
 
-  console.log(token);
+  const token = localStorage.getItem("token");
 
-  //   const resendOtp = async () => {
-  //     if (viaEmail) {
-  //       //send otp via email
-  //       const sent = await otp_mail(email);
-  //       if (sent.error) {
-  //         toast.error(sent.error, {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: true,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //       } else {
-  //         setResend(false);
-  //         setSecs(15);
-  //       }
-  //     } else {
-  //       console.log("sending otp via sms");
-  //       // send otp via sms
-  //       console.log(mobile);
-  //       const num = mobile.slice(3);
-  //       const sent = await otp_sms(num.replace("-", ""));
-  //       if (sent.error) {
-  //         toast.error(sent.error, {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: true,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //       } else {
-  //         history.push({ pathname: "/otp", state: { type: "mobile", mobile } });
-  //       }
-  //     }
-  //   };
-
-  //   const otp_login = async () => {
-  //     setLoading(true);
-  //     if (viaEmail) {
-  //       const token = await otp_mail_login({ otp, email });
-  //       if (token.error) {
-  //         setLoading(false);
-  //         toast.error(token.error, {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: true,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //       } else {
-  //         toast.success("Success!!!", {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: true,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //         localStorage.setItem("token", token.data.data);
-  //         setLoading(false);
-  //       }
-  //     } else {
-  //       const num = mobile.slice(3).replace("-", "");
-  //       const token = await otp_mobile_login({ otp, mobile });
-  //       if (token.error) {
-  //         setLoading(false);
-  //         toast.error(token.error, {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: true,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //       } else {
-  //         toast.success("Success!!!", {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: true,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //         localStorage.setItem("token", token.data.data);
-  //         setLoading(false);
-  //       }
-  //     }
-  //   };
-  //   // const timer = () => {
-  //   //  ;
-  //   // };
-
-  //   useEffect(() => {
-  //     if (state.type === "email") {
-  //       setViaEmail(true);
-  //     } else {
-  //       setViaEmail(false);
-  //     }
-  //     if (!resend) {
-  //       setInterval(
-  //         () =>
-  //           setSecs((secs) => {
-  //             if (secs > 0) {
-  //               return secs - 1;
-  //             } else {
-  //               setResend(true);
-  //               return 0;
-  //             }
-  //           }),
-  //         1000
-  //       );
-  //     }
-  //   }, [resend]);
-
-  const handlesignup = async () => {
-    const response = await generate_motp(token);
-    if (response.error) {
-      alert(response.error);
+  const gen_otp = async () => {
+    console.log("sending otp via sms");
+    const sent = await mobile_verification();
+    if (sent.error) {
+      toast.error(sent.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
-      console.log(response.data);
-      console.log("success");
+      console.log("otp sent....");
+    }
+  };
+
+  const otp_login = async () => {
+    setLoading(true);
+    console.log(otp);
+    const responseToken = await verify_otp(otp);
+    if (responseToken.error) {
+      setLoading(false);
+      toast.error(token.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      console.log(responseToken.data);
+      localStorage.setItem("token", responseToken.data.data);
+      history.push("/getstarted");
+      setLoading(false);
+    }
+  };
+
+  const handle_resend = () => {
+    setSecs(15);
+    gen_otp();
+    setResend(false);
+    resendTimer();
+  };
+
+  const resendTimer = () => {
+    if (!resend) {
+      setInterval(
+        () =>
+          setSecs((secs) => {
+            if (secs > 0) {
+              return secs - 1;
+            } else {
+              setResend(true);
+              return 0;
+            }
+          }),
+        1000
+      );
     }
   };
 
   useEffect(() => {
-    handlesignup();
-  }, [token]);
+    if (!resend) {
+      setInterval(
+        () =>
+          setSecs((secs) => {
+            if (secs > 0) {
+              return secs - 1;
+            } else {
+              setResend(true);
+              return 0;
+            }
+          }),
+        1000
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    setPartnerData(JSON.parse(localStorage.getItem("partner_data")));
+    gen_otp();
+  }, []);
 
   return (
     <div className="otp__screen">
+      <Alert text="You emailID was verified successfully" />
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -197,7 +151,8 @@ const Motp = () => {
           </div>
         </h1>
         <p className="otp__msg">
-          Enter OTP sent to you via SMS on 99878 76564{mobile}
+          Enter OTP sent to you via SMS on {partnerData.countryCode}
+          {partnerData.mobileNumber}
         </p>
 
         <OtpInput
@@ -211,12 +166,14 @@ const Motp = () => {
           isInputNum="true"
         />
         {resend ? (
-          <div className="resend__btn">Re-send OTP</div>
+          <div className="resend__btn" onClick={handle_resend}>
+            Re-send OTP
+          </div>
         ) : (
           <div className="resend__text">Re-send OTP (After {secs}s)</div>
         )}
       </div>
-      <Button text="DONE" loading={loading} />
+      <Button text="DONE" loading={loading} click={otp_login} />
     </div>
   );
 };
