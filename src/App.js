@@ -32,6 +32,7 @@ import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 // import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import Funds from "./components/funds/Funds";
+import Cordermodi from "./screens/OrderModification/CnfrmOrderModi/Cordermodi";
 
 function App() {
   dotenv.config();
@@ -67,6 +68,7 @@ function App() {
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/ordermodi" component={OrderModi} />
           <Route exact path="/funds" component={Funds} />
+          <Route exact path="/cordermodi" component={Cordermodi} />
         </Switch>
       </div>
     </BrowserRouter>
