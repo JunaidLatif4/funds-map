@@ -33,6 +33,8 @@ import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 // import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import Funds from "./components/funds/Funds";
 import Cordermodi from "./screens/OrderModification/CnfrmOrderModi/Cordermodi";
+import Mtradeqty from "./screens/OrderModification/MinimumTradeQuantity/Mtradeqty";
+import Reqfund from "./screens/OrderModification/RequireFunds/Reqfund";
 
 function App() {
   dotenv.config();
@@ -64,11 +66,12 @@ function App() {
           <Route exact path="/adddemet" component={AddDemet} />
           <Route exact path="/uploaddemet" component={UploadDemet} />
           <Route exact path="/maindemet" component={MainDemet} />
-
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/ordermodi" component={OrderModi} />
           <Route exact path="/funds" component={Funds} />
           <Route exact path="/cordermodi" component={Cordermodi} />
+          <Route exact path="/mtradeqty" component={Mtradeqty} />
+          <Route exact path="/reqfund" component={Reqfund} />
         </Switch>
       </div>
     </BrowserRouter>
