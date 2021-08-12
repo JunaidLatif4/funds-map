@@ -27,20 +27,19 @@ import AddedDemet from "./screens/Demet/AddedDemet/AddedDemet";
 import AddDemet from "./screens/Demet/AddDemetAccount/AddDemet";
 import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 import MainDemet from "./screens/Demet/mainDemet";
-
+// From Junaid
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
+import Funds from "./components/funds/Funds";
+import FundsTransfer from './screens/funds/FundsTransfer'
+// From Zahid
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
-// import Menu from "./components/client-partner-menu/ClientPartnerMenu";
-// import Funds from "./components/funds/Funds";
+// From Hassan
 import Cordermodi from "./screens/OrderModification/CnfrmOrderModi/Cordermodi";
 import Mtradeqty from "./screens/OrderModification/MinimumTradeQuantity/Mtradeqty";
 import Reqfund from "./screens/OrderModification/RequireFunds/Reqfund";
 import ChoseBank from "./screens/OrderModification/ChoseBank/ChoseBank";
 import BtnCom from "./screens/OrderModification/Components/BtnComponent/BtnCom";
-// import Funds from "./screens/funds/Funds";
 
-import Funds from "./screens/funds/Funds";
-import TestSignin from "./components/test-signin/TestSignin";
 function App() {
   dotenv.config();
   return (
@@ -72,16 +71,18 @@ function App() {
           <Route exact path="/uploaddemet" component={UploadDemet} />
           <Route exact path="/maindemet" component={MainDemet} />
 
+          // From Junaid
           <Route exact path="/menu" component={Menu} />
-          {/* <Route exact path="/funds" component={Funds} /> */}
+          <Route exact path="/funds" component={Funds} />
+          <Route exact path="/funds/transfer" component={FundsTransfer} />
+          // From Zahid
           <Route exact path="/ordermodi" component={OrderModi} />
+          // From Hassan
           <Route exact path="/cordermodi" component={Cordermodi} />
           <Route exact path="/mtradeqty" component={Mtradeqty} />
           <Route exact path="/reqfund" component={Reqfund} />
           <Route exact path="/chosebank" component={ChoseBank} />
           <Route exact path="/btn" component={BtnCom} />
-          <Route exact path="/funds" component={Funds} />
-          <Route exact path="/test-signin" component={TestSignin} />
         </Switch>
       </div>
     </BrowserRouter>

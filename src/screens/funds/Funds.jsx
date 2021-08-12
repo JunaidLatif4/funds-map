@@ -93,9 +93,10 @@ const Funds = () => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const opentheSlide = () => {
+    const opentheSlide = (props) => {
         setOpenSlide({
-            open: true
+            open: true,
+            div: props
         })
     }
 
@@ -139,7 +140,6 @@ const Funds = () => {
                         <FormControl component="fieldset">
                             <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
                                 <FormControlLabel value="female" control={<Radio />} label={<> <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div> </>} />
-                                {/* <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" /> */}
                             </RadioGroup>
                         </FormControl>
                         <div className="add_bank">
@@ -201,7 +201,7 @@ const Funds = () => {
                         <p className="important_title"> <p> IMPORTANT </p> </p>
                         <div className="important_data">
                             <p className="detail"> Please note that the remittance to the above account should only be made from the below mentionedaccount that you’ve selected:</p>
-                        <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div>
+                            <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div>
                         </div>
                     </div>
                 </div>
@@ -219,6 +219,36 @@ const Funds = () => {
             default:
                 return <AddAmountStep />;
         }
+    }
+
+    const WithdrawFunds = () => {
+        return (
+            <>
+                <div className="withdraw_funds_slider">
+                    <div className="heading">
+                        Withdraw Funds
+                    </div>
+                    <div className="title"> Amount (Rs.) </div>
+                    <div className="amount">
+                        <input type="text" placeholder="Enter Amount" />
+                    </div>
+                    <div className="detail">
+                        Select the bank a/c where you want us to remit the withdrawn funds:
+                    </div>
+                    <div className="select_bank">
+                        <FormControl component="fieldset">
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                <FormControlLabel value="female" control={<Radio />} label={<> <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div> </>} />
+                            </RadioGroup>
+                        </FormControl>
+                        <div className="add_bank">
+                            <span> + </span> Add Bank
+                        </div>
+                    </div>
+                    <Button className={classes.btn1} > CONTINUE </Button>
+                </div>
+            </>
+        )
     }
 
     const Changeradio = (event) => {
@@ -300,10 +330,10 @@ const Funds = () => {
                     </div>
                     <div className="funds_transfer">
                         <div className="add_funds">
-                            <Button className={classes.btn1} onClick={opentheSlide}> ADD FUNDS </Button>
+                            <Button className={classes.btn1} onClick={() => opentheSlide("add")} > ADD FUNDS </Button>
                         </div>
                         <div className="withdraw_funds">
-                            <Button className={classes.btn2}> WITHDRAW FUNDS </Button>
+                            <Button className={classes.btn2} onClick={() => opentheSlide("withdraw")} > WITHDRAW FUNDS </Button>
                         </div>
                         <div className="view_funds">
                             <Button className={classes.btn2}> VIEW TRANSFERS </Button>
@@ -312,7 +342,15 @@ const Funds = () => {
                 </div>
                 {openSlide.open &&
                     <BottomSlide bottomSlide={() => setOpenSlide(false)}>
-                        {AddFundsStepper(presentStep)}
+                        {
+                            openSlide.div == "add" ?
+                                AddFundsStepper(presentStep)
+                                :
+                                <>
+                                    <WithdrawFunds />
+                                </>
+
+                        }
                     </BottomSlide>
                 }
             </div>
