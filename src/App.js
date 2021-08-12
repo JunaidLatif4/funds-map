@@ -31,6 +31,7 @@ import MainDemet from "./screens/Demet/mainDemet";
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 import Funds from "./screens/funds/Funds";
+import FundsTransfer from './screens/funds/FundsTransfer'
 
 function App() {
   dotenv.config();
@@ -67,6 +68,7 @@ function App() {
             <Route exact path="/menu" component={Menu} />
             <Route exact path="/ordermodi" component={OrderModi} />
             <Route exact path="/funds" component={Funds} />
+            <Route exact path="/funds/transfer" component={FundsTransfer} />
           </Switch>
         </div>
       </div>
