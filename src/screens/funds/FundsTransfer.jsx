@@ -16,37 +16,56 @@ import './FundsTransfer.scss';
 
 
 
-const FundsData = [
+const FundsTransferData = [
     {
+        status: "succ",
+        date: "02/04/2021",
         balance: "1,00,00,000",
-        detail: "Total funds available",
+        detail: "Net-Banking",
+        data: {
+            account: "123123123123",
+            bank: "HDFC",
+            ifsc: "HDFC000000123 (Horniman Circle)",
+            ref: "MMASDIJ2314K234"
+        }
     },
     {
+        status: "fail",
+        date: "02/04/2021",
         balance: "65,00,000",
-        detail: "Blocked Funds",
-        data: [
-            {
-                balance: "65,00,000",
-                detail: "Blocked as deemed margins for in-process orders"
-            },
-            {
-                balance: "65,00,000",
-                detail: "Blocked as margins on open orders"
-            },
-            {
-                balance: "65,00,000",
-                detail: "Blocked ammount for ongoing closures"
-            },
-        ]
+        detail: "UPI",
+        data: {
+            account: "123123123123",
+            bank: "HDFC",
+            ifsc: "HDFC000000123 (Horniman Circle)",
+            ref: "MMASDIJ2314K234",
+            err: "Transaction failed as funds were received from a bank accountthat is not registered."
+        }
     },
     {
+        status: "succ",
+        date: "02/04/2021",
         balance: "35,00,000",
-        detail: "Withdrawable balance",
+        detail: "NEFT / RTGS",
+        data: {
+            account: "123123123123",
+            bank: "HDFC",
+            ifsc: "HDFC000000123 (Horniman Circle)",
+            ref: "MMASDIJ2314K234"
+        }
     },
     {
-        img: <CardGiftcardIcon />,
+        status: "fail",
+        date: "02/04/2021",
         balance: "35,00,000",
-        detail: "Rewards",
+        detail: "Net-Banking",
+        data: {
+            account: "123123123123",
+            bank: "HDFC",
+            ifsc: "HDFC000000123 (Horniman Circle)",
+            ref: "MMASDIJ2314K234",
+            err: "Transaction failed as funds were received from a bank accountthat is not registered."
+        }
     },
 ]
 
@@ -60,60 +79,52 @@ const FundsTransfer = () => {
             <div className="fundstransfer_container">
                 <div className="fundstransfer_box">
                     <div className="fundstransfer_title">
-                        <p className="title">Funds</p>
-                        <p className="dec"> <span> Click here </span> to understand how fund balances are represented. </p>
+                        <p className="title"> Funds Transfer </p>
                     </div>
+                    <div className="dec"> <span> Note : </span> Transfer’s done via non-electronic NEFT / RTGSshow up here, once the funds hit our bank account. Untilthen you won’t be able to see any status here. </div>
                     <div className="fundstransfer_data">
                         {
-                            FundsData.map((data, index) => {
+                            FundsTransferData.map((data, index) => {
                                 return (
                                     <>
-                                        <Accordion expanded={expanded === `panel${index}`} onChange={data.data ? handleChange(`panel${index}`) : null}>
+                                        <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)} style={{ borderColor: data.status == "fail" ? "red" : null }}>
                                             <AccordionSummary
-                                                expandIcon={data.data ? <ExpandMoreIcon /> : null}
+                                                expandIcon={<ExpandMoreIcon />}
                                                 aria-controls="panel1bh-content"
                                                 id="panel1bh-header"
                                             >
                                                 <div className="balance_box">
-                                                    {
-                                                        data.img ?
-                                                            <>
-                                                                <div className="img"> {data.img} </div>
-                                                            </> :
-                                                            null
-                                                    }
+                                                    <div className="date">
+                                                        Date : {data.date}
+                                                    </div>
                                                     <div className="balance_data">
                                                         <div className="balance">
                                                             <p> <MonetizationOnIcon /> </p>
                                                             <p>{data.balance}</p>
                                                         </div>
                                                         <div className="detail">
-                                                            {data.detail}
+                                                            Addition Via {data.detail}
                                                         </div>
                                                     </div>
+                                                    <div className="success_box" style={{ color: data.status == "fail" ? "red" : null }}>
+                                                        <span style={{ backgroundColor: data.status == "fail" ? "red" : null }}>  </span> {data.status == "fail" ? " Failed " : " Successfull "}
+                                                    </div>
+
                                                 </div>
                                             </AccordionSummary>
                                             <AccordionDetails>
-                                                {
-                                                    data.data ?
-                                                        data.data.map((subData, sunIndex) => {
-                                                            return (
-                                                                <>
-                                                                    <div className="balance_data">
-                                                                        <div className="balance">
-                                                                            <p> <MonetizationOnIcon style={{ fontSize: "1.2rem" }} /> </p>
-                                                                            <p>{subData.balance}</p>
-                                                                        </div>
-                                                                        <div className="detail">
-                                                                            {subData.detail}
-                                                                        </div>
-                                                                    </div>
-                                                                </>
-                                                            )
-                                                        })
-                                                        :
-                                                        null
-                                                }
+                                                <div className="balance_detail">
+                                                    <div className="account"> Bank Account : {data.data.account} </div>
+                                                    <div className="bank"> {data.data.bank} Bank </div>
+                                                    <div className="ifsc"> IFSC : {data.data.ifsc} </div>
+                                                    <div className="ref"> Transection reference : {data.data.ref} </div>
+                                                    {
+                                                        data.data.err &&
+                                                        <div className="err_note">
+                                                            {data.data.err} <br /> Please click here to <a href="#"> Add a bank account </a>
+                                                        </div>
+                                                    }
+                                                </div>
                                             </AccordionDetails>
                                         </Accordion>
                                     </>
