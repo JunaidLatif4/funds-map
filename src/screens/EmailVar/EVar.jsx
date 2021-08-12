@@ -14,6 +14,8 @@ const Evar = () => {
   const location = useLocation();
   const [resend, setResend] = useState(false);
   const [secs, setSecs] = useState(15);
+  console.log(location);
+  console.log(location.state);
 
   useEffect(() => {
     if (!resend) {
@@ -53,7 +55,7 @@ const Evar = () => {
                   `Re-send Email (After ${secs}s)`
                 ) : (
                   <Link className="resend_email"> Re-send Email</Link>
-                )}{" "}
+                )}
                 |
                 <Link className="para2span" to="/signup">
                   Change Email ID
@@ -63,7 +65,6 @@ const Evar = () => {
           </div>
         </div>
         <a href="mailto:">
-          {" "}
           <Button text="OPEN MAIL" />
         </a>
       </div>

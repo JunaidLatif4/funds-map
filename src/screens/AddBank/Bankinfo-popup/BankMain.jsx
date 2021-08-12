@@ -13,6 +13,8 @@ import {
   bank_validator,
   bank_save,
 } from "../../../api/profile";
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const BankMain = ({ bank, setBank, step, setStep }) => {
   const [ifsc, setIfsc] = useState("");
@@ -20,26 +22,56 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   const [data_for_step2, setdata_for_step2] = useState({});
   const [validationkey, setValidationkey] = useState(null);
   const [bankres, setbankres] = useState(null);
+  const stateToken = useSelector((state) => state.user.token);
 
   const [otp, setOtp] = useState("");
   let data_for_step3 = {};
 
   const handleStep1 = async () => {
-    let ifsc_v = await ifsc_validator(ifsc);
+    let ifsc_v = await ifsc_validator(ifsc, stateToken);
     if (ifsc_v.error) {
-      alert("error in ifsc validation");
+      toast.error("Failed ifsc validation", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       console.log(ifsc_v);
-      let bank = await bank_validator(ifsc, accountnumber);
+      let bank = await bank_validator(ifsc, accountnumber, stateToken);
       setbankres(bank);
       if (bank.error) {
-        alert("error in bank validation");
+        toast.error("Bank validation Failed", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         setValidationkey(bank.data.data.validationKey);
         console.log(bank);
-        let otp = await otp_generate(validationkey, ifsc, accountnumber);
+        let otp = await otp_generate(
+          validationkey,
+          ifsc,
+          accountnumber,
+          stateToken
+        );
         if (otp.error) {
-          alert("error in otp generate");
+          toast.error("OTP is not generated", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         } else {
           console.log(otp);
           setdata_for_step2({
@@ -64,11 +96,20 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
       bankres.data?.data?.accountHolderName,
       bankres.data?.data?.bankName,
       accountnumber,
-      ifsc
+      ifsc,
+      stateToken
     );
     console.log(save_Account);
     if (save_Account.error) {
-      alert("error in save bank");
+      toast.error("Bank not saved", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       setStep("step3");
     }
@@ -80,6 +121,17 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <BottomSlide closeBSlider={bank}>
         <BSHeader text="Add Bank" setCloseBSlider={() => setBank(false)} />
         {step == "step1" && (

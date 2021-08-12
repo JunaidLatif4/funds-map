@@ -10,15 +10,13 @@ import "./Notify.css";
 import Backarrow from "../../components/backarrow/Backarrow";
 import { add_mobile, whoami } from "../../api/auth";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Notify = () => {
   const history = useHistory();
   const [checked, setChecked] = useState(true);
   const [mobile, setMobile] = useState("");
   const [loading, setLoading] = useState(false);
-  const [token, setToken] = useState("");
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, []);
+  const stateToken = useSelector((state) => state.user.token);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -29,10 +27,10 @@ const Notify = () => {
   };
   const getNum = async () => {
     console.log("running..");
-    console.log(token);
+    console.log(stateToken);
 
     setLoading(true);
-    const myData = await whoami();
+    const myData = await whoami(stateToken);
     if (myData.error) {
       setLoading(false);
       toast.error(myData.error, {
@@ -50,7 +48,7 @@ const Notify = () => {
       const username = myData.data.data.username;
       const data = { countryCode: code, mobileNo: num, username, checked };
       console.log(data);
-      const added = await add_mobile(data);
+      const added = await add_mobile(data, stateToken);
       if (added.error) {
         setLoading(false);
         toast.error(added.error, {

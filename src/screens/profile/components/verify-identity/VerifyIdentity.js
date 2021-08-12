@@ -10,6 +10,8 @@ import IdtyContact from "./components/IdtyContact";
 import IdtyInfo from "./components/IdtyInfo";
 import IdtyText from "./components/IdtyText";
 import "./VerifyIdentity.css";
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
   const history = useHistory();
@@ -24,6 +26,7 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
     countryCode: "",
     mobileNumber: 0,
   });
+  const stateToken = useSelector((state) => state.user.token);
 
   const [idtyData, setIdtyData] = useState({
     firstName: "",
@@ -38,13 +41,13 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
   const companySubmit = async () => {
     setLoading(true);
     if (self === "indian") {
-      if (!data.emailVerified) {
-        history.push({
-          pathname: "/evar",
-          state: { email: data.email },
-        });
-        setLoading(false);
-      } else if (!data.mobileAdded) {
+      // if (!data.emailVerified) {
+      //   history.push({
+      //     pathname: "/evar",
+      //     state: { email: data.email },
+      //   });
+      //   setLoading(false); }
+      if (!data.mobileAdded) {
         setIdty(false);
         setMobileFlow({
           open: true,
@@ -59,9 +62,18 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
         });
         setLoading(false);
       } else {
-        const response = await kyc_request();
+        const response = await kyc_request(stateToken);
         if (response.error) {
-          alert(response.error);
+          toast.error(response.error, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+
           setLoading(false);
         } else {
           console.log(response.data);
@@ -86,9 +98,18 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
   const contactSubmit = async () => {
     setLoading(true);
     const contact_data = { type: self, data: contactData };
-    let leads_added = await add_leads(contact_data);
+    let leads_added = await add_leads(contact_data, stateToken);
     if (leads_added.error) {
-      alert(leads_added.error);
+      toast.error(leads_added.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
       setLoading(false);
     } else {
       console.log(leads_added.data);
@@ -100,9 +121,18 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
   const cinSubmit = async () => {
     setLoading(true);
     const idty_data = { type: "INDIVIDUAL_FOREIGN", data: idtyData };
-    let leads_added2 = await add_leads(idty_data);
+    let leads_added2 = await add_leads(idty_data, stateToken);
     if (leads_added2.error) {
-      alert(leads_added2.error);
+      toast.error(leads_added2.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
       setLoading(false);
     } else {
       console.log(leads_added2.data);
@@ -113,6 +143,17 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {idty && (
         <BottomSlide>
           <div className="verify__indentity">
@@ -160,7 +201,6 @@ const VerifyIdentity = ({ idty, setIdty, data, setMobileFlow }) => {
               text="DONE"
               click={() => {
                 setIdty(false);
-                document.getElementById("rzp-button1").click();
               }}
             />
           )}

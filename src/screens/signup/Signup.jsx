@@ -13,10 +13,12 @@ import TextField from "@material-ui/core/TextField";
 import "./Signup.css";
 import Backarrow from "../../components/backarrow/Backarrow";
 import { e_verify, signup } from "../../api/auth";
+import { useDispatch } from "react-redux";
+import { signup_user } from "../../store/User";
 
 const Signup = () => {
   const history = useHistory();
-  // const classes = useStyles();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const signupData = {
@@ -40,9 +42,9 @@ const Signup = () => {
     return false;
   }
   const handleSignup = async () => {
+    setLoading(true);
     const isValid = await ValidateEmail(email);
     if (isValid) {
-      setLoading(true);
       const res = await signup(signupData);
       if (res.error) {
         setLoading(false);
@@ -57,6 +59,7 @@ const Signup = () => {
         });
       } else {
         console.log(res.data.data);
+        dispatch(signup_user(res.data.data));
         localStorage.setItem("token", res.data.data);
         const verified = await e_verify(res.data.data);
         if (verified.error) {

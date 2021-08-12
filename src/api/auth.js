@@ -31,7 +31,7 @@ export const e_verify = async (token) => {
     resolved.data = await axios({
       url: `api/v1/users/email-verification`,
       method: "post",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: { authorization: `Bearer ${token}` },
     });
   } catch (error) {
     if (error.response) {
@@ -134,7 +134,7 @@ export const otp_mobile_login = async (info) => {
   return resolved;
 };
 
-export const whoami = async () => {
+export const whoami = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -144,7 +144,7 @@ export const whoami = async () => {
       url: "api/v1/users/me",
       method: "get",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
       },
     });
   } catch (error) {
@@ -158,7 +158,7 @@ export const whoami = async () => {
   return resolved;
 };
 
-export const add_mobile = async (data) => {
+export const add_mobile = async (data, token) => {
   console.log(data);
   const resolved = {
     data: null,
@@ -169,7 +169,7 @@ export const add_mobile = async (data) => {
       url: "api/v1/users/mobile",
       method: "patch",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       data,
@@ -196,7 +196,7 @@ export const partner_signup = async (data) => {
     resolved.data = await axios({
       url: "api/v1/users/signup",
       method: "post",
-      headers: { contentType: "application/json" },
+      headers: { "Content-Type": "application/json" },
       data,
     });
   } catch (error) {
@@ -209,7 +209,7 @@ export const partner_signup = async (data) => {
   }
   return resolved;
 };
-export const email_verification = async () => {
+export const email_verification = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -219,7 +219,7 @@ export const email_verification = async () => {
     resolved.data = await axios({
       url: "api/v1/users/email-verification",
       method: "post",
-      headers: { authorization: "Bearer " + localStorage.getItem("token") },
+      headers: { authorization: "Bearer " + token },
     });
   } catch (error) {
     if (error.response) {
@@ -251,17 +251,22 @@ export const generate_motp = async (token) => {
   return resolved;
 };
 
-export const upload_logo = async (file) => {
+export const upload_logo = async (data, token) => {
   const resolved = {
     data: null,
     error: null,
   };
+  console.log(data);
 
   try {
     resolved.data = await axios({
-      url: "api/v1/users/logo?file=" + file,
+      url: "api/v1/users/logo",
       method: "patch",
-      headers: { authorization: "Bearer " + localStorage.getItem("token") },
+      headers: {
+        authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      data,
     });
   } catch (error) {
     if (error.response) {

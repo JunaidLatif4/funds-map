@@ -3,23 +3,42 @@ import "./Completed.css";
 import { Link } from "react-router-dom";
 import Check from "../../../../Assets/imgs/check.svg";
 import { adhar_details, pan_details } from "../../../../api/profile";
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Completed = ({ basicInfo }) => {
   const [adharDetails, setAdharDetails] = useState("");
   const [panDetails, setPanDetails] = useState("");
+  const stateToken = useSelector((state) => state.user.token);
   const get_adhar = async () => {
-    let response = await adhar_details();
+    let response = await adhar_details(stateToken);
     if (response.error) {
-      alert(response.error);
+      toast.error(response.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       console.log(response.data);
       setAdharDetails(response.data.data);
     }
   };
   const get_pan = async () => {
-    let response = await pan_details();
+    let response = await pan_details(stateToken);
     if (response.error) {
-      alert(response.error);
+      toast.error(response.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       console.log(response.data);
       setPanDetails(response.data.data);
@@ -33,6 +52,17 @@ const Completed = ({ basicInfo }) => {
 
   return (
     <div className="profile__completed_wrapper">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="pcomp__item">
         <span className="pcomp__subitem">
           <span className="pcomp__item_label">ID:</span>

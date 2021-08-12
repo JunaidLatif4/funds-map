@@ -10,31 +10,64 @@ import Slide from "../../dashboard/components/slide/Slide";
 import video from "../../../Assets/videos/droneview.mp4";
 import image from "../../../Assets/imgs/tech.jpg";
 import { upload_logo } from "../../../api/auth";
-
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 // import LogoBar from "./components/logo-bar/LogoBar";
 // import BtnBar from "./components/btn-bar/BtnBar";
 // import CompleteProfile from "./components/complete-profile/CompleteProfile";
 
 const Addlogo = () => {
-  const [logo, setLogo] = useState("");
   const [uploadBtn, setUploadBtn] = useState(true);
-  useEffect(() => {
-    console.log(logo);
-    if (logo !== "") {
-      add_logo();
-    }
-  }, [logo]);
+  const stateToken = useSelector((state) => state.user.token);
+  const [logo, setLogo] = useState("");
 
-  const add_logo = async () => {
-    const uploaded = await upload_logo(logo);
+  const handleChange = (e) => {
+    setLogo(e.target.files[0]);
+    const file = e.target.files[0];
+    console.log(file);
+    const data = new FormData();
+    data.append("file", file);
+    add_logo(data);
+    setLogo("");
+  };
+
+  const add_logo = async (logo) => {
+    const uploaded = await upload_logo(logo, stateToken);
     if (uploaded.error) {
-      alert(uploaded.error);
+      toast.error(uploaded.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
-      console.log(uploaded.data);
+      toast.success("Logo uploaded successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   return (
     <div className="Addlogo__container">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="Addlogo__footer">
         <div
           className="Addlogo__btnns"
@@ -46,7 +79,8 @@ const Addlogo = () => {
               className="logo__input"
               id="addlogoinput"
               accept="image/png, image/gif, image/jpeg"
-              onChange={(e) => setLogo(e.target.files[0])}
+              onChange={handleChange}
+              value={logo}
             />
             <div className="footer__logo">
               <BackupIcon />

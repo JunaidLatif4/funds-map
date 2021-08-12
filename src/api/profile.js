@@ -1,6 +1,6 @@
 import axios, { BASE_URL } from "../axiosInstance";
 
-export const profile_details = async () => {
+export const profile_details = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -10,7 +10,7 @@ export const profile_details = async () => {
       url: "api/v1/users/profile",
       method: "get",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
       },
     });
   } catch (error) {
@@ -23,7 +23,7 @@ export const profile_details = async () => {
   return resolved;
 };
 
-export const mobile_verification = async () => {
+export const mobile_verification = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -33,7 +33,7 @@ export const mobile_verification = async () => {
       url: "api/v1/users/mobile-verification",
       method: "post",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
       },
     });
   } catch (error) {
@@ -46,7 +46,7 @@ export const mobile_verification = async () => {
   return resolved;
 };
 
-export const verify_otp = async (otp) => {
+export const verify_otp = async (otp, token) => {
   const resolved = {
     data: null,
     error: null,
@@ -56,7 +56,7 @@ export const verify_otp = async (otp) => {
       url: "api/v1/users/verify-mobile",
       method: "post",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       data: { otp },
@@ -71,7 +71,7 @@ export const verify_otp = async (otp) => {
   return resolved;
 };
 
-export const kyc_request = async () => {
+export const kyc_request = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -81,7 +81,7 @@ export const kyc_request = async () => {
       url: "/api/v1/kyc/identity",
       method: "post",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -93,7 +93,7 @@ export const kyc_request = async () => {
   }
   return resolved;
 };
-export const add_leads = async (data) => {
+export const add_leads = async (data, token) => {
   console.log(data);
   const resolved = {
     data: null,
@@ -104,7 +104,7 @@ export const add_leads = async (data) => {
       url: "/api/v1/users/leads",
       method: "post",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       data,
@@ -118,7 +118,7 @@ export const add_leads = async (data) => {
   }
   return resolved;
 };
-export const adhar_details = async () => {
+export const adhar_details = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -128,7 +128,7 @@ export const adhar_details = async () => {
       url: "/api/v1/kyc/identity/aadhaar",
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3aW5hcGlrMTIyIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfSU5ESVZJRFVBTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1MjI5NjUsImV4cCI6MTYyODUyNTk2NX0.HIx--8P9RnHuUfZx0fhfq4YYcS4zh4pN08nHZzkxivE`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -141,7 +141,7 @@ export const adhar_details = async () => {
   }
   return resolved;
 };
-export const pan_details = async () => {
+export const pan_details = async (token) => {
   const resolved = {
     data: null,
     error: null,
@@ -151,7 +151,7 @@ export const pan_details = async () => {
       url: "/api/v1/kyc/identity/pan",
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3aW5hcGlrMTIyIiwiYXV0aCI6W3siYXV0aG9yaXR5IjoiUk9MRV9DTElFTlQifSx7ImF1dGhvcml0eSI6IlJPTEVfSU5ESVZJRFVBTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg1MjI5NjUsImV4cCI6MTYyODUyNTk2NX0.HIx--8P9RnHuUfZx0fhfq4YYcS4zh4pN08nHZzkxivE`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -165,8 +165,7 @@ export const pan_details = async () => {
   return resolved;
 };
 
-
-export const ifsc_validator = async (ifsc) => {
+export const ifsc_validator = async (ifsc, token) => {
   const resolved = {
     data: null,
     error: null,
@@ -176,11 +175,10 @@ export const ifsc_validator = async (ifsc) => {
       url: "/api/v1/users/banks/ifsc/" + ifsc,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
-    
   } catch (error) {
     console.log(error);
     if (error.response) {
@@ -191,11 +189,7 @@ export const ifsc_validator = async (ifsc) => {
   return resolved;
 };
 
-
-
-
-export const bank_validator = async (ifsc , accountnumber) => {
-  
+export const bank_validator = async (ifsc, accountnumber, token) => {
   const resolved = {
     data: null,
     error: null,
@@ -205,14 +199,14 @@ export const bank_validator = async (ifsc , accountnumber) => {
       url: "/api/v1/users/banks/validate",
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       data: {
-          ifsc:ifsc,
-          bankAccountNumber:accountnumber  
-      }
-    }); 
+        ifsc: ifsc,
+        bankAccountNumber: accountnumber,
+      },
+    });
   } catch (error) {
     console.log(error);
     if (error.response) {
@@ -223,9 +217,13 @@ export const bank_validator = async (ifsc , accountnumber) => {
   return resolved;
 };
 
-
-export const otp_generate = async (validationkey , ifsc , accountNumber) => {
-  console.log(validationkey)
+export const otp_generate = async (
+  validationkey,
+  ifsc,
+  accountNumber,
+  token
+) => {
+  console.log(validationkey);
   const resolved = {
     data: null,
     error: null,
@@ -235,14 +233,14 @@ export const otp_generate = async (validationkey , ifsc , accountNumber) => {
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       data: {
-          ifsc:ifsc,
-          bankAccountNumber:accountNumber  
-      }
-    }); 
+        ifsc: ifsc,
+        bankAccountNumber: accountNumber,
+      },
+    });
   } catch (error) {
     console.log(error);
     if (error.response) {
@@ -253,10 +251,24 @@ export const otp_generate = async (validationkey , ifsc , accountNumber) => {
   return resolved;
 };
 
+export const bank_save = async (
+  otp,
+  validationkey,
+  accountHolderName,
+  bankName,
+  accountNumber,
+  ifsc,
+  token
+) => {
+  console.log(
+    otp,
+    validationkey,
+    accountHolderName,
+    bankName,
+    accountNumber,
+    ifsc
+  );
 
-export const bank_save = async (otp , validationkey , accountHolderName , bankName , accountNumber , ifsc) => {
-  console.log(otp , validationkey , accountHolderName , bankName , accountNumber , ifsc)
-  
   const resolved = {
     data: null,
     error: null,
@@ -266,18 +278,18 @@ export const bank_save = async (otp , validationkey , accountHolderName , bankNa
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxheXNwZGFmc2RoamgiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg2MjEyMDgsImV4cCI6MTYyODYyNDIwOH0.-WggBHVStsFHgS5pVfwAkWRPU-LqVSywcCSpE0HER5o`,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       data: {
-        bankAccountId:{ifsc:ifsc},
-        bankAccountNumber:accountNumber,
-        bankName:bankName,
-        accountHolderName:accountHolderName,
-        validationKey:validationkey,
-        otp:otp
-      }
-    }); 
+        bankAccountId: { ifsc: ifsc },
+        bankAccountNumber: accountNumber,
+        bankName: bankName,
+        accountHolderName: accountHolderName,
+        validationKey: validationkey,
+        otp: otp,
+      },
+    });
   } catch (error) {
     console.log(error);
     if (error.response) {

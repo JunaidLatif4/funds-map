@@ -12,9 +12,12 @@ import {
 } from "../../api/auth";
 import { ToastContainer, toast } from "react-toastify";
 import OutlinedButton from "../../components/outlined-button/OutlinedButton";
+import { useDispatch } from "react-redux";
+import { signup_user } from "../../store/User";
 
 const Otp = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const [otp, setOtp] = useState("");
   const [viaEmail, setViaEmail] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -90,6 +93,7 @@ const Otp = () => {
           draggable: true,
           progress: undefined,
         });
+        dispatch(signup_user(token.data.data));
         localStorage.setItem("token", token.data.data);
         setLoading(false);
       }
@@ -117,6 +121,7 @@ const Otp = () => {
           draggable: true,
           progress: undefined,
         });
+        dispatch(signup_user(token.data.data));
         localStorage.setItem("token", token.data.data);
         setLoading(false);
       }

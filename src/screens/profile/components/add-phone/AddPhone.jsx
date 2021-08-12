@@ -10,6 +10,8 @@ import OtpInput from "react-otp-input";
 import Mnumber from "../../../../components/Mob-num input/Mnumber";
 import { mobile_verification, verify_otp } from "../../../../api/profile";
 import { add_mobile } from "../../../../api/auth";
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
   const [box, setBox] = useState(type);
@@ -19,20 +21,37 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
   const [secs, setSecs] = useState(15);
   const [checked, setChecked] = useState(true);
   const [closeBSlider, setCloseBSlider] = useState(false);
+  const stateToken = useSelector((state) => state.user.token);
   const add_phone = async () => {
     const data = {
       username: username,
       countryCode: mobile?.slice(0, 3),
       mobileNo: mobile?.slice(3),
     };
-    const added = await add_mobile(data);
+    const added = await add_mobile(data, stateToken);
     if (added.error) {
-      alert(added.error);
+      toast.error(added.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       console.log("number added: " + added.data);
-      const generate_otp = await mobile_verification();
+      const generate_otp = await mobile_verification(stateToken);
       if (generate_otp.error) {
-        alert("otp can not be generated");
+        toast.error(generate_otp.error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         console.log("otp generated");
         setBox({});
@@ -42,9 +61,13 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
     }
   };
 
+  // const handleResend = () =>{
+  //   setResend(true)
+  // }
+
   const otp_verification = async () => {
     console.log("verifying otp");
-    const verified = await verify_otp(otp);
+    const verified = await verify_otp(otp, stateToken);
     if (verified.error) {
       setBox({});
       console.log(verified.error);
@@ -55,6 +78,29 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
     }
   };
 
+  const handle_resend = () => {
+    setSecs(15);
+
+    setResend(false);
+    resendTimer();
+  };
+
+  const resendTimer = () => {
+    if (!resend) {
+      setInterval(
+        () =>
+          setSecs((secs) => {
+            if (secs > 0) {
+              return secs - 1;
+            } else {
+              setResend(true);
+              return 0;
+            }
+          }),
+        1000
+      );
+    }
+  };
   useEffect(() => {
     if (!resend) {
       setInterval(
@@ -70,9 +116,20 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
         1000
       );
     }
-  }, [resend]);
+  }, []);
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {addPhone && (
         <BottomSlide closeBSlider={closeBSlider}>
           <BSHeader
@@ -106,7 +163,9 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
                   />
                   <div className="ap__resend_box">
                     {resend ? (
-                      <span className="ap__resend_btn">Re-send OTP </span>
+                      <span className="ap__resend_btn" onClick={handle_resend}>
+                        Re-send OTP{" "}
+                      </span>
                     ) : (
                       <span className="ap__resend_text">
                         Re-send OTP (After {secs}s)
@@ -121,7 +180,7 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
               {box === "wrongotp" && (
                 <>
                   <span className="ap__otp_subtitle">
-                    Enter OTP sent to you via SMS on 99325487958
+                    Enter OTP sent to you via SMS on {mobile}
                   </span>
                   <OtpInput
                     value={otp}
@@ -138,7 +197,9 @@ const AddPhone = ({ type, username, addPhone, setAddPhone }) => {
                   </span>
                   <div className="ap__resend_box">
                     {resend ? (
-                      <span className="ap__resend_btn">Re-send OTP </span>
+                      <span className="ap__resend_btn" onClick={handle_resend}>
+                        Re-send OTP{" "}
+                      </span>
                     ) : (
                       <span className="ap__resend_text">
                         Re-send OTP (After {secs}s)

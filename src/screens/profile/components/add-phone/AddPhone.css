@@ -91,3 +91,6 @@
   text-align: center;
   color: gray;
 }
+.MuiRadio-colorSecondary.Mui-checked {
+  color: rgb(12, 82, 161) !important;
+}

@@ -17,6 +17,8 @@ import { add_mobile } from "../../api/auth";
 import BankMain from "../AddBank/Bankinfo-popup/BankMain.jsx";
 import MainDemet from "../Demet/mainDemet";
 import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const history = useHistory();
@@ -35,6 +37,7 @@ const Profile = () => {
     open: false,
     type: "mobile",
   });
+  const stateToken = useSelector((state) => state.user.token);
 
   // const setbank = (p) => {
   //   console.log(bank)
@@ -46,9 +49,18 @@ const Profile = () => {
   //   setDemat(p)
   // }
   const get_details = async () => {
-    const details = await profile_details();
+    const details = await profile_details(stateToken);
+    console.log(details);
     if (details.error) {
-      alert(details.error);
+      toast.error(details.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       if (details.data) {
         const {
@@ -85,6 +97,17 @@ const Profile = () => {
 
   return (
     <div className="profile__screen">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <TopBar />
       <div className="profile__header">
         <span className="pf__header_left">Profile</span>

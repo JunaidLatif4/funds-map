@@ -14,12 +14,17 @@ import { blue, grey, red } from "@material-ui/core/colors";
 import Mnumber from "../../../components/Mob-num input/Mnumber";
 import { email_verification, partner_signup } from "../../../api/auth";
 import { useEffect } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { signup_user } from "../../../store/User";
 const PSignup = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [mobile, setMobile] = useState("");
+
+  const stateToken = useSelector((state) => state.user.token);
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -54,13 +59,31 @@ const PSignup = () => {
       data.countryCode === "" ||
       data.mobileNumber === ""
     ) {
-      alert("All fields are required");
+      toast.error("All fields are required", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setLoading(false);
       return false;
     } else {
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email)) {
         return true;
       } else {
-        alert("invalid Email");
+        toast.error("Invalid Email", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setLoading(false);
         return false;
       }
     }
@@ -73,24 +96,42 @@ const PSignup = () => {
     if (validated) {
       const response = await partner_signup(data);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
         setLoading(false);
       } else {
         localStorage.setItem("token", response.data.data);
-        console.log();
+        dispatch(signup_user(response.data.data));
         localStorage.setItem("partner_data", JSON.stringify(data));
         console.log(JSON.stringify(data));
         console.log(data);
         console.log(localStorage.getItem("token"));
-        const verification = await email_verification();
+        const verification = await email_verification(stateToken);
         if (verification.error) {
-          alert(verification.error);
+          toast.error(verification.error, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+
           setLoading(false);
         } else {
           setLoading(false);
           history.push({
             pathname: "/evar",
-            state: { email: data.email },
+            state: { email: data.email, type: "PARTNER-SIGNUP" },
           });
         }
       }
@@ -99,6 +140,17 @@ const PSignup = () => {
 
   return (
     <div className="psignup__wrap">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="psignup__container">
         <div className="psignup__header">
           <p className="header__para">

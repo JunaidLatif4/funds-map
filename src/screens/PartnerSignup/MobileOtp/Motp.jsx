@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Backarrow from "../../../components/backarrow/Backarrow";
 import Button from "../../../components/button/Button";
-
 import "./Motp.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import OtpInput from "react-otp-input";
-// import phone from "../../Assets/imgs/phone.svg";
 import phone from "../../../Assets/imgs/phone.svg";
 import { otp_mobile_login, otp_sms, whoami } from "../../../api/auth";
-
-// import {
-//   otp_mail_login,
-//   otp_mobile_login,
-//   otp_mail,
-//   otp_sms,
-// } from "../../api/auth";
 import { ToastContainer, toast } from "react-toastify";
 import { Phone } from "@material-ui/icons";
 import { generate_motp } from "../../../api/auth";
 import { mobile_verification, verify_otp } from "../../../api/profile";
 import Alert from "../../../components/Alert/Alert";
-// import OutlinedButton from "../../components/outlined-button/OutlinedButton";
+import { useDispatch, useSelector } from "react-redux";
 
 const Motp = () => {
   const location = useLocation();
@@ -32,15 +23,14 @@ const Motp = () => {
   const [partnerData, setPartnerData] = useState({});
   const history = useHistory();
   const state = location.state ? location.state : {};
-
-  // const location = useLocation();
-  // const token = location.state && location.state.token;
+  const dispatch = useDispatch();
+  const stateToken = useSelector((state) => state.user.token);
 
   const token = localStorage.getItem("token");
 
   const gen_otp = async () => {
     console.log("sending otp via sms");
-    const sent = await mobile_verification();
+    const sent = await mobile_verification(stateToken);
     if (sent.error) {
       toast.error(sent.error, {
         position: "top-center",
@@ -59,7 +49,7 @@ const Motp = () => {
   const otp_login = async () => {
     setLoading(true);
     console.log(otp);
-    const responseToken = await verify_otp(otp);
+    const responseToken = await verify_otp(otp, stateToken);
     if (responseToken.error) {
       setLoading(false);
       toast.error(token.error, {
@@ -73,6 +63,7 @@ const Motp = () => {
       });
     } else {
       console.log(responseToken.data);
+      dispatch(responseToken.data.data);
       localStorage.setItem("token", responseToken.data.data);
       history.push("/getstarted");
       setLoading(false);
