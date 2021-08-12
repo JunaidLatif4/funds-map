@@ -82,6 +82,7 @@ const FundsData = [
 const Funds = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [presentStep, setPresentStep] = useState("addfund")
     const [value, setValue] = React.useState('female');
     const [openSlide, setOpenSlide] = useState({
         open: false,
@@ -92,10 +93,162 @@ const Funds = () => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const opentheSlide = () => {
+    const opentheSlide = (props) => {
         setOpenSlide({
-            open: true
+            open: true,
+            div: props
         })
+    }
+
+    const nextStep = (props) => {
+        setPresentStep(props)
+    }
+
+    const AddAmountStep = () => {
+        return (
+            <>
+                <div className="add_funds_slider">
+                    <div className="heading">
+                        Add Funds
+                    </div>
+                    <div className="title"> Amount (Rs.) </div>
+                    <div className="amount">
+                        <input type="text" placeholder="Enter Amount" />
+                        <FormControl component="fieldset">
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                <FormControlLabel value="female" control={<Radio />} label="Net Banking  /  Debit Cards / UPI" />
+                                <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" />
+                            </RadioGroup>
+                        </FormControl>
+                    </div>
+                    <Button className={classes.btn1} onClick={() => nextStep("selectbank")}> ADD FUNDS </Button>
+                </div>
+            </>
+        )
+    }
+    const SelectBankStep = () => {
+        return (
+            <>
+                <div className="add_bank_slide">
+                    <div className="heading">
+                        <p> Add Funds </p>
+                        <div className="detail">
+                            Select the bank account from where you wish to Remit funds via NEFT / RTGS
+                        </div>
+                    </div>
+                    <div className="select_bank">
+                        <FormControl component="fieldset">
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                <FormControlLabel value="female" control={<Radio />} label={<> <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div> </>} />
+                            </RadioGroup>
+                        </FormControl>
+                        <div className="add_bank">
+                            <span> + </span> Add Bank
+                        </div>
+                    </div>
+                    <Button className={classes.btn1} onClick={() => nextStep("fundadded")} > CONTINUE </Button>
+
+                </div>
+            </>
+        )
+    }
+    const FundsAddedStep = () => {
+        return (
+            <>
+                <div className="funds_added_slide">
+                    <div className="heading">
+                        <p> Add Funds </p>
+                        <div className="detail">
+                            Please remit funds to the below mentioned account
+                        </div>
+                    </div>
+                    <div className="transection_detail">
+                        <div className="one_div">
+                            <div className="beneficary">
+                                <p className="title"> Beneficiary </p>
+                                <div> FM's legal Name </div>
+                            </div>
+                            <div className="ifsc">
+                                <p className="title"> IFSC </p>
+                                <div> ICICI912832 </div>
+                            </div>
+                            <div className="account">
+                                <p className="title"> Account </p>
+                                <div> 123 456 789 12345 </div>
+                            </div>
+                        </div>
+                        <div className="two_div">
+                            <div className="bank">
+                                <p className="title"> Bank </p>
+                                <div> American Express </div>
+                            </div>
+                            <div className="branch">
+                                <p className="title"> Branch </p>
+                                <div> Horniman Circle </div>
+                            </div>
+                            <div className="important">
+                                <p className="important_title"> <p> IMPORTANT </p> </p>
+                                <div className="important_data">
+                                    <p className="detail"> This account number is specifically for you, it will be different for other users.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="note_box">
+                        Once you’ve remitted the funds, please wait until the funds reach our bank account. We will intimate youvia sms / email as soon as we receive the funds & the same shall be added to available funds in the Funds Tab
+                    </div>
+                    <div className="notis">
+                        <p className="important_title"> <p> IMPORTANT </p> </p>
+                        <div className="important_data">
+                            <p className="detail"> Please note that the remittance to the above account should only be made from the below mentionedaccount that you’ve selected:</p>
+                            <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
+    const AddFundsStepper = (active) => {
+        switch (active) {
+            case "addfund":
+                return <AddAmountStep />;
+            case "selectbank":
+                return <SelectBankStep />;
+            case "fundadded":
+                return <FundsAddedStep />;
+            default:
+                return <AddAmountStep />;
+        }
+    }
+
+    const WithdrawFunds = () => {
+        return (
+            <>
+                <div className="withdraw_funds_slider">
+                    <div className="heading">
+                        Withdraw Funds
+                    </div>
+                    <div className="title"> Amount (Rs.) </div>
+                    <div className="amount">
+                        <input type="text" placeholder="Enter Amount" />
+                    </div>
+                    <div className="detail">
+                        Select the bank a/c where you want us to remit the withdrawn funds:
+                    </div>
+                    <div className="select_bank">
+                        <FormControl component="fieldset">
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                <FormControlLabel value="female" control={<Radio />} label={<> <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div> </>} />
+                            </RadioGroup>
+                        </FormControl>
+                        <div className="add_bank">
+                            <span> + </span> Add Bank
+                        </div>
+                    </div>
+                    <Button className={classes.btn1} > CONTINUE </Button>
+                </div>
+            </>
+        )
     }
 
     const Changeradio = (event) => {
@@ -177,10 +330,10 @@ const Funds = () => {
                     </div>
                     <div className="funds_transfer">
                         <div className="add_funds">
-                            <Button className={classes.btn1} onClick={opentheSlide}> ADD FUNDS </Button>
+                            <Button className={classes.btn1} onClick={() => opentheSlide("add")} > ADD FUNDS </Button>
                         </div>
                         <div className="withdraw_funds">
-                            <Button className={classes.btn2}> WITHDRAW FUNDS </Button>
+                            <Button className={classes.btn2} onClick={() => opentheSlide("withdraw")} > WITHDRAW FUNDS </Button>
                         </div>
                         <div className="view_funds">
                             <Button className={classes.btn2}> VIEW TRANSFERS </Button>
@@ -189,22 +342,15 @@ const Funds = () => {
                 </div>
                 {openSlide.open &&
                     <BottomSlide bottomSlide={() => setOpenSlide(false)}>
-                        <div className="add_funds_slider">
-                            <div className="heading">
-                                Add Funds
-                            </div>
-                            <div className="title"> Amount (Rs.) </div>
-                            <div className="amount">
-                                <input type="text" placeholder="Enter Amount" />
-                                <FormControl component="fieldset">
-                                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
-                                        <FormControlLabel value="female" control={<Radio />} label="Net Banking  /  Debit Cards / UPI" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </div>
-                            <Button className={classes.btn1} > ADD FUNDS </Button>
-                        </div>
+                        {
+                            openSlide.div == "add" ?
+                                AddFundsStepper(presentStep)
+                                :
+                                <>
+                                    <WithdrawFunds />
+                                </>
+
+                        }
                     </BottomSlide>
                 }
             </div>
