@@ -4,7 +4,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Button from "../../../components/button/Button";
 
-const AddDemet = () => {
+const AddDemet = ({ setOtp }) => {
   return (
     <>
       <div className="bankinfo__container">
@@ -46,6 +46,7 @@ const AddDemet = () => {
                 id="outlined-basic"
                 placeholder="Enter OTP"
                 variant="standard"
+                onChange={(e) => setOtp(e.target.value)}
               />
             </div>
           </div>

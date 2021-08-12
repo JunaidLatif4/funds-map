@@ -1,5 +1,6 @@
 .ad__container {
-  margin: 15px;
+  margin: 15px 0;
+  width: 90%;
 }
 .addedbank__header {
   border: 1px solid #00000057;
@@ -32,13 +33,11 @@
   justify-content: space-between;
   font-size: 12px;
 }
-/*
-.user__info {
-  font-size: 12px;
+.addeddemet__img {
+  height: 20px;
+  width: 10px;
+  margin-left: 2px;
 }
-.ab__name {
-  color: rgba(0, 0, 0, 0.651);
-}*/
 .ad__p1name {
   font-weight: bolder;
 }

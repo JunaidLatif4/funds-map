@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AddedDemet.css";
-import InfoIcon from "@material-ui/icons/Info";
+import info from "../../../Assets/imgs/info.svg";
 
 const arr = [
   {
@@ -36,7 +36,7 @@ const arr = [
   },
 ];
 
-const Map = (val) => {
+const Demat = (val) => {
   return (
     <>
       <div className="ad__container">
@@ -54,15 +54,7 @@ const Map = (val) => {
                 style={{ display: "flex", position: "relative" }}
               >
                 <p className="ad__active">{val.status}</p>
-                <InfoIcon
-                  style={{
-                    color: " #524848f2",
-                    top: "4.2px",
-                    position: "absolute",
-                    left: " 38px",
-                    fontSize: "13px",
-                  }}
-                />
+                <img className="om__thirdimg" src={info} alt="" />
               </div>
             </div>
             <div className="ad__para1">
@@ -80,7 +72,7 @@ const Map = (val) => {
 };
 
 const AddedDemet = () => {
-  return <>{arr.map(Map)}</>;
+  return <>{arr.map(Demat)}</>;
 };
 
 export default AddedDemet;

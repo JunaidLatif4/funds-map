@@ -17,6 +17,7 @@ import { add_mobile } from "../../api/auth";
 import BankMain from "../AddBank/Bankinfo-popup/BankMain.jsx";
 import MainDemet from "../Demet/mainDemet";
 import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
+import { get_banks } from '../../api/profile'
 
 const Profile = () => {
   const history = useHistory();
@@ -25,6 +26,7 @@ const Profile = () => {
   const [verifyMobile, setVerifyMobile] = useState(false);
   const [mobile, setMobile] = useState(null);
   const [bank, setBank] = useState(false);
+  const [addedBanks, setAddedbanks] = useState([])
   const [demat, setDemat] = useState(false);
   const [idty, setIdty] = useState(false);
   const [step, setStep] = useState("step1");
@@ -36,10 +38,16 @@ const Profile = () => {
     type: "mobile",
   });
 
-  // const setbank = (p) => {
-  //   console.log(bank)
-  //   setBank(p)
-  // }
+  const get_banks1 = async () => {
+    const banks = await get_banks();
+    if (banks.error) {
+      alert("error in getting banks")
+    }
+    else {
+      console.log(banks)
+      setAddedbanks(banks.data?.data)
+    }
+  }
 
   // const setdemat = (p) => {
   //   console.log("vvv", demat)
@@ -83,6 +91,10 @@ const Profile = () => {
     get_details();
   }, []);
 
+  useEffect(() => {
+    get_banks1();
+  }, []);
+
   return (
     <div className="profile__screen">
       <TopBar />
@@ -106,20 +118,8 @@ const Profile = () => {
           open={true}
           basicInfo={profileData}
         />
-        <DropCard
-          icon={bankLine}
-          text="Bank"
-          body="bank"
-          setBank={setBank}
-          setDemat={setDemat}
-        />
-        <DropCard
-          icon={profile}
-          text="Demat Details"
-          body="demat"
-          setDemat={setDemat}
-          setBank={setBank}
-        />
+        <DropCard icon={bankLine} text="Bank" body="bank" setBank={setBank} setDemat={setDemat} banks={addedBanks} />
+        <DropCard icon={profile} text="Demat Details" body="demat" setDemat={setDemat} setBank={setBank} />
       </div>
       <ErrorBox />
       {box?.open && (

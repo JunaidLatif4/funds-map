@@ -37,22 +37,22 @@ const Bank = (val) => {
           <div className="addedbank__right">
             <div className="user__info">
               <div className="user__w-name">
-                <p className="ab__w-name">{val.name}</p>
-                <p className="ab__delbtn">{val.btn}</p>
+                <p className="ab__w-name">Name</p>
+                <p className="ab__delbtn">Delete</p>
               </div>
-              <div className="ab__name">{val.username}</div>
+              <div className="ab__name">{val.accountHolderName}</div>
               <div className="user__w-name">
-                <p className="ab__w-name">{val.bname}</p>
+                <p className="ab__w-name">Bank</p>
               </div>
-              <div className="ab__name">{val.bankname}</div>
+              <div className="ab__name">{val.bankName}</div>
               <div className="user__w-name">
-                <p className="ab__w-name">{val.branch}</p>
+                <p className="ab__w-name">Branch</p>
               </div>
-              <div className="ab__name">{val.branchname}</div>
+              <div className="ab__name">{val.branchName}</div>
               <div className="user__w-name">
-                <p className="ab__w-name">{val.account}</p>
+                <p className="ab__w-name">Account Number</p>
               </div>
-              <div className="ab__name">{val.accountnumber}</div>
+              <div className="ab__name">XXXX - XXXX - XXXX - {val.bankAccountId.bankAccountNumber.substr(10, 4)}</div>
             </div>
           </div>
         </div>
@@ -61,8 +61,8 @@ const Bank = (val) => {
   );
 };
 
-const AddedBank = () => {
-  return <>{arr.map(Bank)}</>;
+const AddedBank = ({ banks }) => {
+  return <>{banks?.map(Bank)}</>;
 };
 
 export default AddedBank;
