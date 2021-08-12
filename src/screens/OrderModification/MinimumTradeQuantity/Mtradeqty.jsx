@@ -7,37 +7,13 @@ import info from "../../../Assets/imgs/info.svg";
 import backarrow from "../../../Assets/imgs/backarrow.svg";
 import Button from "../../../components/button/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import BuyerInfo from "../Components/BuyInfo/BuyerInfo";
 
 const Mtradeqty = () => {
   return (
     <>
       <div className="tradeqty__container">
-        <div className="tradeqty__header">
-          <img className="tradeqty__img" src={img1} alt="" />
-
-          <div className="tradeqty__second">
-            <div className="second__heading" style={{ fontWeight: "bold" }}>
-              Klaxton Garments
-            </div>
-            <div className="second__body" style={{ color: " #000000a6" }}>
-              <div className="body__one">
-                <span style={{ color: "green" }}>BUY</span> | 10,000 @ 254
-              </div>
-              <div className="body__one">
-                Status :
-                <span style={{ color: " #f2c314" }}>&nbsp;Awaiting Funds</span>
-              </div>
-
-              <div className="body__one">Order ID: 87123988112398</div>
-            </div>
-          </div>
-          <div className="tradeqty__third">
-            2-way quotes
-            <div className="tq__thirdimg">
-              <img className="tq__thirdimg" src={info} alt="" />
-            </div>
-          </div>
-        </div>
+        <BuyerInfo />
         <div className="tq__bottom__header">
           <img
             style={{ width: "20px", height: "20px" }}

@@ -41,6 +41,8 @@ import BtnCom from "./screens/OrderModification/Components/BtnComponent/BtnCom";
 
 import Funds from "./screens/funds/Funds";
 import Terms from "./screens/OrderModification/AcceptanceOfTerms/Terms";
+import FreshRound from "./screens/OrderModification/AgainModifyOrder/FreshRound";
+import Modified from "./screens/OrderModification/ModifiedOrder/Modified";
 function App() {
   dotenv.config();
   return (
@@ -82,6 +84,8 @@ function App() {
           <Route exact path="/btn" component={BtnCom} />
           <Route exact path="/funds" component={Funds} />
           <Route exact path="/terms" component={Terms} />
+          <Route exact path="/freshround" component={FreshRound} />
+          <Route exact path="/modified" component={Modified} />
         </Switch>
       </div>
     </BrowserRouter>
