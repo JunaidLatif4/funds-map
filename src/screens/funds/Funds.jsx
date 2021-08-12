@@ -146,8 +146,64 @@ const Funds = () => {
                             <span> + </span> Add Bank
                         </div>
                     </div>
-                    <Button className={classes.btn1} > CONTINUE </Button>
+                    <Button className={classes.btn1} onClick={() => nextStep("fundadded")} > CONTINUE </Button>
 
+                </div>
+            </>
+        )
+    }
+    const FundsAddedStep = () => {
+        return (
+            <>
+                <div className="funds_added_slide">
+                    <div className="heading">
+                        <p> Add Funds </p>
+                        <div className="detail">
+                            Please remit funds to the below mentioned account
+                        </div>
+                    </div>
+                    <div className="transection_detail">
+                        <div className="one_div">
+                            <div className="beneficary">
+                                <p className="title"> Beneficiary </p>
+                                <div> FM's legal Name </div>
+                            </div>
+                            <div className="ifsc">
+                                <p className="title"> IFSC </p>
+                                <div> ICICI912832 </div>
+                            </div>
+                            <div className="account">
+                                <p className="title"> Account </p>
+                                <div> 123 456 789 12345 </div>
+                            </div>
+                        </div>
+                        <div className="two_div">
+                            <div className="bank">
+                                <p className="title"> Bank </p>
+                                <div> American Express </div>
+                            </div>
+                            <div className="branch">
+                                <p className="title"> Branch </p>
+                                <div> Horniman Circle </div>
+                            </div>
+                            <div className="important">
+                                <p className="important_title"> <p> IMPORTANT </p> </p>
+                                <div className="important_data">
+                                    <p className="detail"> This account number is specifically for you, it will be different for other users.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="note_box">
+                        Once you’ve remitted the funds, please wait until the funds reach our bank account. We will intimate youvia sms / email as soon as we receive the funds & the same shall be added to available funds in the Funds Tab
+                    </div>
+                    <div className="notis">
+                        <p className="important_title"> <p> IMPORTANT </p> </p>
+                        <div className="important_data">
+                            <p className="detail"> Please note that the remittance to the above account should only be made from the below mentionedaccount that you’ve selected:</p>
+                        <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div>
+                        </div>
+                    </div>
                 </div>
             </>
         )
@@ -158,6 +214,8 @@ const Funds = () => {
                 return <AddAmountStep />;
             case "selectbank":
                 return <SelectBankStep />;
+            case "fundadded":
+                return <FundsAddedStep />;
             default:
                 return <AddAmountStep />;
         }

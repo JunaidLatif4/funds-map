@@ -198,4 +198,117 @@
       }
     }
   }
+
+  .funds_added_slide {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
+
+    .heading {
+      p {
+        font-size: 1.5rem;
+      }
+      .detail {
+        font-size: 0.8rem;
+      }
+    }
+
+    .transection_detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      .title {
+        color: #aaa;
+        font-size: 1rem;
+      }
+
+      .one_div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+      .two_div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.9rem;
+
+        .important {
+          background-color: #ffdfdf;
+          border: 1px solid red;
+          border-radius: 0.5rem;
+          font-size: 0.6rem;
+
+          .important_title {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+
+            p {
+              background-color: red;
+              padding: 0.2rem 1.5rem;
+              color: white;
+            }
+          }
+          .important_data {
+            margin: 0.5rem;
+            color: red;
+          }
+        }
+      }
+    }
+
+    .note_box {
+      border-left: 15px solid #002bff;
+      border-top: 1px solid #aaa;
+      border-right: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
+      border-radius: 1rem;
+
+      padding: 0.4rem 0.7rem;
+      font-size: 0.8rem;
+
+      @media only screen and (max-width: 360px) {
+        font-size: 0.7rem;
+      }
+    }
+
+    .notis {
+      background-color: #ffdfdf;
+      border: 1px solid red;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+
+      .important_title {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+        p {
+          background-color: red;
+          padding: 0.3rem 2rem;
+          color: white;
+        }
+      }
+      .important_data {
+        margin: 1rem;
+        color: red;
+      }
+      .bank_container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.1rem;
+        font-size: 0.8rem;
+        color: black;
+        margin-top: 1rem;
+
+        .address {
+          color: #aaa;
+        }
+      }
+    }
+  }
 }
