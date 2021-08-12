@@ -82,6 +82,7 @@ const FundsData = [
 const Funds = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [presentStep, setPresentStep] = useState("addfund")
     const [value, setValue] = React.useState('female');
     const [openSlide, setOpenSlide] = useState({
         open: false,
@@ -96,6 +97,70 @@ const Funds = () => {
         setOpenSlide({
             open: true
         })
+    }
+
+    const nextStep = (props) => {
+        setPresentStep(props)
+    }
+
+    const AddAmountStep = () => {
+        return (
+            <>
+                <div className="add_funds_slider">
+                    <div className="heading">
+                        Add Funds
+                    </div>
+                    <div className="title"> Amount (Rs.) </div>
+                    <div className="amount">
+                        <input type="text" placeholder="Enter Amount" />
+                        <FormControl component="fieldset">
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                <FormControlLabel value="female" control={<Radio />} label="Net Banking  /  Debit Cards / UPI" />
+                                <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" />
+                            </RadioGroup>
+                        </FormControl>
+                    </div>
+                    <Button className={classes.btn1} onClick={() => nextStep("selectbank")}> ADD FUNDS </Button>
+                </div>
+            </>
+        )
+    }
+    const SelectBankStep = () => {
+        return (
+            <>
+                <div className="add_bank_slide">
+                    <div className="heading">
+                        <p> Add Funds </p>
+                        <div className="detail">
+                            Select the bank account from where you wish to Remit funds via NEFT / RTGS
+                        </div>
+                    </div>
+                    <div className="select_bank">
+                        <FormControl component="fieldset">
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
+                                <FormControlLabel value="female" control={<Radio />} label={<> <div className="bank_container"> <div className="name"> American Express </div> <div className="accnumber"> xxxx - xxxx - xxxx - 1234 </div> <div className="address"> Fort, Geroge Ave.63 </div> </div> </>} />
+                                {/* <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" /> */}
+                            </RadioGroup>
+                        </FormControl>
+                        <div className="add_bank">
+                            <span> + </span> Add Bank
+                        </div>
+                    </div>
+                    <Button className={classes.btn1} > CONTINUE </Button>
+
+                </div>
+            </>
+        )
+    }
+    const AddFundsStepper = (active) => {
+        switch (active) {
+            case "addfund":
+                return <AddAmountStep />;
+            case "selectbank":
+                return <SelectBankStep />;
+            default:
+                return <AddAmountStep />;
+        }
     }
 
     const Changeradio = (event) => {
@@ -189,22 +254,7 @@ const Funds = () => {
                 </div>
                 {openSlide.open &&
                     <BottomSlide bottomSlide={() => setOpenSlide(false)}>
-                        <div className="add_funds_slider">
-                            <div className="heading">
-                                Add Funds
-                            </div>
-                            <div className="title"> Amount (Rs.) </div>
-                            <div className="amount">
-                                <input type="text" placeholder="Enter Amount" />
-                                <FormControl component="fieldset">
-                                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={Changeradio}>
-                                        <FormControlLabel value="female" control={<Radio />} label="Net Banking  /  Debit Cards / UPI" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Offline NEFT /  RTGS" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </div>
-                            <Button className={classes.btn1} > ADD FUNDS </Button>
-                        </div>
+                        {AddFundsStepper(presentStep)}
                     </BottomSlide>
                 }
             </div>
