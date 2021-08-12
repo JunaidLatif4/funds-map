@@ -36,7 +36,7 @@ const arr = [
   },
 ];
 
-const Map = (val) => {
+const Demat = (val) => {
   return (
     <>
       <div className="ad__container">
@@ -72,7 +72,7 @@ const Map = (val) => {
 };
 
 const AddedDemet = () => {
-  return <>{arr.map(Map)}</>;
+  return <>{arr.map(Demat)}</>;
 };
 
 export default AddedDemet;
