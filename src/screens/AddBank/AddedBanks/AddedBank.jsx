@@ -61,8 +61,8 @@ const Bank = (val) => {
   );
 };
 
-const AddedBank = () => {
-  return <>{arr.map(Bank)}</>;
+const AddedBank = ({ banks }) => {
+  return <>{banks?.map(Bank)}</>;
 };
 
 export default AddedBank;

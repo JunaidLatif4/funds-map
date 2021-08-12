@@ -39,6 +39,7 @@ import ChoseBank from "./screens/OrderModification/ChoseBank/ChoseBank";
 import BtnCom from "./screens/OrderModification/Components/BtnComponent/BtnCom";
 // import Funds from "./screens/funds/Funds";
 
+import Funds from "./screens/funds/Funds";
 function App() {
   dotenv.config();
   return (
@@ -69,6 +70,7 @@ function App() {
           <Route exact path="/adddemet" component={AddDemet} />
           <Route exact path="/uploaddemet" component={UploadDemet} />
           <Route exact path="/maindemet" component={MainDemet} />
+
           <Route exact path="/menu" component={Menu} />
           {/* <Route exact path="/funds" component={Funds} /> */}
           <Route exact path="/ordermodi" component={OrderModi} />
@@ -77,6 +79,7 @@ function App() {
           <Route exact path="/reqfund" component={Reqfund} />
           <Route exact path="/chosebank" component={ChoseBank} />
           <Route exact path="/btn" component={BtnCom} />
+          <Route exact path="/funds" component={Funds} />
         </Switch>
       </div>
     </BrowserRouter>
