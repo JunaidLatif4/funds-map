@@ -80,9 +80,7 @@ const Map = (val) => {
 };
 
 const AddedDemet = () => {
-  return <>{arr.map(() => {
-    <Map />
-  })}</>;
+  return <>{arr.map(Map)}</>;
 };
 
 export default AddedDemet;
