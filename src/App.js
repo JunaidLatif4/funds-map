@@ -29,8 +29,8 @@ import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 import MainDemet from "./screens/Demet/mainDemet";
 // From Junaid
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
-import Funds from "./components/funds/Funds";
-import FundsTransfer from './screens/funds/FundsTransfer'
+import Funds from "./screens/funds/Funds";
+import FundsTransfer from './screens/funds/FundsTransfer';
 // From Zahid
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 // From Hassan

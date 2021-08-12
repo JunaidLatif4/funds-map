@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "../../../components/button/Button";
 import BottomSlide from "../../../components/bottom-slide/BottomSlide";
 import BSHeader from "../../profile/components/bs-header/BSHeader";
-import Bankinfo from "./BankInfo";
+import Bankinfo from "./Bankinfo";
 import Bankdata from "../Bankinfo-data/Bankdata";
 import BankSuccess from "../Banksuccess/bsuccess";
 import {
