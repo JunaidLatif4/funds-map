@@ -12,26 +12,16 @@ import {
   otp_generate,
   bank_validator,
   bank_save,
-  test_signin
+  test_signin,
 } from "../../../api/profile";
 
 const BankMain = ({ bank, setBank, step, setStep }) => {
-<<<<<<< HEAD
   const [ifsc, setIfsc] = useState("");
   const [accountnumber, setAccountnumber] = useState("");
   const [data_for_step2, setdata_for_step2] = useState({});
   const [validationkey, setValidationkey] = useState(null);
   const [bankres, setbankres] = useState(null);
   const [ifsc_res, setifsc_res] = useState(null);
-=======
-
-  const [ifsc, setIfsc] = useState("")
-  const [accountnumber, setAccountnumber] = useState("")
-  const [data_for_step2, setdata_for_step2] = useState({})
-  const [validationkey, setValidationkey] = useState(null)
-  const [bankres, setbankres] = useState(null)
-  const [ifsc_res, setifsc_res] = useState(null)
->>>>>>> d3afdb18b154cd3956d65bee20b9b37676c8b579
 
   const [otp, setOtp] = useState("");
   let data_for_step3 = {};
@@ -67,34 +57,15 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     setIfsc(val);
 
     if (val?.length == 11) {
-<<<<<<< HEAD
       let ifsc_v = await ifsc_validator(val);
       if (ifsc_v.error) {
         alert("error in ifsc validation2");
       } else {
         setifsc_res(ifsc_v?.data?.data);
         console.log(ifsc_v);
-=======
-      let token = await test_signin()
-      if (token?.error) {
-        alert("error while signin")
-      }
-      else {
-        localStorage.setItem("token", token.data.data)
-        console.log(token?.data.data)
-        let ifsc_v = await ifsc_validator(val, token?.data.data)
-        if (ifsc_v.error) {
-          alert("error in ifsc validation2")
-        }
-        else {
-          setifsc_res(ifsc_v?.data?.data)
-          console.log(ifsc_v)
-        }
->>>>>>> d3afdb18b154cd3956d65bee20b9b37676c8b579
       }
     }
   };
-
 
   const handleStep2 = async () => {
     let save_Account = await bank_save(
@@ -114,7 +85,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   };
 
   const handleStep3 = () => {
-    alert("success")
+    alert("success");
   };
 
   return (

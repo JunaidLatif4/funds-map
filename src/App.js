@@ -29,21 +29,19 @@ import UploadDemet from "./screens/Demet/UploadDemet/UploadDemet";
 import MainDemet from "./screens/Demet/mainDemet";
 // From Junaid
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
-import Funds from "./components/funds/Funds";
+import Funds from "./screens/funds/Funds";
 import FundsTransfer from "./screens/funds/FundsTransfer";
 // From Zahid
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
-// From Hassan
 import Cordermodi from "./screens/OrderModification/CnfrmOrderModi/Cordermodi";
 import Mtradeqty from "./screens/OrderModification/MinimumTradeQuantity/Mtradeqty";
 import Reqfund from "./screens/OrderModification/RequireFunds/Reqfund";
-import ChoseBank from "./screens/OrderModification/ChoseBank/ChoseBank";
-import BtnCom from "./screens/OrderModification/Components/BtnComponent/BtnCom";
-
-import Funds from "./screens/funds/Funds";
 import Terms from "./screens/OrderModification/AcceptanceOfTerms/Terms";
 import FreshRound from "./screens/OrderModification/AgainModifyOrder/FreshRound";
 import Modified from "./screens/OrderModification/ModifiedOrder/Modified";
+import ChoseBank from "./screens/OrderModification/ChoseBank/ChoseBank";
+// From Hassan
+
 function App() {
   dotenv.config();
   return (
@@ -80,16 +78,14 @@ function App() {
           <Route exact path="/funds/transfer" component={FundsTransfer} />
           // From Zahid
           <Route exact path="/ordermodi" component={OrderModi} />
-          // From Hassan
           <Route exact path="/cordermodi" component={Cordermodi} />
           <Route exact path="/mtradeqty" component={Mtradeqty} />
           <Route exact path="/reqfund" component={Reqfund} />
-          <Route exact path="/chosebank" component={ChoseBank} />
-          <Route exact path="/btn" component={BtnCom} />
-          <Route exact path="/funds" component={Funds} />
+          <Route exact path="/modified" component={Modified} />
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/freshround" component={FreshRound} />
-          <Route exact path="/modified" component={Modified} />
+          // From Hassan
+          <Route exact path="/chosebank" component={ChoseBank} />
         </Switch>
       </div>
     </BrowserRouter>
