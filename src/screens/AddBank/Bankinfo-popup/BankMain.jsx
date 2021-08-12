@@ -23,68 +23,48 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   const [validationkey, setValidationkey] = useState(null);
   const [bankres, setbankres] = useState(null);
   const stateToken = useSelector((state) => state.user.token);
+  const [ifsc_res, setifsc_res] = useState(null);
 
   const [otp, setOtp] = useState("");
   let data_for_step3 = {};
 
   const handleStep1 = async () => {
-    let ifsc_v = await ifsc_validator(ifsc, stateToken);
-    if (ifsc_v.error) {
-      toast.error("Failed ifsc validation", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+    let bank = await bank_validator(ifsc, accountnumber);
+    setbankres(bank);
+    if (bank.error) {
+      alert("error in bank validation1");
     } else {
-      console.log(ifsc_v);
-      let bank = await bank_validator(ifsc, accountnumber, stateToken);
-      setbankres(bank);
-      if (bank.error) {
-        toast.error("Bank validation Failed", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+      setValidationkey(bank.data.data.validationKey);
+      console.log(bank);
+      let otp = await otp_generate(validationkey, ifsc, accountnumber);
+      if (otp.error) {
+        alert("error in otp generate");
       } else {
-        setValidationkey(bank.data.data.validationKey);
-        console.log(bank);
-        let otp = await otp_generate(
-          validationkey,
-          ifsc,
-          accountnumber,
-          stateToken
-        );
-        if (otp.error) {
-          toast.error("OTP is not generated", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          console.log(otp);
-          setdata_for_step2({
-            ac: accountnumber,
-            bankName: bank.data?.data?.bankName,
-            bankBranch: bank.data?.data?.branch,
-            accountHolderName: bank.data?.data?.accountHolderName,
-            validationkey: validationkey,
-            ifsc: ifsc,
-          });
-          console.log(data_for_step2);
-          setStep("step2");
-        }
+        console.log(otp);
+        setdata_for_step2({
+          ac: accountnumber,
+          bankName: bank.data?.data?.bankName,
+          bankBranch: bank.data?.data?.branch,
+          accountHolderName: bank.data?.data?.accountHolderName,
+          validationkey: validationkey,
+          ifsc: ifsc,
+        });
+        console.log(data_for_step2);
+        setStep("step2");
+      }
+    }
+  };
+
+  const handel_ifsc = async (val) => {
+    setIfsc(val);
+
+    if (val?.length == 11) {
+      let ifsc_v = await ifsc_validator(val);
+      if (ifsc_v.error) {
+        alert("error in ifsc validation2");
+      } else {
+        setifsc_res(ifsc_v?.data?.data);
+        console.log(ifsc_v);
       }
     }
   };
@@ -135,7 +115,13 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
       <BottomSlide closeBSlider={bank}>
         <BSHeader text="Add Bank" setCloseBSlider={() => setBank(false)} />
         {step == "step1" && (
-          <Bankinfo setIfsc={setIfsc} setAccountnumber={setAccountnumber} />
+          <Bankinfo
+            setIfsc={setIfsc}
+            setAccountnumber={setAccountnumber}
+            ifsc={ifsc}
+            handel_ifsc={handel_ifsc}
+            ifsc_res={ifsc_res}
+          />
         )}
         {step == "step2" && (
           <Bankdata data_for_step2={data_for_step2} setOtp={setOtp} />

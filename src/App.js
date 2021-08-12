@@ -32,49 +32,45 @@ import MainDemet from "./screens/Demet/mainDemet";
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 // import Menu from "./components/client-partner-menu/ClientPartnerMenu";
-import Funds from "./components/funds/Funds";
 import { Provider } from "react-redux";
 
+import Funds from "./screens/funds/Funds";
 function App() {
   dotenv.config();
   return (
     <BrowserRouter>
-      <Provider store={store}>
-        <div className="App">
-          <div className="app__container">
-            <Switch>
-              <Route exact path="/signin" component={Signin} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/otp" component={Otp} />
-              <Route exact path="/evar" component={EVar} />
-              <Route exact path="/notify" component={Notify} />
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/details" component={Details} />
-              <Route exact path="/psignup" component={PSignup} />
-              <Route exact path="/getstarted" component={Gstart} />
-              <Route exact path="/customweb" component={Customweb} />
-              <Route exact path="/dfee" component={Dfee} />
-              <Route exact path="/addlogo" component={Addlogo} />
-              <Route exact path="/motp" component={Motp} />
-              <Route exact path="/search" component={SearchPage} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/bankinfo" component={BankMain} />
-              <Route exact path="/bankdata" component={Bankdata} />
-              <Route exact path="/bsuccess" component={bsuccess} />
-              <Route exact path="/evar-redirect" component={EvarRedirect} />
-              <Route exact path="/addedbank" component={AddedBank} />
-              <Route exact path="/addeddemet" component={AddedDemet} />
-              <Route exact path="/adddemet" component={AddDemet} />
-              <Route exact path="/uploaddemet" component={UploadDemet} />
-              <Route exact path="/maindemet" component={MainDemet} />
+      <div className="App">
+        <Switch>
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/otp" component={Otp} />
+          <Route exact path="/evar" component={EVar} />
+          <Route exact path="/notify" component={Notify} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/details" component={Details} />
+          <Route exact path="/psignup" component={PSignup} />
+          <Route exact path="/getstarted" component={Gstart} />
+          <Route exact path="/customweb" component={Customweb} />
+          <Route exact path="/dfee" component={Dfee} />
+          <Route exact path="/addlogo" component={Addlogo} />
+          <Route exact path="/motp" component={Motp} />
+          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/bankinfo" component={BankMain} />
+          <Route exact path="/bankdata" component={Bankdata} />
+          <Route exact path="/bsuccess" component={bsuccess} />
+          <Route exact path="/evar-redirect" component={EvarRedirect} />
+          <Route exact path="/addedbank" component={AddedBank} />
+          <Route exact path="/addeddemet" component={AddedDemet} />
+          <Route exact path="/adddemet" component={AddDemet} />
+          <Route exact path="/uploaddemet" component={UploadDemet} />
+          <Route exact path="/maindemet" component={MainDemet} />
 
-              <Route exact path="/menu" component={Menu} />
-              <Route exact path="/ordermodi" component={OrderModi} />
-              <Route exact path="/funds" component={Funds} />
-            </Switch>
-          </div>
-        </div>
-      </Provider>
+          <Route exact path="/menu" component={Menu} />
+          <Route exact path="/ordermodi" component={OrderModi} />
+          <Route exact path="/funds" component={Funds} />
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

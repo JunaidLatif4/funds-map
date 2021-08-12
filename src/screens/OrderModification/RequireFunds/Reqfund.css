@@ -1,0 +1,42 @@
+.reqfund__container {
+  padding: 0 15px;
+}
+.reqfund__header {
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 0px#0000004a;
+  padding: 11px 19px;
+  margin: 15px 0;
+  font-size: 11px;
+}
+.reqfund__req {
+  font-size: 11px;
+}
+
+.reqfund__component {
+  border: 1px solid black;
+  display: flex;
+  min-height: 35px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 25px 11px;
+}
+.reqfund__left {
+  width: 4%;
+  background-color: blue;
+  margin-right: 12px;
+}
+.reqfund__right {
+  font-size: 14px;
+  width: 95%;
+  padding: 6px 0;
+
+  align-items: center;
+  justify-content: center;
+}
+.reqfund__confirm {
+  font-size: 12px;
+  display: flex;
+}
+.radio__confirm {
+  margin-top: 12px;
+}

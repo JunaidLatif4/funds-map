@@ -1,0 +1,80 @@
+.tradeqty__container {
+  padding: 0 12px;
+}
+
+.tradeqty__heading {
+  font-size: 23px;
+}
+
+.tradeqty__header {
+  display: flex;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px 0px#0000004a;
+  padding: 10px 4px;
+  margin: 15px 0;
+}
+.tradeqty__img {
+  width: 60px;
+  height: 60px;
+}
+.tradeqty__second {
+  font-size: 10px;
+  margin-left: 22px;
+}
+.tradeqty__third {
+  font-size: 10px;
+  background: #b1e8ff;
+  display: flex;
+  margin-right: 3px;
+
+  height: 18px;
+  border-radius: 12px;
+  padding: -4px 0;
+
+  padding: 2px 5px;
+  box-sizing: border-box;
+}
+.tq__thirdimg {
+  height: 15px;
+  width: 10px;
+  margin-left: 2px;
+}
+
+.tq__bottom__header {
+  display: flex;
+}
+
+.tq__para {
+  font-size: 14px;
+  margin-left: 3px;
+  color: grey;
+}
+
+.tq__body__heading {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.tq__body__para {
+  font-size: 10px;
+  color: grey;
+}
+.tq__input {
+  margin-top: 15px;
+  font-size: 10px;
+  /* margin-bottom: 80px; */
+}
+.tq__bottom__para1 {
+  margin: 2px 0;
+}
+
+.psignup__confirm {
+  margin-top: 105px;
+  display: flex;
+}
+.Psignup__confirmline {
+  font-size: 9px;
+  margin-left: 8px;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}

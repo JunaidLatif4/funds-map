@@ -165,7 +165,9 @@ export const pan_details = async (token) => {
   return resolved;
 };
 
-export const ifsc_validator = async (ifsc, token) => {
+//******   Bank api   *******//
+
+export const ifsc_validator = async (ifsc) => {
   const resolved = {
     data: null,
     error: null,
@@ -175,7 +177,7 @@ export const ifsc_validator = async (ifsc, token) => {
       url: "/api/v1/users/banks/ifsc/" + ifsc,
       method: "get",
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
         "Content-Type": "application/json",
       },
     });
@@ -189,7 +191,7 @@ export const ifsc_validator = async (ifsc, token) => {
   return resolved;
 };
 
-export const bank_validator = async (ifsc, accountnumber, token) => {
+export const bank_validator = async (ifsc, accountnumber) => {
   const resolved = {
     data: null,
     error: null,
@@ -199,7 +201,7 @@ export const bank_validator = async (ifsc, accountnumber, token) => {
       url: "/api/v1/users/banks/validate",
       method: "post",
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
         "Content-Type": "application/json",
       },
       data: {
@@ -217,12 +219,7 @@ export const bank_validator = async (ifsc, accountnumber, token) => {
   return resolved;
 };
 
-export const otp_generate = async (
-  validationkey,
-  ifsc,
-  accountNumber,
-  token
-) => {
+export const otp_generate = async (validationkey) => {
   console.log(validationkey);
   const resolved = {
     data: null,
@@ -233,12 +230,8 @@ export const otp_generate = async (
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "post",
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
         "Content-Type": "application/json",
-      },
-      data: {
-        ifsc: ifsc,
-        bankAccountNumber: accountNumber,
       },
     });
   } catch (error) {
@@ -257,8 +250,7 @@ export const bank_save = async (
   accountHolderName,
   bankName,
   accountNumber,
-  ifsc,
-  token
+  ifsc
 ) => {
   console.log(
     otp,
@@ -275,10 +267,10 @@ export const bank_save = async (
   };
   try {
     resolved.data = await axios({
-      url: "/api/v1/otp/generate?txnId=" + validationkey,
+      url: "/api/v1/users/banks/",
       method: "get",
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
         "Content-Type": "application/json",
       },
       data: {
@@ -288,6 +280,117 @@ export const bank_save = async (
         accountHolderName: accountHolderName,
         validationKey: validationkey,
         otp: otp,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const get_banks = async () => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/users/banks/",
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+//******   Demat api   *******//
+
+export const add_demat = async (data) => {
+  console.log(data);
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/demat/upload",
+      method: "post",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        "Content-Type": "multipart/form-data",
+      },
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const get_demats = async () => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/demat/",
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const confirm_demat = async (
+  clientid,
+  depositoryid,
+  validationkey,
+  otps
+) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/demat/confirm",
+      method: "get",
+      headers: {
+        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        "Content-Type": "application/json",
+      },
+      data: {
+        clientId: clientid,
+        depositoryId: depositoryid,
+        validationKey: validationkey,
+        otp: otps,
       },
     });
   } catch (error) {

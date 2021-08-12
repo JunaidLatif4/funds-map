@@ -19,6 +19,7 @@ import MainDemet from "../Demet/mainDemet";
 import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { get_banks } from "../../api/profile";
 
 const Profile = () => {
   const history = useHistory();
@@ -27,6 +28,7 @@ const Profile = () => {
   const [verifyMobile, setVerifyMobile] = useState(false);
   const [mobile, setMobile] = useState(null);
   const [bank, setBank] = useState(false);
+  const [addedBanks, setAddedbanks] = useState([]);
   const [demat, setDemat] = useState(false);
   const [idty, setIdty] = useState(false);
   const [step, setStep] = useState("step1");
@@ -39,10 +41,15 @@ const Profile = () => {
   });
   const stateToken = useSelector((state) => state.user.token);
 
-  // const setbank = (p) => {
-  //   console.log(bank)
-  //   setBank(p)
-  // }
+  const get_banks1 = async () => {
+    const banks = await get_banks();
+    if (banks.error) {
+      alert("error in getting banks");
+    } else {
+      console.log(banks);
+      setAddedbanks(banks.data?.data);
+    }
+  };
 
   // const setdemat = (p) => {
   //   console.log("vvv", demat)
@@ -95,6 +102,10 @@ const Profile = () => {
     get_details();
   }, []);
 
+  useEffect(() => {
+    get_banks1();
+  }, []);
+
   return (
     <div className="profile__screen">
       <ToastContainer
@@ -135,6 +146,7 @@ const Profile = () => {
           body="bank"
           setBank={setBank}
           setDemat={setDemat}
+          banks={addedBanks}
         />
         <DropCard
           icon={profile}
