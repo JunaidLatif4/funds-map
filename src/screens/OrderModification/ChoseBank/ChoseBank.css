@@ -5,6 +5,9 @@
   border-radius: 4px;
   margin: 10px 0;
 }
+.choseBank__container {
+  width: 90%;
+}
 .chosebank__radio__confirm {
   margin-top: 8px;
   font-size: 10px;

@@ -31,6 +31,14 @@ import MainDemet from "./screens/Demet/mainDemet";
 import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 // import Menu from "./components/client-partner-menu/ClientPartnerMenu";
+// import Funds from "./components/funds/Funds";
+import Cordermodi from "./screens/OrderModification/CnfrmOrderModi/Cordermodi";
+import Mtradeqty from "./screens/OrderModification/MinimumTradeQuantity/Mtradeqty";
+import Reqfund from "./screens/OrderModification/RequireFunds/Reqfund";
+import ChoseBank from "./screens/OrderModification/ChoseBank/ChoseBank";
+import BtnCom from "./screens/OrderModification/Components/BtnComponent/BtnCom";
+// import Funds from "./screens/funds/Funds";
+
 import Funds from "./screens/funds/Funds";
 import TestSignin from "./components/test-signin/TestSignin";
 function App() {
@@ -65,7 +73,13 @@ function App() {
           <Route exact path="/maindemet" component={MainDemet} />
 
           <Route exact path="/menu" component={Menu} />
+          {/* <Route exact path="/funds" component={Funds} /> */}
           <Route exact path="/ordermodi" component={OrderModi} />
+          <Route exact path="/cordermodi" component={Cordermodi} />
+          <Route exact path="/mtradeqty" component={Mtradeqty} />
+          <Route exact path="/reqfund" component={Reqfund} />
+          <Route exact path="/chosebank" component={ChoseBank} />
+          <Route exact path="/btn" component={BtnCom} />
           <Route exact path="/funds" component={Funds} />
           <Route exact path="/test-signin" component={TestSignin} />
         </Switch>
