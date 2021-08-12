@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AddedDemet.css";
-import InfoIcon from "@material-ui/icons/Info";
+import info from "../../../Assets/imgs/info.svg";
+import { delete_demat } from "../../../api/profile";
+
+import { ToastContainer, toast } from "react-toastify";
 
 const arr = [
   {
@@ -36,41 +39,54 @@ const arr = [
   },
 ];
 
-const Map = (val) => {
+const Demat = (val, index) => {
+  const handle_delete = async (index) => {
+    let delete_res = await delete_demat(val.clientId, val.depositoryId);
+    if (delete_res.error) {
+      console.log("error in deleting demat");
+    } else {
+      toast.success("Deleted Successfuly", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <>
       <div className="ad__container">
         <div className="addedbank__header">
-          <div className="addedbank__left">{val.user}</div>
+          <div className="addedbank__left">{index + 1}</div>
           <div className="addedbank__right">
             <div className="ad__para1">
-              <p className="ad__p1name">{val.name}</p>
-              <p className="ad__delbtn">{val.btn}</p>
+              <p className="ad__p1name">Depository</p>
+              <p className="ad__delbtn" onClick={() => handle_delete(index)}>
+                Delete
+              </p>
             </div>
             <div className="ad__para2">
-              <p className="ad__p2name">{val.ls}</p>
+              <p className="ad__p2name">{val.depository}</p>
               <div
                 className="active__class"
                 style={{ display: "flex", position: "relative" }}
               >
-                <p className="ad__active">{val.status}</p>
-                <InfoIcon
-                  style={{
-                    color: " #524848f2",
-                    top: "4.2px",
-                    position: "absolute",
-                    left: " 38px",
-                    fontSize: "13px",
-                  }}
-                />
+                <p className="ad__active">{val.accountStatus}</p>
+                <img className="om__thirdimg" src={info} alt="" />
               </div>
             </div>
             <div className="ad__para1">
-              <p className="ad__p1name">{val.id}</p>
-              <Link className="ad__cmr">{val.cmr}</Link>
+              <p className="ad__p1name">DP ID / Client ID</p>
+              <Link className="ad__cmr">CMR</Link>
             </div>
             <div className="ad__para4">
-              <p className="ad__p4name">{val.number}</p>
+              <p className="ad__p4name">
+                {val.depositoryId}
+                {val.clientId}
+              </p>
             </div>
           </div>
         </div>
@@ -79,8 +95,8 @@ const Map = (val) => {
   );
 };
 
-const AddedDemet = () => {
-  return <>{arr.map(Map)}</>;
+const AddedDemet = ({ demats }) => {
+  return <>{demats.map(Demat)}</>;
 };
 
 export default AddedDemet;

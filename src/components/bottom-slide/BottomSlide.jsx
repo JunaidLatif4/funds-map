@@ -10,9 +10,11 @@ const BottomSlide = ({ children, text, bottomSlide }) => {
       <div
         className={`bottom__slide open__bslide `}
       >
-        <div className="bottom__slide_close">
-          <CloseIcon className="bsh__icon" onClick={bottomSlide ? bottomSlide : () => setCloseIt(true)} />
-        </div>
+        {
+          bottomSlide && <div className="bottom__slide_close">
+            <CloseIcon className="bsh__icon" onClick={bottomSlide ? bottomSlide : () => setCloseIt(true)} />
+          </div>
+        }
         {children}
       </div>
     </div>

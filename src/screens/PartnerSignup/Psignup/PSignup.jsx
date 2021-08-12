@@ -211,7 +211,7 @@ const PSignup = () => {
               Enter contact persons's mobile number
             </p>
             <Mnumber setMobile={setMobile} />
-            <div className="psignup__confirm">
+            <div className="psignup__confirmbox">
               <div className="psignup__checkbox">
                 <Checkbox
                   defaultChecked

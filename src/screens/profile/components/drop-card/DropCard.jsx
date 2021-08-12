@@ -5,9 +5,22 @@ import downarrow from "../../../../Assets/imgs/downarrow.svg";
 import IndentityInfo from "../indentity-info/IndentityInfo";
 import AddBtn from "../add-btn/AddBtn";
 import Completed from "../completed/Completed";
-import AddedBank from '../../../AddBank/AddedBanks/AddedBank'
+import AddedBank from "../../../AddBank/AddedBanks/AddedBank";
+import AddedDemet from "../../../Demet/AddedDemet/AddedDemet";
 
-const DropCard = ({ icon, text, body, setIdty, data, setBank, setDemat, open, basicInfo, banks }) => {
+const DropCard = ({
+  icon,
+  text,
+  body,
+  setIdty,
+  data,
+  setBank,
+  setDemat,
+  open,
+  basicInfo,
+  banks,
+  demats,
+}) => {
   const [show, setShow] = useState(false);
   useEffect(() => {
     open && setShow(true);
@@ -34,8 +47,22 @@ const DropCard = ({ icon, text, body, setIdty, data, setBank, setDemat, open, ba
       >
         {body === "identity" && <IndentityInfo data={data} setIdty={setIdty} />}
         {body === "completed" && <Completed basicInfo={basicInfo} />}
-        {body === "bank" && <div><AddedBank banks={banks} /><AddBtn text="Add Bank" setBank={setBank} setDemat={setDemat} /></div>}
-        {body === "demat" && <AddBtn text="Add Demat Account" setBank={setBank} setDemat={setDemat} />}
+        {body === "bank" && (
+          <div>
+            <AddedBank banks={banks} />
+            <AddBtn text="Add Bank" setBank={setBank} setDemat={setDemat} />
+          </div>
+        )}
+        {body === "demat" && (
+          <div>
+            <AddedDemet demats={demats} />{" "}
+            <AddBtn
+              text="Add Demat Account"
+              setBank={setBank}
+              setDemat={setDemat}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

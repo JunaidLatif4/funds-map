@@ -177,7 +177,7 @@ export const ifsc_validator = async (ifsc) => {
       url: "/api/v1/users/banks/ifsc/" + ifsc,
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
     });
@@ -201,7 +201,7 @@ export const bank_validator = async (ifsc, accountnumber) => {
       url: "/api/v1/users/banks/validate",
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       data: {
@@ -230,7 +230,7 @@ export const otp_generate = async (validationkey) => {
       url: "/api/v1/otp/generate?txnId=" + validationkey,
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
     });
@@ -268,9 +268,9 @@ export const bank_save = async (
   try {
     resolved.data = await axios({
       url: "/api/v1/users/banks/",
-      method: "get",
+      method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       data: {
@@ -302,7 +302,56 @@ export const get_banks = async () => {
       url: "/api/v1/users/banks/",
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const get_demat = async () => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/demat/",
+      method: "get",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const delete_bank = async (accountno, ifsc) => {
+  console.log(accountno, ifsc);
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url: "/api/v1/users/banks?accountNo=" + accountno + "&ifsc=" + ifsc,
+      method: "delete",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
     });
@@ -329,7 +378,7 @@ export const add_demat = async (data) => {
       url: "/api/v1/demat/upload",
       method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "multipart/form-data",
       },
       data: data,
@@ -354,7 +403,7 @@ export const get_demats = async () => {
       url: "/api/v1/demat/",
       method: "get",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
     });
@@ -374,16 +423,17 @@ export const confirm_demat = async (
   validationkey,
   otps
 ) => {
+  console.log(clientid, depositoryid, validationkey, otps);
   const resolved = {
     data: null,
     error: null,
   };
   try {
     resolved.data = await axios({
-      url: "/api/v1/demat/confirm",
-      method: "get",
+      url: "/api/v1/demat/",
+      method: "post",
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJramdramsiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9PUkdBTklTQVRJT05BTF9QQVJUTkVSIn1dLCJpYXQiOjE2Mjg3MTA0NTMsImV4cCI6MTYyODcxMzQ1M30.x49oMe1Z-p2QObLhg0lj64kl_PQ_ZjDcUp8GiYme9AM`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       data: {
@@ -402,3 +452,58 @@ export const confirm_demat = async (
   }
   return resolved;
 };
+
+export const delete_demat = async (clientid, depositoryid) => {
+  console.log(clientid, depositoryid);
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url:
+        "/api/v1/demat/?clientId=" + clientid + "&depositoryId=" + depositoryid,
+      method: "delete",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+////*** test signIn ***////
+
+export const test_signin = async () => {
+  console.log("ttest");
+  const resolved = {
+    data: null,
+    error: null,
+  };
+  try {
+    resolved.data = await axios({
+      url:
+        "/api/v1/users/signin?username=" +
+        "hassnaatfarooq" +
+        "&password=" +
+        "pass",
+      method: "post",
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    }
+    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+///***  ***///

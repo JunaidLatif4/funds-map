@@ -5,16 +5,47 @@ import "./AddBtn.css";
 
 const AddBtn = ({ text, click, setBank, setDemat }) => {
   return (
-
     <div className="add__btn" onClick={click}>
-      <Link className="add__btn_iconbox">
+      <Link
+        className="add__btn_iconbox"
+        onClick={
+          text == "Add Bank"
+            ? () => {
+                setBank(true);
+                setDemat(false);
+              }
+            : () => {
+                setDemat(true);
+                setBank(false);
+              }
+        }
+      >
         <AddCircleOutlineIcon className="add__btn_icon" />
       </Link>
-      {text == "Add Bank" && <div onClick={() => { setBank(true); setDemat(false) }} className="add__btn_text">{text}</div>}
-      {text == "Add Demat Account" && <div onClick={() => { setDemat(true); setBank(false) }} className="add__btn_text">{text}</div>}
+      {text == "Add Bank" && (
+        <div
+          onClick={() => {
+            setBank(true);
+            setDemat(false);
+          }}
+          className="add__btn_text"
+        >
+          {text}
+        </div>
+      )}
+      {text == "Add Demat Account" && (
+        <div
+          onClick={() => {
+            setDemat(true);
+            setBank(false);
+          }}
+          className="add__btn_text"
+        >
+          {text}
+        </div>
+      )}
     </div>
   );
 };
 
 export default AddBtn;
-

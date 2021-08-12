@@ -12,6 +12,7 @@ import {
   otp_generate,
   bank_validator,
   bank_save,
+  test_signin,
 } from "../../../api/profile";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -22,7 +23,6 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   const [data_for_step2, setdata_for_step2] = useState({});
   const [validationkey, setValidationkey] = useState(null);
   const [bankres, setbankres] = useState(null);
-  const stateToken = useSelector((state) => state.user.token);
   const [ifsc_res, setifsc_res] = useState(null);
 
   const [otp, setOtp] = useState("");
@@ -32,13 +32,29 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     let bank = await bank_validator(ifsc, accountnumber);
     setbankres(bank);
     if (bank.error) {
-      alert("error in bank validation1");
+      toast.error(bank.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       setValidationkey(bank.data.data.validationKey);
       console.log(bank);
       let otp = await otp_generate(validationkey, ifsc, accountnumber);
       if (otp.error) {
-        alert("error in otp generate");
+        toast.error(otp.error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         console.log(otp);
         setdata_for_step2({
@@ -59,12 +75,35 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     setIfsc(val);
 
     if (val?.length == 11) {
-      let ifsc_v = await ifsc_validator(val);
-      if (ifsc_v.error) {
-        alert("error in ifsc validation2");
+      let token = await test_signin();
+      if (token?.error) {
+        toast.error(token.error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
-        setifsc_res(ifsc_v?.data?.data);
-        console.log(ifsc_v);
+        localStorage.setItem("token", token.data.data);
+        console.log(token?.data.data);
+        let ifsc_v = await ifsc_validator(val, token?.data.data);
+        if (ifsc_v.error) {
+          toast.error(ifsc_v.error, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          setifsc_res(ifsc_v?.data?.data);
+          console.log(ifsc_v);
+        }
       }
     }
   };
@@ -76,8 +115,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
       bankres.data?.data?.accountHolderName,
       bankres.data?.data?.bankName,
       accountnumber,
-      ifsc,
-      stateToken
+      ifsc
     );
     console.log(save_Account);
     if (save_Account.error) {
@@ -96,7 +134,15 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   };
 
   const handleStep3 = () => {
-    setStep("step1");
+    toast.success("Success", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (

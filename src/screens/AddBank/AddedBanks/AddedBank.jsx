@@ -1,5 +1,8 @@
 import React from "react";
+import { delete_bank } from "../../../api/profile";
 import "./AddedBank.css";
+
+import { ToastContainer, toast } from "react-toastify";
 
 const arr = [
   {
@@ -29,30 +32,66 @@ const arr = [
 ];
 
 const Bank = (val) => {
+  const handle_delete = async (index) => {
+    let delete_res = await delete_bank(
+      val.bankAccountId.bankAccountNumber,
+      val.bankAccountId.ifsc
+    );
+    if (delete_res.error) {
+      console.log("error in deleting demat");
+    } else {
+      toast.success("Deleted Successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <div className="addedbank__container">
         <div className="addedbank__header">
           <div className="addedbank__left">{val.user}</div>
           <div className="addedbank__right">
             <div className="user__info">
               <div className="user__w-name">
-                <p className="ab__w-name">{val.name}</p>
-                <p className="ab__delbtn">{val.btn}</p>
+                <p className="ab__w-name">Name</p>
+                <p className="ab__delbtn" onClick={() => handle_delete()}>
+                  Delete
+                </p>
               </div>
-              <div className="ab__name">{val.username}</div>
+              <div className="ab__name">{val.accountHolderName}</div>
               <div className="user__w-name">
-                <p className="ab__w-name">{val.bname}</p>
+                <p className="ab__w-name">Bank</p>
               </div>
-              <div className="ab__name">{val.bankname}</div>
+              <div className="ab__name">{val.bankName}</div>
               <div className="user__w-name">
-                <p className="ab__w-name">{val.branch}</p>
+                <p className="ab__w-name">Branch</p>
               </div>
-              <div className="ab__name">{val.branchname}</div>
+              <div className="ab__name">{val.branchName}</div>
               <div className="user__w-name">
-                <p className="ab__w-name">{val.account}</p>
+                <p className="ab__w-name">Account Number</p>
               </div>
-              <div className="ab__name">{val.accountnumber}</div>
+              <div className="ab__name">
+                XXXX - XXXX - XXXX -{" "}
+                {val.bankAccountId.bankAccountNumber.substr(10, 4)}
+              </div>
             </div>
           </div>
         </div>

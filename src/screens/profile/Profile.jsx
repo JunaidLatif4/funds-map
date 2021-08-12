@@ -11,6 +11,7 @@ import {
   mobile_verification,
   profile_details,
   verify_otp,
+  get_demat,
 } from "../../api/profile";
 import { useHistory } from "react-router-dom";
 import { add_mobile } from "../../api/auth";
@@ -29,6 +30,7 @@ const Profile = () => {
   const [mobile, setMobile] = useState(null);
   const [bank, setBank] = useState(false);
   const [addedBanks, setAddedbanks] = useState([]);
+  const [addedDemat, setaddedDemats] = useState([]);
   const [demat, setDemat] = useState(false);
   const [idty, setIdty] = useState(false);
   const [step, setStep] = useState("step1");
@@ -44,10 +46,36 @@ const Profile = () => {
   const get_banks1 = async () => {
     const banks = await get_banks();
     if (banks.error) {
-      alert("error in getting banks");
+      toast.error(banks.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       console.log(banks);
       setAddedbanks(banks.data?.data);
+    }
+  };
+
+  const get_demat1 = async () => {
+    const addeddemat = await get_demat();
+    if (addeddemat.error) {
+      toast.error(addeddemat.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      console.log(addeddemat);
+      setaddedDemats(addeddemat.data?.data);
     }
   };
 
@@ -104,6 +132,7 @@ const Profile = () => {
 
   useEffect(() => {
     get_banks1();
+    get_demat1();
   }, []);
 
   return (
@@ -154,6 +183,7 @@ const Profile = () => {
           body="demat"
           setDemat={setDemat}
           setBank={setBank}
+          demats={addedDemat}
         />
       </div>
       <ErrorBox />
