@@ -54,7 +54,7 @@ const Map = (val) => {
                 style={{ display: "flex", position: "relative" }}
               >
                 <p className="ad__active">{val.status}</p>
-                <img className="om__thirdimg" src={info} alt="" />
+                <img className="addeddemet__img" src={info} alt="" />
               </div>
             </div>
             <div className="ad__para1">

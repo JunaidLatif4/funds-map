@@ -1,46 +1,45 @@
-.Customweb__container{
-    margin: 0 15px;
-    margin-top: 35px;
+.Customweb__container {
+  margin: 0 15px;
+  margin-top: 35px;
 }
-.Customweb__header{
-    margin-bottom: 35px;
-
+.Customweb__header {
+  margin-bottom: 35px;
 }
-.Customweb__heading{
-    font-size: 20px;
-    display: flex;
+.Customweb__heading {
+  font-size: 20px;
+  display: flex;
 }
-.Customweb__body{
-   margin: 33px 0;
+.Customweb__body {
+  margin: 33px 0;
 }
-.body{
-    /* margin-top: 20px; */
+.body {
+  /* margin-top: 20px; */
 }
-.Custom__lists{
-    font-size: 11px;
-    margin: 13px 0;
+.Custom__lists {
+  font-size: 11px;
+  margin: 13px 0;
 }
-.component{
-    border: 1px solid black;
-    display: flex;
-    height: 35px;
-    border-radius: 8px;
+.component {
+  border: 1px solid black;
+  display: flex;
+  height: 35px;
+  border-radius: 8px;
 }
-.left{
-    width: 4%;
-    background-color: blue;
-    border-radius: 8px;
+.left {
+  width: 4%;
+  background-color: blue;
+  /* border-radius: 8px; */
 }
-.right{
-    width: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* background-color: blue; */
+.right {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: blue; */
 }
-.component__link{
-    color: blue;
+.component__link {
+  color: blue;
 }
-.body__heading{
-    font-size: 24px;
+.body__heading {
+  font-size: 24px;
 }

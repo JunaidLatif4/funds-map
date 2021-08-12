@@ -40,6 +40,7 @@ import BtnCom from "./screens/OrderModification/Components/BtnComponent/BtnCom";
 // import Funds from "./screens/funds/Funds";
 
 import Funds from "./screens/funds/Funds";
+import Terms from "./screens/OrderModification/AcceptanceOfTerms/Terms";
 function App() {
   dotenv.config();
   return (
@@ -80,6 +81,7 @@ function App() {
           <Route exact path="/chosebank" component={ChoseBank} />
           <Route exact path="/btn" component={BtnCom} />
           <Route exact path="/funds" component={Funds} />
+          <Route exact path="/terms" component={Terms} />
         </Switch>
       </div>
     </BrowserRouter>
