@@ -12,9 +12,11 @@ import {
   otp_generate,
   bank_validator,
   bank_save,
+  test_signin
 } from "../../../api/profile";
 
 const BankMain = ({ bank, setBank, step, setStep }) => {
+
   const [ifsc, setIfsc] = useState("")
   const [accountnumber, setAccountnumber] = useState("")
   const [data_for_step2, setdata_for_step2] = useState({})
@@ -54,16 +56,25 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     setIfsc(val)
 
     if (val?.length == 11) {
-      let ifsc_v = await ifsc_validator(val)
-      if (ifsc_v.error) {
-        alert("error in ifsc validation2")
+      let token = await test_signin()
+      if (token?.error) {
+        alert("error while signin")
       }
       else {
-        setifsc_res(ifsc_v?.data?.data)
-        console.log(ifsc_v)
+        localStorage.setItem("token", token.data.data)
+        console.log(token?.data.data)
+        let ifsc_v = await ifsc_validator(val, token?.data.data)
+        if (ifsc_v.error) {
+          alert("error in ifsc validation2")
+        }
+        else {
+          setifsc_res(ifsc_v?.data?.data)
+          console.log(ifsc_v)
+        }
       }
     }
   };
+
 
   const handleStep2 = async () => {
     let save_Account = await bank_save(
@@ -83,7 +94,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
   };
 
   const handleStep3 = () => {
-    setStep("step1");
+    alert("success")
   };
 
   return (

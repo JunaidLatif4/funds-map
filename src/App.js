@@ -32,6 +32,7 @@ import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import OrderModi from "./screens/OrderModification/Ordermodification/OrderModi";
 // import Menu from "./components/client-partner-menu/ClientPartnerMenu";
 import Funds from "./screens/funds/Funds";
+import TestSignin from "./components/test-signin/TestSignin";
 function App() {
   dotenv.config();
   return (
@@ -66,6 +67,7 @@ function App() {
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/ordermodi" component={OrderModi} />
           <Route exact path="/funds" component={Funds} />
+          <Route exact path="/test-signin" component={TestSignin} />
         </Switch>
       </div>
     </BrowserRouter>
