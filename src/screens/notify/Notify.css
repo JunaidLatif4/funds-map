@@ -1,4 +1,4 @@
-.signup__container {
+.notify__container {
   width: 480px;
   height: 87vh;
   display: flex;
@@ -7,7 +7,7 @@
   background-color: rgb(255, 255, 255);
   /* padding-top: 20px; */
 }
-.signup__header {
+.notify__header {
   padding: 0px 20px;
 }
 .notify__section1 {

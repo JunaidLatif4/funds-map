@@ -79,8 +79,8 @@ function App() {
           // From Zahid
           <Route exact path="/ordermodi" component={OrderModi} />
           <Route exact path="/cordermodi" component={Cordermodi} />
-          <Route exact path="/mtradeqty" component={Mtradeqty} />
-          <Route exact path="/reqfund" component={Reqfund} />
+          <Route exact path="/mintradeqty" component={Mtradeqty} />
+          <Route exact path="/requirefund" component={Reqfund} />
           <Route exact path="/modified" component={Modified} />
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/freshround" component={FreshRound} />
