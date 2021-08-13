@@ -84,18 +84,10 @@ const Otp = () => {
           progress: undefined,
         });
       } else {
-        toast.success("Success!!!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
         dispatch(signup_user(token.data.data));
         localStorage.setItem("token", token.data.data);
         setLoading(false);
+        history.push("/profile");
       }
     } else {
       const num = mobile.slice(3).replace("-", "");
@@ -112,18 +104,10 @@ const Otp = () => {
           progress: undefined,
         });
       } else {
-        toast.success("Success!!!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
         dispatch(signup_user(token.data.data));
         localStorage.setItem("token", token.data.data);
         setLoading(false);
+        history.push("/profile");
       }
     }
   };

@@ -12,7 +12,9 @@ const Bankdata = ({ data_for_step2, setOtp }) => {
         <div className="userInfo__container">
           <div className="first__info">
             <div className="info__key">Name :</div>
-            <p className="info__value">&nbsp;{data_for_step2?.accountHolderName}</p>
+            <p className="info__value">
+              &nbsp;{data_for_step2?.accountHolderName}
+            </p>
           </div>
           <div className="first__info">
             <div className="info__key">Bank :</div>
@@ -20,7 +22,9 @@ const Bankdata = ({ data_for_step2, setOtp }) => {
           </div>
           <div className="first__info">
             <div className="info__key">A/c :</div>
-            <p className="info__value">&nbsp;************{data_for_step2?.ac?.substr(10, 4)}</p>
+            <p className="info__value">
+              &nbsp;************{data_for_step2?.ac?.substr(10, 4)}
+            </p>
           </div>
           <div className="first__info">
             <div className="info__key">Branch :</div>

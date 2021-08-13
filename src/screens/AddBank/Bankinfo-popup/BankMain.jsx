@@ -17,18 +17,22 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
-const BankMain = ({ bank, setBank, step, setStep }) => {
+const BankMain = ({ bank, setBank, step, setStep, get_banks1 }) => {
   const [ifsc, setIfsc] = useState("");
   const [accountnumber, setAccountnumber] = useState("");
   const [data_for_step2, setdata_for_step2] = useState({});
   const [validationkey, setValidationkey] = useState(null);
   const [bankres, setbankres] = useState(null);
   const [ifsc_res, setifsc_res] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(false);
+  const token = useSelector((state) => state.user.token);
 
   const [otp, setOtp] = useState("");
   let data_for_step3 = {};
 
   const handleStep1 = async () => {
+    setLoading(true);
     let bank = await bank_validator(ifsc, accountnumber);
     setbankres(bank);
     if (bank.error) {
@@ -41,6 +45,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
         draggable: true,
         progress: undefined,
       });
+      setLoading(false);
     } else {
       setValidationkey(bank.data.data.validationKey);
       console.log(bank);
@@ -55,6 +60,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
           draggable: true,
           progress: undefined,
         });
+        setLoading(false);
       } else {
         console.log(otp);
         setdata_for_step2({
@@ -66,6 +72,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
           ifsc: ifsc,
         });
         console.log(data_for_step2);
+        setLoading(false);
         setStep("step2");
       }
     }
@@ -75,9 +82,11 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     setIfsc(val);
 
     if (val?.length == 11) {
-      let token = await test_signin();
-      if (token?.error) {
-        toast.error(token.error, {
+      setLoadingData(true);
+      console.log(token);
+      let ifsc_v = await ifsc_validator(val, token);
+      if (ifsc_v.error) {
+        toast.error(ifsc_v.error, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -86,29 +95,17 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
           draggable: true,
           progress: undefined,
         });
+        setLoadingData(false);
       } else {
-        localStorage.setItem("token", token.data.data);
-        console.log(token?.data.data);
-        let ifsc_v = await ifsc_validator(val, token?.data.data);
-        if (ifsc_v.error) {
-          toast.error(ifsc_v.error, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          setifsc_res(ifsc_v?.data?.data);
-          console.log(ifsc_v);
-        }
+        setifsc_res(ifsc_v?.data?.data);
+        setLoadingData(false);
+        console.log(ifsc_v);
       }
     }
   };
 
   const handleStep2 = async () => {
+    setLoading(true);
     let save_Account = await bank_save(
       otp,
       validationkey,
@@ -119,6 +116,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
     );
     console.log(save_Account);
     if (save_Account.error) {
+      setLoading(false);
       toast.error("Bank not saved", {
         position: "top-center",
         autoClose: 5000,
@@ -129,20 +127,15 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
         progress: undefined,
       });
     } else {
+      setLoading(false);
       setStep("step3");
     }
   };
 
   const handleStep3 = () => {
-    toast.success("Success", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    get_banks1();
+    setStep("step1");
+    setBank(false);
   };
 
   return (
@@ -167,6 +160,7 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
             ifsc={ifsc}
             handel_ifsc={handel_ifsc}
             ifsc_res={ifsc_res}
+            loadingData={loadingData}
           />
         )}
         {step == "step2" && (
@@ -175,12 +169,22 @@ const BankMain = ({ bank, setBank, step, setStep }) => {
         {step == "step3" && <BankSuccess data_for_step3 />}
 
         {step == "step1" && (
-          <Button click={() => handleStep1()} text="VERIFY BANK ACCOUNT" />
+          <Button
+            click={() => handleStep1()}
+            text="VERIFY BANK ACCOUNT"
+            loading={loading}
+          />
         )}
         {step == "step2" && (
-          <Button click={() => handleStep2()} text="ADD BANK ACCOUNT" />
+          <Button
+            click={() => handleStep2()}
+            text="ADD BANK ACCOUNT"
+            loading={loading}
+          />
         )}
-        {step == "step3" && <Button click={() => handleStep3()} text="DONE" />}
+        {step == "step3" && (
+          <Button click={() => handleStep3()} text="DONE" loading={loading} />
+        )}
       </BottomSlide>
     </>
   );

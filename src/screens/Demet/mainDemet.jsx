@@ -8,11 +8,12 @@ import { add_demat, otp_generate, confirm_demat } from "../../api/profile";
 
 import { ToastContainer, toast } from "react-toastify";
 
-function MainDemet({ demat, setDemat, stepD, setStepD }) {
+function MainDemet({ demat, setDemat, stepD, setStepD, get_demat1 }) {
   const [pdf_file, setPdf_color] = useState(null);
   const [demat_response, setDemat_response] = useState();
   const [otp, setOtp] = useState();
   const [data_for_step2, setData_for_step2] = useState();
+  const [loading, setLoading] = useState(false);
 
   const verify_upload = async (data) => {
     let demat_res = await add_demat(data);
@@ -40,6 +41,7 @@ function MainDemet({ demat, setDemat, stepD, setStepD }) {
   };
 
   const confirm_demat1 = async () => {
+    setLoading(true);
     let confirm_res = await confirm_demat(
       demat_response.data?.data?.clientId,
       demat_response.data?.data?.depositoryId,
@@ -47,6 +49,7 @@ function MainDemet({ demat, setDemat, stepD, setStepD }) {
       otp
     );
     if (confirm_res.error) {
+      setLoading(false);
       toast.error(confirm_res.error, {
         position: "top-center",
         autoClose: 5000,
@@ -57,6 +60,9 @@ function MainDemet({ demat, setDemat, stepD, setStepD }) {
         progress: undefined,
       });
     } else {
+      get_demat1();
+      setDemat(false);
+      setLoading(false);
     }
   };
 
@@ -89,7 +95,11 @@ function MainDemet({ demat, setDemat, stepD, setStepD }) {
           <AddDemet demat_response={demat_response.data.data} setOtp={setOtp} />
         )}
         {stepD == "step2" && (
-          <Button click={() => confirm_demat1()} text="CONFIRM DEMAT ACCOUNT" />
+          <Button
+            loading={loading}
+            click={() => confirm_demat1()}
+            text="CONFIRM DEMAT ACCOUNT"
+          />
         )}
       </BottomSlide>
     </div>

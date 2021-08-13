@@ -20,6 +20,7 @@ const DropCard = ({
   basicInfo,
   banks,
   demats,
+  disabled,
 }) => {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -50,7 +51,14 @@ const DropCard = ({
         {body === "bank" && (
           <div>
             <AddedBank banks={banks} />
-            <AddBtn text="Add Bank" setBank={setBank} setDemat={setDemat} />
+            <AddBtn
+              text="Add Bank"
+              setBank={setBank}
+              setDemat={setDemat}
+              disabledStyle={
+                disabled ? { color: "grey", pointerEvents: "none" } : null
+              }
+            />
           </div>
         )}
         {body === "demat" && (
@@ -60,6 +68,9 @@ const DropCard = ({
               text="Add Demat Account"
               setBank={setBank}
               setDemat={setDemat}
+              disabledStyle={
+                disabled ? { color: "grey", pointerEvents: "none" } : null
+              }
             />
           </div>
         )}

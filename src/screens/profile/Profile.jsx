@@ -19,11 +19,14 @@ import BankMain from "../AddBank/Bankinfo-popup/BankMain.jsx";
 import MainDemet from "../Demet/mainDemet";
 import VerifyIdentity from "./components/verify-identity/VerifyIdentity.js";
 import { ToastContainer, toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { get_banks } from "../../api/profile";
+import { get_stateDemats } from "../../store/Demat";
+import { get_stateBanks } from "../../store/Bank";
 
 const Profile = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [addMobile, setAddMobile] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [verifyMobile, setVerifyMobile] = useState(false);
@@ -37,11 +40,14 @@ const Profile = () => {
   const [stepD, setStepD] = useState("step1");
   const [profileData, setProfileData] = useState([]);
   const [username, setUsername] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const [box, setBox] = useState({
     open: false,
     type: "mobile",
   });
   const stateToken = useSelector((state) => state.user.token);
+  const stateDemat = useSelector((state) => state.demat);
+  const stateBank = useSelector((state) => state.bank);
 
   const get_banks1 = async () => {
     const banks = await get_banks();
@@ -57,6 +63,7 @@ const Profile = () => {
       });
     } else {
       console.log(banks);
+      dispatch(get_stateBanks(banks?.data.data));
       setAddedbanks(banks.data?.data);
     }
   };
@@ -76,13 +83,10 @@ const Profile = () => {
     } else {
       console.log(addeddemat);
       setaddedDemats(addeddemat.data?.data);
+      dispatch(get_stateDemats(addeddemat?.data.data));
     }
   };
 
-  // const setdemat = (p) => {
-  //   console.log("vvv", demat)
-  //   setDemat(p)
-  // }
   const get_details = async () => {
     const details = await profile_details(stateToken);
     console.log(details);
@@ -109,6 +113,7 @@ const Profile = () => {
         setProfileData(details.data.data);
         setUsername(userName);
         setCompleted(identityCheckDone);
+        setDisabled(!identityCheckDone);
       }
     }
   };
@@ -175,7 +180,8 @@ const Profile = () => {
           body="bank"
           setBank={setBank}
           setDemat={setDemat}
-          banks={addedBanks}
+          banks={stateBank}
+          disabled={disabled}
         />
         <DropCard
           icon={profile}
@@ -183,10 +189,11 @@ const Profile = () => {
           body="demat"
           setDemat={setDemat}
           setBank={setBank}
-          demats={addedDemat}
+          demats={stateDemat}
+          disabled={disabled}
         />
       </div>
-      <ErrorBox />
+      {disabled && <ErrorBox />}
       {box?.open && (
         <AddPhone
           type={box?.type}
@@ -196,7 +203,13 @@ const Profile = () => {
         />
       )}
       {bank && (
-        <BankMain setBank={setBank} bank={bank} step={step} setStep={setStep} />
+        <BankMain
+          get_banks1={get_banks1}
+          setBank={setBank}
+          bank={bank}
+          step={step}
+          setStep={setStep}
+        />
       )}
       {demat && (
         <MainDemet
@@ -204,6 +217,7 @@ const Profile = () => {
           demat={demat}
           stepD={stepD}
           setStepD={setStepD}
+          get_demat1={get_demat1}
         />
       )}
       {idty && (

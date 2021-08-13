@@ -5,6 +5,8 @@ import info from "../../../Assets/imgs/info.svg";
 import { delete_demat } from "../../../api/profile";
 
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { delete_stateDemat } from "../../../store/Demat";
 
 const arr = [
   {
@@ -40,11 +42,13 @@ const arr = [
 ];
 
 const Demat = (val, index) => {
-  const handle_delete = async (index) => {
+  const dispatch = useDispatch();
+  const handle_delete = async (demat) => {
     let delete_res = await delete_demat(val.clientId, val.depositoryId);
     if (delete_res.error) {
       console.log("error in deleting demat");
     } else {
+      dispatch(delete_stateDemat(demat));
       toast.success("Deleted Successfuly", {
         position: "top-center",
         autoClose: 5000,
@@ -75,7 +79,7 @@ const Demat = (val, index) => {
                 style={{ display: "flex", position: "relative" }}
               >
                 <p className="ad__active">{val.accountStatus}</p>
-                <img className="om__thirdimg" src={info} alt="" />
+                <img className="addeDemat__thirdimg" src={info} alt="" />
               </div>
             </div>
             <div className="ad__para1">

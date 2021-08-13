@@ -271,8 +271,34 @@ export const upload_logo = async (data, token) => {
   } catch (error) {
     if (error.response) {
       resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "Something went wrong";
     }
-    resolved.error = "Something went wrong";
+  }
+  return resolved;
+};
+
+export const refresh_token = async (token) => {
+  const resolved = {
+    data: null,
+    error: null,
+  };
+
+  try {
+    resolved.data = await axios({
+      url: "api/v1/users/refresh",
+      method: "get",
+      headers: {
+        authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    if (error.response) {
+      resolved.error = error.response.data.message;
+    } else {
+      resolved.error = "Something went wrong";
+    }
   }
   return resolved;
 };

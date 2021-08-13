@@ -1,5 +1,5 @@
 .ad__container {
-  margin: 15px 0;
+  margin: 15px;
   width: 90%;
 }
 .addedbank__header {
@@ -33,7 +33,7 @@
   justify-content: space-between;
   font-size: 12px;
 }
-.addeddemet__img {
+.addeDemat__thirdimg {
   height: 20px;
   width: 10px;
   margin-left: 2px;
