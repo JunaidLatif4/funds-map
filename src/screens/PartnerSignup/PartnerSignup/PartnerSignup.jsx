@@ -1,16 +1,15 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
-import Phone from "material-ui-phone-number";
+
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "../../../components/button/Button";
-import "./PSignup.css";
-import PhoneInput from "react-phone-number-input";
-import Switch from "@material-ui/core/Switch";
+import "./PartnerSignup.css";
+
 import "react-phone-number-input/style.css";
 import { useState } from "react";
 import ToggleBtn from "../../../components/toggle-btn/ToggleBtn";
-import { blue, grey, red } from "@material-ui/core/colors";
+
 import Mnumber from "../../../components/Mob-num input/Mnumber";
 import { email_verification, partner_signup } from "../../../api/auth";
 import { useEffect } from "react";

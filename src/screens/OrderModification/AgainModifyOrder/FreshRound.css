@@ -1,0 +1,61 @@
+.fr__container {
+  width: 90%;
+}
+.fr__header {
+  font-size: 23px;
+}
+.fr_para {
+  font-size: 11px;
+  margin-top: 3px;
+  color: grey;
+}
+.fr__body {
+  margin-top: 45px;
+}
+
+.fr__btn1 {
+  border: 1px solid black;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  margin: 35px 0;
+}
+
+.fr__btn2 {
+  border: 1px solid black;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  margin: 35px 0;
+  margin-bottom: 80px;
+}
+.fr__btn1__left {
+  width: 4%;
+  background-color: blue;
+  margin-right: 12px;
+}
+.fr__btn1__right {
+  width: 95%;
+  padding: 6px 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.fr__btn2__left {
+  width: 4%;
+  background-color: red;
+  margin-right: 12px;
+}
+.fr__btn2__right {
+  color: red;
+  width: 95%;
+  padding: 6px 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.comp__para1 {
+  font-size: 12px;
+}

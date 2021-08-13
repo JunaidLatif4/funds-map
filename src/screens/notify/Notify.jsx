@@ -78,8 +78,8 @@ const Notify = () => {
   // const classes = useStyles();
   return (
     <>
-      <div className="signup__container">
-        <div className="signup__header">
+      <div className="notify__container">
+        <div className="notify__header">
           <Backarrow />
         </div>
         <ToastContainer

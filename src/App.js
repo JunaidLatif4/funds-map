@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store/ConfigureStore";
 import Signin from "./screens/signin/Signin";
 import Signup from "./screens/signup/Signup";
-import PSignup from "./screens/PartnerSignup/Psignup/PSignup";
+import PSignup from "./screens/PartnerSignup/PartnerSignup/PartnerSignup";
 import EVar from "./screens/EmailVar/EVar";
 import Otp from "./screens/otp/Otp";
 import Motp from "./screens/PartnerSignup/MobileOtp/Motp";

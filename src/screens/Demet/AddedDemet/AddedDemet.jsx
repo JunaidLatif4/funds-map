@@ -78,8 +78,8 @@ const Demat = (val, index) => {
                 className="active__class"
                 style={{ display: "flex", position: "relative" }}
               >
-                <p className="ad__active">{val.accountStatus}</p>
-                <img className="addeDemat__thirdimg" src={info} alt="" />
+                <p className="ad__active">{val.status}</p>
+                <img className="addeddemet__img" src={info} alt="" />
               </div>
             </div>
             <div className="ad__para1">
