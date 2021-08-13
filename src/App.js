@@ -10,7 +10,7 @@ import dotenv from "dotenv";
 import Dashboard from "./screens/dashboard/Dashboard";
 import Details from "./screens/dashboard/Details";
 
-import PSignup from "./screens/PartnerSignup/Psignup/PSignup";
+import PartnerSignup from "./screens/PartnerSignup/PartnerSignup/PartnerSignup";
 import Gstart from "./screens/PartnerSignup/Getstarted/Gstart";
 import Customweb from "./screens/PartnerSignup/CustomWeb/Customweb";
 import Dfee from "./screens/PartnerSignup/DefaultFee/Dfee";
@@ -55,7 +55,7 @@ function App() {
           <Route exact path="/notify" component={Notify} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/details" component={Details} />
-          <Route exact path="/psignup" component={PSignup} />
+          <Route exact path="/partnersignup" component={PartnerSignup} />
           <Route exact path="/getstarted" component={Gstart} />
           <Route exact path="/customweb" component={Customweb} />
           <Route exact path="/dfee" component={Dfee} />
